@@ -1,0 +1,21 @@
+---
+/**
+ * ページ内ナビ（nav.pdf: 見出しなし・縦並びボタン）
+ */
+import { CATEGORY_NAV_ITEMS } from '../data/category-nav';
+import NavStackLink from '../components/NavStackLink.astro';
+---
+
+<section id="category" class="l-section l-section--bg-surface p-category-nav" aria-label="ページ内ナビ">
+  <div class="l-container">
+    <nav aria-label="ページ内セクションへジャンプ">
+      <ul class="c-nav-stack">
+        {CATEGORY_NAV_ITEMS.map((cat) => (
+          <li class="c-nav-stack__item">
+            <NavStackLink href={cat.href} label={cat.label} />
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</section>

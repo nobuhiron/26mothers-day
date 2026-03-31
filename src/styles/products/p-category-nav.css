@@ -1,0 +1,5 @@
+/* CategoryNav は c-nav-stack に移行（旧グリッド・アイコンは不使用） */
+
+.p-category-nav > .l-container {
+  padding-inline: 20px;
+}

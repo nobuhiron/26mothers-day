@@ -1,0 +1,70 @@
+/* 共通背景 + 中央固定幅 main + PC 時のみ左右シェル */
+
+.l-page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.l-page__bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    165deg,
+    var(--palette-mint-weak) 0%,
+    var(--color-bg) 38%,
+    var(--palette-peach-weak) 100%
+  );
+}
+
+.l-shell {
+  display: block;
+}
+
+.l-shell__aside {
+  display: none;
+}
+
+.l-shell__main {
+  width: 100%;
+}
+
+.l-main-column {
+  width: 100%;
+  max-width: var(--layout-main-width);
+  margin-inline: auto;
+}
+
+.l-shell__sticky {
+  position: sticky;
+  top: var(--spacing-xl);
+  padding-block: var(--spacing-md);
+}
+
+@media (--lg) {
+  .l-shell {
+    display: grid;
+    grid-template-columns: minmax(120px, 1fr) var(--layout-main-width) minmax(140px, 1fr);
+    align-items: start;
+    gap: 0;
+    padding-inline: var(--spacing-md);
+  }
+
+  .l-shell__aside {
+    display: block;
+  }
+
+  .l-shell__aside--left,
+  .l-shell__aside--right {
+    min-width: 0;
+  }
+
+  .l-shell__main {
+    min-width: 0;
+  }
+
+  .l-main-column {
+    margin-inline: 0;
+  }
+}

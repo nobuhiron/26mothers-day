@@ -1,0 +1,91 @@
+/* nav: 縦並びボタン。右にベージュ丸＋白 chevron */
+
+.c-nav-stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.c-nav-stack__item {
+  margin: 0;
+}
+
+.c-nav-stack__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  padding-right: var(--spacing-sm);
+  box-sizing: border-box;
+  font-family: var(--font-jp--sanserif);
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--fw-medium);
+  line-height: 1.45;
+  text-decoration: none;
+  color: var(--color-text);
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, var(--palette-border));
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-text) 6%, transparent);
+}
+
+.c-nav-stack__label {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.c-nav-stack__icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xl);
+  background: var(--color-main);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-nav-stack__chevron {
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+  display: block;
+}
+
+.c-nav-stack__btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* PC 右カラム：詰め */
+.c-nav-stack--compact {
+  gap: var(--spacing-xs);
+}
+
+.c-nav-stack--compact .c-nav-stack__btn--compact {
+  font-size: 12px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  padding-right: var(--spacing-xs);
+  min-height: 40px;
+  line-height: 1.35;
+}
+
+.c-nav-stack--compact .c-nav-stack__btn--compact .c-nav-stack__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.c-nav-stack--compact .c-nav-stack__btn--compact .c-nav-stack__chevron {
+  width: 12px;
+  height: 12px;
+  margin-left: 1px;
+}

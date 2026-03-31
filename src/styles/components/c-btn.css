@@ -1,0 +1,76 @@
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-sm);
+  font-weight: var(--fw-bold);
+  font-size: clamp(13px, 1.4vw, 15px);
+  text-decoration: none;
+  border: none;
+  line-height: 1.4;
+}
+.c-btn--cta {
+  background-color: var(--color-cta);
+  color: #fff;
+  width: 100%;
+}
+.c-btn--accent {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+.c-btn--outline {
+  background-color: transparent;
+  border: 1px solid currentColor;
+}
+
+/* ---------- カード用ピルボタン ---------- */
+.c-btn-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 255px;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-md) 0;
+  background-color: var(--color-main);
+  color: #fff;
+  border-radius: 100px;
+  font-family: var(--font-jp--sanserif);
+  font-size: clamp(14px, 1.6vw, 16px);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: opacity 0.2s;
+}
+.c-btn-pill:hover {
+  opacity: 0.85;
+}
+.c-btn-pill__arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.c-btn-pill__arrow svg {
+  width: 24px;
+  height: 24px;
+}
+.c-btn-pill__arrow circle {
+  fill: #fff;
+  stroke: #fff;
+}
+.c-btn-pill__arrow path {
+  stroke: var(--color-main);
+}
+
+/* data-color バリエーション */
+.c-btn-pill[data-color="accent"] {
+  background-color: var(--color-accent);
+}
+.c-btn-pill[data-color="accent"] .c-btn-pill__arrow path {
+  stroke: var(--color-accent);
+}

@@ -1,0 +1,81 @@
+---
+/**
+ * ギフトラッピングセクション
+ * Dedicated box + Gift bag の2パート構成
+ */
+import { Image } from 'astro:assets';
+import boxImg from '../assets/images/box_img.png';
+import tagImg from '../assets/images/tag.png';
+---
+
+<section id="gift" class="p-gift-wrapping" aria-labelledby="heading-gift-wrapping">
+
+  <!-- ===== Dedicated box ===== -->
+  <div id="gift-bag-tag" class="p-gift-wrapping__anchor" aria-hidden="true"></div>
+  <div class="p-gift-wrapping__block">
+    <div class="l-container">
+      <header class="p-gift-wrapping__heading">
+        <img src="/dedicated-box.svg" alt="Dedicated box" class="p-gift-wrapping__heading-en-img" />
+        <p class="p-gift-wrapping__heading-ja">メッセージ付き専用BOXでお届け<br />抹茶スイーツお試しセット</p>
+      </header>
+
+      <div class="p-gift-wrapping__box-visual">
+        <div class="p-gift-wrapping__box-image">
+          <Image src={boxImg} alt="母の日専用ギフトボックス" />
+        </div>
+        <button class="p-gift-wrapping__tap-label" type="button" aria-label="タップして中を見る">
+          <span class="p-gift-wrapping__tap-icon">👆</span>
+          <span>タップして<br />中を見る</span>
+        </button>
+      </div>
+
+      <div class="p-gift-wrapping__price-area">
+        <span class="p-gift-wrapping__badge-shipping">送 料 無 料</span>
+        <p class="p-gift-wrapping__price">
+          <span class="p-gift-wrapping__price-yen">¥</span><span class="p-gift-wrapping__price-num">2,500</span><span class="p-gift-wrapping__price-tax">（税込）</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Gift bag ===== -->
+  <div id="gift-mothers-wrap" class="p-gift-wrapping__anchor" aria-hidden="true"></div>
+  <div class="p-gift-wrapping__block">
+    <div class="l-container">
+      <header class="p-gift-wrapping__heading" id="heading-gift-wrapping">
+        <img src="/gift-bag.svg" alt="Gift bag" class="p-gift-wrapping__heading-en-img" />
+        <p class="p-gift-wrapping__heading-ja">森半オリジナルギフト袋<br />＆メッセージタグ</p>
+      </header>
+
+      <div class="p-gift-wrapping__bag-visual">
+        <div class="p-gift-wrapping__bag-badge">
+          <p class="p-gift-wrapping__bag-badge-text">
+            <span class="p-gift-wrapping__bag-badge-highlight">母の日<br />限定タグ</span>を<br />つけてお届けいた<br />します。
+          </p>
+          <span class="p-gift-wrapping__bag-badge-tail"></span>
+        </div>
+        <div class="p-gift-wrapping__bag-image">
+          <Image src={tagImg} alt="森半オリジナルギフト袋" />
+        </div>
+      </div>
+
+      <div class="p-gift-wrapping__message-row">
+        <div class="p-gift-wrapping__message-item">
+          <div class="p-gift-wrapping__message-image" role="img" aria-label="メッセージ付きギフト袋">
+            <!-- メッセージ付き画像 -->
+          </div>
+          <p class="p-gift-wrapping__message-caption">メッセージ付きで<br />想いを伝える</p>
+        </div>
+        <div class="p-gift-wrapping__message-item">
+          <p class="p-gift-wrapping__message-caption p-gift-wrapping__message-caption--left">直筆メッセージで<br />想いを伝える</p>
+          <div class="p-gift-wrapping__message-image" role="img" aria-label="直筆メッセージタグ">
+            <!-- 直筆メッセージ画像 -->
+          </div>
+        </div>
+      </div>
+
+      <p class="p-gift-wrapping__note">※メッセージの代筆は承っておりません。</p>
+    </div>
+  </div>
+
+</section>

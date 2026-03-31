@@ -1,11 +1,17 @@
-import { defineConfig } from 'astro/config';
-import { loadEnv } from 'vite';
+import { defineConfig, envField } from 'astro/config';
 
-const env = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
+const cdnUrl = process.env.CDN_URL || '';
 
 export default defineConfig({
+  env: {
+    schema: {
+      PUBLIC_LINK_BASE: envField.string({ context: 'client', access: 'public', default: '#' }),
+      PUBLIC_LINE_URL: envField.string({ context: 'client', access: 'public', default: '#' }),
+      PUBLIC_MOTHERS_DAY_COUNTDOWN: envField.number({ context: 'server', access: 'public', default: 12 }),
+    },
+  },
   build: {
-    assetsPrefix: env.CDN_URL || process.env.CDN_URL || '',
+    assetsPrefix: cdnUrl,
   },
   image: { service: { entrypoint: 'astro/assets/services/sharp' } },
   vite: {

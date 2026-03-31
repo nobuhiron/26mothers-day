@@ -1,0 +1,90 @@
+/* ===== Shop by price セクション ===== */
+
+.p-shop-by-price > .l-container {
+  padding-inline: 20px;
+}
+
+/* ヘッダー */
+.p-shop-by-price__header {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+}
+.p-shop-by-price__heading-en-img {
+  display: block;
+  margin-top: var(--spacing-md);
+  margin-inline: auto;
+  width: clamp(160px, 40vw, 240px);
+  height: auto;
+}
+.p-shop-by-price__heading-ja {
+  display: block;
+  margin-top: var(--spacing-xs);
+  font-family: var(--font-jp--serif);
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: var(--color-text);
+}
+
+/* 価格帯グループ */
+.p-shop-by-price__bands {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5xl);
+}
+
+/* ---------- 価格帯ヘッダー ---------- */
+.p-shop-by-price__band-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* アーチ形SVG */
+.p-shop-by-price__band-arch {
+  display: flex;
+  justify-content: center;
+}
+.p-shop-by-price__band-arch-img {
+  display: block;
+  width: clamp(200px, 50vw, 300px);
+  height: auto;
+}
+
+/* 価格帯タイトル（数字大きく、「円」小さく） */
+.p-shop-by-price__band-title {
+  margin: 0;
+  font-family: var(--font-jp--serif);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+.p-shop-by-price__band-num {
+  font-size: clamp(32px, 8vw, 52px);
+  letter-spacing: -0.02em;
+}
+.p-shop-by-price__band-yen {
+  font-size: clamp(16px, 3vw, 22px);
+  vertical-align: baseline;
+}
+.p-shop-by-price__band-tilde {
+  font-size: clamp(24px, 5vw, 36px);
+  margin-inline: 0.1em;
+}
+
+/* おすすめアイテム */
+.p-shop-by-price__band-sub {
+  margin: var(--spacing-md) 0 0;
+  font-family: var(--font-jp--serif);
+  font-size: clamp(18px, 4vw, 26px);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+  letter-spacing: 0.1em;
+}
+
+/* 商品リスト（縦積み） */
+.p-shop-by-price__list {
+  list-style: none;
+  margin: var(--spacing-xl) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+}

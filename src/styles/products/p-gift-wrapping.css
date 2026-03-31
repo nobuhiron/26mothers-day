@@ -1,0 +1,235 @@
+/* ===== Gift Wrapping セクション全体 ===== */
+.p-gift-wrapping {
+  padding-block: var(--spacing-5xl);
+  background-color: var(--base-surface);
+}
+.p-gift-wrapping .l-container {
+  padding-inline: 20px;
+}
+
+/* アンカーオフセット */
+.p-gift-wrapping__anchor {
+  scroll-margin-top: var(--spacing-xl);
+}
+
+/* ブロック（Dedicated box / Gift bag 共通） */
+.p-gift-wrapping__block {
+  text-align: center;
+}
+.p-gift-wrapping__block + .p-gift-wrapping__block {
+  margin-top: var(--spacing-5xl);
+}
+
+/* ---------- 見出し ---------- */
+.p-gift-wrapping__heading {
+  margin-bottom: var(--spacing-xl);
+}
+.p-gift-wrapping__heading-en-img {
+  display: block;
+  margin-inline: auto;
+  width: clamp(160px, 40vw, 240px);
+  height: auto;
+}
+.p-gift-wrapping__heading-ja {
+  margin-top: var(--spacing-sm);
+  font-family: var(--font-jp--serif);
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* ---------- Dedicated box ---------- */
+.p-gift-wrapping__box-visual {
+  position: relative;
+}
+.p-gift-wrapping__box-image {
+  width: 100%;
+}
+.p-gift-wrapping__box-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.p-gift-wrapping__tap-label {
+  position: absolute;
+  top: var(--spacing-md);
+  right: calc(-1 * var(--spacing-lg));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--color-main);
+  border-radius: var(--radius-xl);
+  font-size: 11px;
+  font-family: var(--font-jp--sanserif);
+  color: var(--color-text);
+  line-height: 1.4;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.p-gift-wrapping__tap-icon {
+  font-size: 18px;
+}
+
+/* 価格エリア */
+.p-gift-wrapping__price-area {
+  position: relative;
+  margin-top: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.p-gift-wrapping__price-area::before {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  translate: -50% -50%;
+  width: 299px;
+  height: 208px;
+  background: url("/paint.svg") no-repeat center / contain;
+  z-index: 0;
+  pointer-events: none;
+}
+.p-gift-wrapping__badge-shipping {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-lg);
+  background-color: #fff;
+  color: var(--color-text);
+  font-size: 13px;
+  font-family: var(--font-jp--sanserif);
+  letter-spacing: 0.2em;
+}
+.p-gift-wrapping__price {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-en);
+  color: #fff;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.p-gift-wrapping__price-yen {
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: var(--fw-bold);
+}
+.p-gift-wrapping__price-num {
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: var(--fw-bold);
+}
+.p-gift-wrapping__price-tax {
+  font-size: clamp(13px, 1.4vw, 15px);
+  font-family: var(--font-jp--serif);
+  font-weight: var(--fw-regular);
+}
+
+/* ---------- Gift bag ---------- */
+.p-gift-wrapping__bag-visual {
+  position: relative;
+  margin-bottom: var(--spacing-3xl);
+}
+.p-gift-wrapping__bag-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: min(40vw, 133px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  font-size: clamp(12px, 2.8vw, 14px);
+  font-family: var(--font-jp--sanserif);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  line-height: 1.6;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+}
+.p-gift-wrapping__bag-badge-text {
+  margin: 0;
+}
+.p-gift-wrapping__bag-badge-highlight {
+  color: #f5d63d;
+  font-weight: var(--fw-bold);
+}
+.p-gift-wrapping__bag-badge-tail {
+  position: absolute;
+  bottom: 10%;
+  right: -30%;
+  width: 40%;
+  height: 1px;
+  background-color: var(--color-accent);
+  transform: rotate(35deg);
+  transform-origin: left center;
+}
+.p-gift-wrapping__bag-image {
+  position: relative;
+  width: min(70vw, 260px);
+  margin-inline: auto;
+}
+.p-gift-wrapping__bag-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+.p-gift-wrapping__bag-image::before {
+  content: "";
+  position: absolute;
+  inset: auto auto 0 50%;
+  translate: -50% 30%;
+  width: 150%;
+  aspect-ratio: 299 / 208;
+  background: url("/paint-beige.svg") no-repeat center / contain;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* メッセージ紹介行 */
+.p-gift-wrapping__message-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+  margin-top: var(--spacing-xl);
+}
+.p-gift-wrapping__message-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+.p-gift-wrapping__message-image {
+  width: min(50vw, 200px);
+  aspect-ratio: 4 / 3;
+  background-color: var(--palette-image-placeholder);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.p-gift-wrapping__message-caption {
+  font-family: var(--font-jp--serif);
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: var(--color-text);
+  line-height: 1.8;
+  font-weight: var(--fw-bold);
+  text-align: right;
+}
+.p-gift-wrapping__message-caption--left {
+  text-align: left;
+}
+
+/* 注釈 */
+.p-gift-wrapping__note {
+  margin-top: var(--spacing-3xl);
+  font-size: 12px;
+  color: var(--palette-muted);
+  font-family: var(--font-jp--sanserif);
+  text-align: center;
+}

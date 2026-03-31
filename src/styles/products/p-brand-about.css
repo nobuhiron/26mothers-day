@@ -1,0 +1,433 @@
+/* ===== LINE風チャットUI — 森半について ===== */
+
+/* セクション背景除去（LINE枠内で完結） */
+.p-brand-about {
+  padding-block: var(--spacing-3xl);
+}
+
+/* ---------- LINE外枠 ---------- */
+.p-line-chat {
+  max-width: 400px;
+  margin-inline: auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  background-color: var(--color-bg);
+}
+
+/* ---------- ヘッダー ---------- */
+.p-line-chat__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: #fff;
+  border-bottom: 1px solid var(--palette-border);
+}
+
+.p-line-chat__header-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.p-line-chat__header-title {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.p-line-chat__header-name {
+  display: block;
+  font-family: var(--font-jp--serif);
+  font-size: 14px;
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.p-line-chat__header-sub {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: var(--fw-regular);
+  color: var(--palette-muted);
+  letter-spacing: 0.08em;
+}
+
+.p-line-chat__header-icons {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--palette-muted);
+  flex-shrink: 0;
+}
+
+/* ---------- チャットボディ ---------- */
+.p-line-chat__body {
+  padding: var(--spacing-lg) var(--spacing-md) var(--spacing-xl);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: #c8e0f0;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* ---------- メッセージ行 ---------- */
+.p-line-chat__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.p-line-chat__row--bot {
+  justify-content: flex-start;
+}
+
+.p-line-chat__row--user {
+  justify-content: flex-end;
+}
+
+/* ---------- アバター ---------- */
+.p-line-chat__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--palette-green-weak);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-jp--serif);
+  font-size: 14px;
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+
+.p-line-chat__avatar--spacer {
+  visibility: hidden;
+}
+
+/* ---------- 吹き出し ---------- */
+.p-line-chat__bubble {
+  max-width: 75%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 16px;
+  font-family: var(--font-jp--sanserif);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.p-line-chat__bubble--bot {
+  background-color: #fff;
+  border-top-left-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.p-line-chat__bubble--footer {
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* ---------- A/B選択ボタン ---------- */
+.p-line-chat__choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: flex-end;
+}
+
+.p-line-chat__choice-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: #fff;
+  border: 2px solid var(--color-accent);
+  border-radius: 100px;
+  font-family: var(--font-jp--sanserif);
+  font-size: 13px;
+  color: var(--color-accent);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.p-line-chat__choice-btn:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.p-line-chat__choice-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  flex-shrink: 0;
+}
+
+.p-line-chat__choice-btn:hover .p-line-chat__choice-label {
+  background-color: #fff;
+  color: var(--color-accent);
+}
+
+/* 選択状態 */
+.p-line-chat__choice-btn.is-selected {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.p-line-chat__choice-btn.is-selected .p-line-chat__choice-label {
+  background-color: #fff;
+  color: var(--color-accent);
+}
+
+.p-line-chat__choice-btn.is-dimmed {
+  opacity: 0.4;
+  border-color: var(--palette-border);
+  color: var(--palette-muted);
+  cursor: pointer;
+}
+
+.p-line-chat__choice-btn.is-dimmed .p-line-chat__choice-label {
+  background-color: var(--palette-muted);
+}
+
+/* ---------- 返答エリア ---------- */
+.p-line-chat__reply {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* ---------- Reason セクション ---------- */
+.p-line-chat__reason {
+  margin-top: var(--spacing-md);
+}
+
+.p-line-chat__reason-heading {
+  text-align: center;
+  padding: var(--spacing-md) 0;
+}
+
+.p-line-chat__reason-heading span {
+  display: inline-block;
+  font-family: var(--font-jp--serif);
+  font-size: 15px;
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  padding: var(--spacing-xs) var(--spacing-lg);
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 100px;
+}
+
+/* ---------- カルーセル ---------- */
+.p-line-chat__carousel {
+  margin-top: var(--spacing-sm);
+}
+
+.p-line-chat__carousel .splide__pagination {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+  padding: 0;
+  list-style: none;
+}
+
+.p-line-chat__carousel .splide__pagination__page {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.15);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.p-line-chat__carousel .splide__pagination__page.is-active {
+  background-color: var(--color-accent);
+}
+
+.p-line-chat__carousel .splide__slide {
+  height: auto;
+}
+
+/* Splide arrows */
+.p-line-chat__carousel .splide__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-line-chat__carousel .splide__arrow svg {
+  width: 12px;
+  height: 12px;
+  fill: var(--color-text);
+}
+
+.p-line-chat__carousel .splide__arrow--prev {
+  left: 4px;
+}
+
+.p-line-chat__carousel .splide__arrow--next {
+  right: 4px;
+}
+
+/* ---------- Reason カード ---------- */
+.p-line-chat__card {
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-lg) var(--spacing-md) var(--spacing-xl);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.p-line-chat__card-reason {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 12px;
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-xs);
+}
+
+.p-line-chat__card-title {
+  margin: 0;
+  font-family: var(--font-jp--serif);
+  font-size: 16px;
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  line-height: 1.4;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--palette-border);
+}
+
+.p-line-chat__card-image {
+  margin-top: var(--spacing-md);
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: var(--palette-image-placeholder);
+  border-radius: var(--radius-xs);
+}
+
+.p-line-chat__card-desc {
+  margin: var(--spacing-md) 0 0;
+  font-family: var(--font-jp--sanserif);
+  font-size: 12px;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.p-line-chat__card-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--color-accent);
+  color: #fff;
+  border-radius: 100px;
+  font-family: var(--font-jp--sanserif);
+  font-size: 12px;
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s;
+}
+
+.p-line-chat__card-link:hover {
+  opacity: 0.85;
+}
+
+/* ---------- 入力バー（装飾用） ---------- */
+.p-line-chat__input-bar {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: #f7f7f7;
+  border-top: 1px solid var(--palette-border);
+}
+
+.p-line-chat__input-placeholder {
+  flex: 1;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background-color: #fff;
+  border-radius: 100px;
+  font-family: var(--font-jp--sanserif);
+  font-size: 13px;
+  color: #bbb;
+  border: 1px solid var(--palette-border);
+}
+
+/* ---------- アニメーション ---------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 初期: 非表示 */
+.p-line-chat__anim {
+  opacity: 0;
+}
+
+.p-line-chat__anim.is-visible {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* 返答メッセージ */
+.p-line-chat__reply-msg {
+  opacity: 0;
+}
+
+.p-line-chat__reply-msg.is-visible {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* 後続要素（Reason、フッター等） */
+.p-line-chat__after-reply {
+  opacity: 0;
+}
+
+.p-line-chat__after-reply.is-visible {
+  animation: fadeInUp 0.4s ease-out forwards;
+}

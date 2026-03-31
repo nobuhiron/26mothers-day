@@ -1,0 +1,31 @@
+/* PC 左カラム：ページタイトル */
+
+.p-page-chrome-left {
+  text-align: center;
+}
+
+.p-page-chrome-left__title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin: 0;
+  font-family: var(--font-jp--serif);
+  font-weight: var(--fw-semibold);
+  font-size: var(--font-size-title-ja);
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.p-page-chrome-left__brand {
+  font-size: var(--font-size-title-ja-lg);
+}
+
+.p-page-chrome-left__event {
+  font-size: var(--font-size-body-sm);
+}
+
+@media (max-width: 1023px) {
+  .p-page-chrome-left {
+    display: none;
+  }
+}
