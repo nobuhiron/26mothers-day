@@ -7,7 +7,6 @@ export default defineConfig({
     schema: {
       PUBLIC_LINK_BASE: envField.string({ context: 'client', access: 'public', default: '#' }),
       PUBLIC_LINE_URL: envField.string({ context: 'client', access: 'public', default: '#' }),
-      PUBLIC_MOTHERS_DAY_COUNTDOWN: envField.number({ context: 'server', access: 'public', default: 12 }),
     },
   },
   build: {

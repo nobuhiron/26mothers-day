@@ -24,6 +24,7 @@
 .c-ranking-card__front,
 .c-ranking-card__back {
   width: 100%;
+  border-radius: 12px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -34,7 +35,6 @@
 .c-ranking-card__front {
   position: relative;
   padding: var(--spacing-md);
-  border-radius: var(--radius-md);
   background: repeating-linear-gradient(
     90deg,
     #fff 0px,
@@ -155,16 +155,45 @@
   right: 0;
 }
 
+/* ランク別 表面ストライプカラー */
+[data-rank='1'] .c-ranking-card__front {
+  background: repeating-linear-gradient(
+    90deg,
+    #fff 0px,
+    #fff 8px,
+    color-mix(in srgb, var(--color-accent) 3%, transparent) 8px,
+    color-mix(in srgb, var(--color-accent) 3%, transparent) 16px
+  );
+}
+[data-rank='2'] .c-ranking-card__front {
+  background: repeating-linear-gradient(
+    90deg,
+    #fff 0px,
+    #fff 8px,
+    color-mix(in srgb, #767676 3%, transparent) 8px,
+    color-mix(in srgb, #767676 3%, transparent) 16px
+  );
+}
+[data-rank='3'] .c-ranking-card__front {
+  background: repeating-linear-gradient(
+    90deg,
+    #fff 0px,
+    #fff 8px,
+    color-mix(in srgb, #a17025 3%, transparent) 8px,
+    color-mix(in srgb, #a17025 3%, transparent) 16px
+  );
+}
+
 /* ランク別カラー */
-[data-rank="2"] .c-ranking-card__divider,
-[data-rank="2"] .c-ranking-card__divider::before,
-[data-rank="2"] .c-ranking-card__divider::after {
+[data-rank='2'] .c-ranking-card__divider,
+[data-rank='2'] .c-ranking-card__divider::before,
+[data-rank='2'] .c-ranking-card__divider::after {
   background-color: #767676;
 }
-[data-rank="3"] .c-ranking-card__divider,
-[data-rank="3"] .c-ranking-card__divider::before,
-[data-rank="3"] .c-ranking-card__divider::after {
-  background-color: #A17025;
+[data-rank='3'] .c-ranking-card__divider,
+[data-rank='3'] .c-ranking-card__divider::before,
+[data-rank='3'] .c-ranking-card__divider::after {
+  background-color: #a17025;
 }
 
 .c-ranking-card__desc {
@@ -183,17 +212,17 @@
   color: var(--color-accent);
   line-height: 1.2;
 }
-[data-rank="2"] .c-ranking-card__price {
+[data-rank='2'] .c-ranking-card__price {
   color: #767676;
 }
-[data-rank="2"] .c-ranking-card__price-tax {
+[data-rank='2'] .c-ranking-card__price-tax {
   color: #767676;
 }
-[data-rank="3"] .c-ranking-card__price {
-  color: #A17025;
+[data-rank='3'] .c-ranking-card__price {
+  color: #a17025;
 }
-[data-rank="3"] .c-ranking-card__price-tax {
-  color: #A17025;
+[data-rank='3'] .c-ranking-card__price-tax {
+  color: #a17025;
 }
 .c-ranking-card__price-yen {
   font-size: 0.65em;
@@ -204,7 +233,6 @@
   font-weight: var(--fw-regular);
   color: var(--palette-muted);
 }
-
 
 /* ========================================
    裏面（No.バッジ + 花装飾・全面ストライプ）
@@ -233,7 +261,6 @@
     #fdf0f2 8px,
     #fdf0f2 16px
   );
-  border-radius: var(--radius-md);
   box-shadow:
     0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent),
     0 6px 20px color-mix(in srgb, var(--color-text) 6%, transparent);

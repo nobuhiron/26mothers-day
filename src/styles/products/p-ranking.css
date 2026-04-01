@@ -5,7 +5,9 @@
 }
 
 .p-ranking__header {
-  margin-bottom: var(--spacing-3xl);
+  position: relative;
+  z-index: 1;
+  margin-bottom: -40px;
   text-align: center;
 }
 
@@ -26,24 +28,19 @@
 }
 
 .p-ranking__title {
-  margin: var(--spacing-sm) 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  font-weight: var(--fw-medium);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
 }
-.p-ranking__title-sub {
-  font-family: var(--font-jp--serif);
-  font-size: clamp(13px, 1.5vw, 15px);
-  font-weight: var(--fw-regular);
-  color: var(--color-text);
-}
-.p-ranking__title-main {
-  font-family: var(--font-jp--serif);
-  font-size: clamp(16px, 3.5vw, 20px);
-  font-weight: var(--fw-semibold);
-  letter-spacing: 0.06em;
-  color: var(--color-text);
+
+/* リストラッパー（グラデ背景 + タイトル + リスト） */
+.p-ranking__list-wrapper {
+  display: grid;
+  row-gap: var(--spacing-lg);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffe8e8 0%, #fff4d9 100%);
+  padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-3xl);
 }
 
 /* リスト */
@@ -52,9 +49,8 @@
   flex-direction: column;
   gap: var(--spacing-3xl);
   list-style: none;
-  padding: var(--spacing-3xl) var(--spacing-lg);
+  padding: 0;
   margin: 0;
-  background: linear-gradient(180deg, #FFE8E8 0%, #FFF4D9 100%);
 }
 
 .p-ranking__item {
