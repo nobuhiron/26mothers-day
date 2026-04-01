@@ -1,0 +1,91 @@
+/* 時間別ギフト用カード */
+
+.c-time-scene-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ---------- 商品名 ---------- */
+.c-time-scene-card__name {
+  margin: 0;
+  font-family: var(--font-jp--serif);
+  font-size: clamp(18px, 4.5vw, 24px);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ---------- 価格 ---------- */
+.c-time-scene-card__price {
+  margin-top: var(--spacing-md);
+  font-family: var(--font-en);
+  font-size: clamp(28px, 7vw, 40px);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  line-height: 1;
+}
+.c-time-scene-card__price-yen {
+  font-size: 0.65em;
+}
+.c-time-scene-card__price-tax {
+  font-size: 13px;
+  font-family: var(--font-jp--sanserif);
+  font-weight: var(--fw-regular);
+  color: var(--palette-muted);
+}
+
+/* ---------- ビジュアル（メイン画像 + インセット） ---------- */
+.c-time-scene-card__visual {
+  position: relative;
+  width: 100%;
+  margin-top: var(--spacing-lg);
+}
+.c-time-scene-card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--palette-image-placeholder);
+  border-radius: 0 40px 0 40px;
+  box-shadow: inset 0 0 0 6px #fff;
+}
+.c-time-scene-card__inset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 150px;
+  height: 117px;
+  background-color: #fff;
+  border: 1px solid var(--color-main);
+  padding: 3px 4px;
+  box-sizing: border-box;
+}
+.c-time-scene-card__inset::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--palette-image-placeholder);
+  border: 1px solid var(--color-main);
+}
+
+/* ---------- 説明文ボックス ---------- */
+.c-time-scene-card__desc-box {
+  position: relative;
+  z-index: 1;
+  width: 85%;
+  margin-top: calc(-1 * var(--spacing-xl));
+  padding: var(--spacing-xl) var(--spacing-lg);
+  background-color: var(--color-bg);
+  box-shadow: 3px 3px 0px 0px #0000001A;
+}
+.c-time-scene-card__desc {
+  margin: 0;
+  font-family: var(--font-jp--serif);
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: var(--color-text);
+  line-height: 2;
+  letter-spacing: 0.06em;
+}
+

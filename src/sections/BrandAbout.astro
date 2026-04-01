@@ -1,0 +1,250 @@
+---
+/**
+ * ブランド / 森半について — LINE風チャットUI
+ */
+import { LINK_BASE } from '../data/links';
+import { getCollection } from 'astro:content';
+import { splitLines } from '../utils/text';
+import chatData from '../data/line-chat.json';
+
+const brandEntries = await getCollection('brandCards');
+const brandCards = brandEntries.map(e => e.data);
+---
+
+<section id="about" class="l-section p-brand-about" aria-labelledby="brand-about-title">
+  <div class="l-container">
+    <!-- LINE風チャット外枠 -->
+    <div class="p-line-chat">
+      <div class="p-line-chat__screen">
+      <div class="p-line-chat__notch" aria-hidden="true"></div>
+      <!-- LINE風ヘッダー -->
+      <div class="p-line-chat__header">
+        <button class="p-line-chat__header-back" aria-label="戻る">
+          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" aria-hidden="true">
+            <path d="M9 1L1 9l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <h2 id="brand-about-title" class="p-line-chat__header-title">
+          <span class="p-line-chat__header-name">森半について</span>
+          <span class="p-line-chat__header-sub">about MORIHAN</span>
+        </h2>
+        <div class="p-line-chat__header-icons">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="15" y1="15" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 4h14M3 10h14M3 16h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- チャットボディ -->
+      <div class="p-line-chat__body">
+        <!-- ボットメッセージ: 森半って知ってる？ -->
+        <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__anim">
+          <div class="p-line-chat__avatar" aria-hidden="true">
+            <span>森</span>
+          </div>
+          <div class="p-line-chat__bubble p-line-chat__bubble--bot">
+            {chatData.messages[0].text}
+          </div>
+        </div>
+
+        <!-- A/Bボタン -->
+        <div class="p-line-chat__row p-line-chat__row--user p-line-chat__anim">
+          <div class="p-line-chat__choices">
+            {chatData.messages[1].options.map((opt) => (
+              <button
+                class="p-line-chat__choice-btn"
+                data-choice={opt.label.toLowerCase()}
+                type="button"
+              >
+                <span class="p-line-chat__choice-label">{opt.label}</span>
+                <span>{opt.text}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- 返答A -->
+        <div class="p-line-chat__reply" data-reply="a" hidden>
+          {chatData.messages[2].texts.map((text) => (
+            <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
+              <div class="p-line-chat__avatar p-line-chat__avatar--spacer" aria-hidden="true"></div>
+              <div class="p-line-chat__bubble p-line-chat__bubble--bot">
+                {text.split('\n').map((line, i, arr) => (
+                  <Fragment>
+                    {line}
+                    {i < arr.length - 1 && <br />}
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- 返答B -->
+        <div class="p-line-chat__reply" data-reply="b" hidden>
+          {chatData.messages[3].texts.map((text) => (
+            <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
+              <div class="p-line-chat__avatar p-line-chat__avatar--spacer" aria-hidden="true"></div>
+              <div class="p-line-chat__bubble p-line-chat__bubble--bot">
+                {text.split('\n').map((line, i, arr) => (
+                  <Fragment>
+                    {line}
+                    {i < arr.length - 1 && <br />}
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Reason セクション -->
+        <div class="p-line-chat__reason p-line-chat__after-reply" hidden>
+          <div class="p-line-chat__reason-heading">
+            <span>森半が選ばれる理由</span>
+          </div>
+
+          <!-- Splide カルーセル -->
+          <div id="brand-carousel" class="splide p-line-chat__carousel" aria-label="森半が選ばれる理由">
+            <div class="splide__track">
+              <ul class="splide__list">
+                {brandCards.map((card) => (
+                  <li class="splide__slide">
+                    <article class="p-line-chat__card">
+                      <span class="p-line-chat__card-reason">{card.reason}</span>
+                      <h3 class="p-line-chat__card-title">{card.title}</h3>
+                      <div class="p-line-chat__card-image" role="img" aria-label={`${card.title}のイメージ`}></div>
+                      <p class="p-line-chat__card-desc">
+                        {splitLines(card.description).map((line, index, lines) => (
+                          <Fragment>
+                            {line}
+                            {index < lines.length - 1 && <br />}
+                          </Fragment>
+                        ))}
+                      </p>
+                      {card.cta && (
+                        <a href={LINK_BASE} class="p-line-chat__card-link">
+                          <span>{card.cta}</span>
+                        </a>
+                      )}
+                    </article>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- フッターメッセージ -->
+        <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__after-reply" hidden>
+          <div class="p-line-chat__avatar p-line-chat__avatar--spacer" aria-hidden="true"></div>
+          <div class="p-line-chat__bubble p-line-chat__bubble--bot p-line-chat__bubble--footer">
+            {chatData.footer.text}
+          </div>
+        </div>
+      </div>
+
+      <!-- LINE風入力欄（装飾用） -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Splide from '@splidejs/splide';
+  import '@splidejs/splide/css/core';
+
+  // A/Bボタンのインタラクション
+  const choiceBtns = document.querySelectorAll<HTMLButtonElement>('.p-line-chat__choice-btn');
+  const replyA = document.querySelector<HTMLElement>('[data-reply="a"]');
+  const replyB = document.querySelector<HTMLElement>('[data-reply="b"]');
+  const afterReplyEls = document.querySelectorAll<HTMLElement>('.p-line-chat__after-reply');
+  let currentChoice: string | null = null;
+  let splideInstance: Splide | null = null;
+
+  choiceBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const choice = btn.dataset.choice; // 'a' or 'b'
+      if (choice === currentChoice) return; // 同じボタン再押下は無視
+
+      currentChoice = choice!;
+
+      // 選択状態の反映
+      choiceBtns.forEach((b) => {
+        b.classList.toggle('is-selected', b.dataset.choice === choice);
+        b.classList.toggle('is-dimmed', b.dataset.choice !== choice);
+      });
+
+      // 返答の切替
+      const showReply = choice === 'a' ? replyA : replyB;
+      const hideReply = choice === 'a' ? replyB : replyA;
+
+      if (hideReply) {
+        hideReply.hidden = true;
+        hideReply.querySelectorAll<HTMLElement>('.p-line-chat__reply-msg').forEach((msg) => {
+          msg.classList.remove('is-visible');
+        });
+      }
+
+      if (showReply) {
+        showReply.hidden = false;
+        const msgs = showReply.querySelectorAll<HTMLElement>('.p-line-chat__reply-msg');
+        msgs.forEach((msg, i) => {
+          msg.style.animationDelay = `${i * 0.3}s`;
+          msg.classList.add('is-visible');
+        });
+      }
+
+      // 後続要素を表示（初回のみアニメーション）
+      afterReplyEls.forEach((el) => {
+        if (el.hidden) {
+          el.hidden = false;
+          el.style.animationDelay = '0.6s';
+          el.classList.add('is-visible');
+        }
+      });
+
+      // Splide初期化（初回のみ）
+      if (!splideInstance) {
+        setTimeout(() => {
+          splideInstance = new Splide('#brand-carousel', {
+            type: 'loop',
+            perPage: 1,
+            gap: '0px',
+            padding: 0,
+            pagination: true,
+            arrows: true,
+            autoplay: false,
+            autoHeight: true,
+          }).mount();
+        }, 800);
+      }
+    });
+  });
+
+  // スクロールアニメーション: メッセージの順次フェードイン
+  const chatBody = document.querySelector('.p-line-chat__body');
+  if (chatBody) {
+    const animElements = chatBody.querySelectorAll<HTMLElement>('.p-line-chat__anim');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animElements.forEach((el, i) => {
+              el.style.animationDelay = `${i * 0.4}s`;
+              el.classList.add('is-visible');
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(chatBody);
+  }
+</script>

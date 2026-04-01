@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd C:/Users/kyoei139/26mothers-day && pnpm build 2>&1 | tail -30)",
+      "Bash(cd C:/Users/kyoei139/26mothers-day && pnpm install 2>&1 | tail -20)",
+      "Bash(cd C:/Users/kyoei139/26mothers-day && pnpm build 2>&1 | tail -20)",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(taskkill /f /im npm.exe 2>/dev/null; echo done)",
+      "Bash(cd \"C:/Users/kyoei139/26mothers-day\" && npx astro build 2>&1 | tail -20)",
+      "Bash(npx astro:*)",
+      "Bash(pnpm add:*)",
+      "Bash(python -c \"from PIL import Image; img = Image.open\\('C:/Users/kyoei139/26mothers-day/src/assets/images/subtract.png'\\); print\\(img.size\\)\")"
+    ]
+  }
+}

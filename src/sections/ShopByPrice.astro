@@ -1,0 +1,58 @@
+---
+/**
+ * 価格帯で選ぶ
+ */
+import PriceBandCard from '../components/PriceBandCard.astro';
+import { LINK_BASE } from '../data/links';
+import { getCollection } from 'astro:content';
+import { formatPriceBandLabel } from '../utils/text';
+
+const pbEntries = await getCollection('priceBands');
+const bands = pbEntries.map(e => e.data);
+---
+
+<section id="price" class="l-section l-section--bg-surface p-shop-by-price" aria-labelledby="heading-price">
+  <div class="l-container">
+
+    <!-- ヘッダー -->
+    <header class="p-shop-by-price__header">
+      <h2 id="heading-price">
+        <img src="/Shop by price.svg" alt="Shop by price" class="p-shop-by-price__heading-en-img" />
+        <span class="p-shop-by-price__heading-ja">母の日限定包装紙でお包み<br />価格帯でえらぶ</span>
+      </h2>
+    </header>
+
+    <!-- 価格帯グループ -->
+    <div class="p-shop-by-price__bands">
+      {bands.map((band) => (
+        <section class="p-shop-by-price__band" aria-labelledby={`heading-${band.id}`}>
+          <header class="p-shop-by-price__band-header">
+            {/* アーチ形SVG用スペース */}
+            <div class="p-shop-by-price__band-arch" aria-hidden="true">
+              <img src={band.arch} alt={band.labelEn} class="p-shop-by-price__band-arch-img" />
+            </div>
+            <h3 id={`heading-${band.id}`} class="p-shop-by-price__band-title">
+              {formatPriceBandLabel(band.label).map((part) => (
+                part.className ? <span class={part.className}>{part.text}</span> : part.text
+              ))}
+            </h3>
+            <p class="p-shop-by-price__band-sub">おすすめアイテム</p>
+          </header>
+          <ul class="p-shop-by-price__list">
+            {band.items.map((product) => (
+              <li>
+                <PriceBandCard
+                  name={product.name}
+                  price={product.price}
+                  description={product.description}
+                  href={LINK_BASE}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+
+  </div>
+</section>

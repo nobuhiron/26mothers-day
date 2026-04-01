@@ -1,0 +1,96 @@
+/* 共通背景 + 中央固定幅 main + PC 時のみ左右シェル */
+
+.l-page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.l-page__bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.l-page__bg-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 480ms ease;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.l-page__bg-layer--default {
+  background-image: url('../../assets/images/bg_main.jpg');
+}
+
+.l-page__bg-layer--about {
+  background-image: url('../../assets/images/bg_line.jpg');
+}
+
+.l-page__bg-layer--time-scene {
+  background-image: linear-gradient(179.94deg, #E7BA9B 1.02%, #F3ECB6 17.45%, #DEECD0 30.83%, #D0E5DB 37.64%, #B6DBED 55.02%, #CBB7C0 65.35%, #7696BC 81.78%, #2075B7 98.69%);
+  background-repeat: no-repeat;
+  background-size: 100% calc(var(--time-scene-height, 100vh));
+  background-position: center calc(var(--time-scene-progress, 0) * 100%);
+}
+
+.l-page__bg[data-bg-state='default'] .l-page__bg-layer--default,
+.l-page__bg[data-bg-state='about'] .l-page__bg-layer--about,
+.l-page__bg[data-bg-state='time-scene'] .l-page__bg-layer--time-scene {
+  opacity: 1;
+}
+
+.l-shell {
+  display: block;
+}
+
+.l-shell__aside {
+  display: none;
+}
+
+.l-shell__main {
+  width: 100%;
+}
+
+.l-main-column {
+  width: 100%;
+  max-width: var(--layout-main-width);
+  margin-inline: auto;
+}
+
+.l-shell__sticky {
+  position: sticky;
+  top: var(--spacing-xl);
+  padding-block: var(--spacing-md);
+}
+
+@media (--lg) {
+  .l-shell {
+    display: grid;
+    grid-template-columns: minmax(120px, 1fr) var(--layout-main-width) minmax(140px, 1fr);
+    align-items: start;
+    gap: 0;
+    padding-inline: var(--spacing-md);
+  }
+
+  .l-shell__aside {
+    display: block;
+  }
+
+  .l-shell__aside--left,
+  .l-shell__aside--right {
+    min-width: 0;
+  }
+
+  .l-shell__main {
+    min-width: 0;
+  }
+
+  .l-main-column {
+    margin-inline: 0;
+  }
+}

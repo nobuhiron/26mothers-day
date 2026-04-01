@@ -1,8 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { SITE } from '../config/site';
+import Hero from '../sections/Hero.astro';
+import DeliveryInfo from '../sections/DeliveryInfo.astro';
+import Ranking from '../sections/Ranking.astro';
+import CategoryNav from '../sections/CategoryNav.astro';
+import BrandAbout from '../sections/BrandAbout.astro';
+import GiftWrapping from '../sections/GiftWrapping.astro';
+import TimeSceneGifts from '../sections/TimeSceneGifts.astro';
+import ShopByPrice from '../sections/ShopByPrice.astro';
+import SiteFooter from '../sections/SiteFooter.astro';
 ---
 
-<Layout title={SITE.defaultTitle} description={SITE.defaultDescription}>
-  <h1>MakeShop LP Template</h1>
+<Layout title="母の日特集 | MakeShop" description="大切なお母さんへ、感謝の気持ちを届ける母の日ギフト特集。スイーツ、お花、コスメなど豊富なラインナップ。">
+
+  <Hero />
+  <div class="l-gradient-wrap">
+    <DeliveryInfo />
+    <Ranking />
+  </div>
+  <CategoryNav />
+  <BrandAbout />
+  <GiftWrapping />
+  <TimeSceneGifts />
+  <ShopByPrice />
+  <SiteFooter />
+
 </Layout>

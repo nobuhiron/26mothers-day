@@ -11,5 +11,5 @@ export const SITE = {
 export const FONT_LINKS = {
   preconnect: ['https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
   stylesheet:
-    'https://fonts.googleapis.com/css2?family=Alex+Brush&family=Metal&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap',
+    'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap',
 };

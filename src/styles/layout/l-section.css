@@ -1,0 +1,22 @@
+.l-section {
+  padding-block: var(--spacing-4xl);
+}
+.l-section--bg-base {
+  background-color: var(--color-bg);
+}
+.l-section--bg-surface {
+  background-color: var(--color-surface);
+}
+.l-section--bg-accent {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+.l-section--bg-dark {
+  background-color: #333;
+  color: #fff;
+}
+
+/* DeliveryInfo〜Ranking 通しグラデーション */
+.l-gradient-wrap {
+  background: linear-gradient(353.61deg, #FFEAB4 0.68%, #F3CAC5 60.79%, #FFF9F7 84.27%);
+}
