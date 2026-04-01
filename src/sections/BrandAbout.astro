@@ -6,23 +6,17 @@ import { LINK_BASE } from '../data/links';
 import { getCollection } from 'astro:content';
 import { splitLines } from '../utils/text';
 import chatData from '../data/line-chat.json';
-import skyImage from '../assets/images/sky.png';
 
 const brandEntries = await getCollection('brandCards');
 const brandCards = brandEntries.map(e => e.data);
 ---
 
-<section id="about" class="l-section p-brand-about" aria-labelledby="heading-about">
+<section id="about" class="l-section p-brand-about" aria-labelledby="brand-about-title">
   <div class="l-container">
-    <header class="c-section-heading">
-      <h2 id="heading-about">
-        <span class="c-section-heading__en">About</span>
-        <span class="c-section-heading__ja">森半について</span>
-      </h2>
-    </header>
-
     <!-- LINE風チャット外枠 -->
     <div class="p-line-chat">
+      <div class="p-line-chat__screen">
+      <div class="p-line-chat__notch" aria-hidden="true"></div>
       <!-- LINE風ヘッダー -->
       <div class="p-line-chat__header">
         <button class="p-line-chat__header-back" aria-label="戻る">
@@ -30,10 +24,10 @@ const brandCards = brandEntries.map(e => e.data);
             <path d="M9 1L1 9l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="p-line-chat__header-title">
+        <h2 id="brand-about-title" class="p-line-chat__header-title">
           <span class="p-line-chat__header-name">森半について</span>
           <span class="p-line-chat__header-sub">about MORIHAN</span>
-        </div>
+        </h2>
         <div class="p-line-chat__header-icons">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
@@ -46,7 +40,7 @@ const brandCards = brandEntries.map(e => e.data);
       </div>
 
       <!-- チャットボディ -->
-      <div class="p-line-chat__body" style={`background-image: url('${skyImage.src}')`}>
+      <div class="p-line-chat__body">
         <!-- ボットメッセージ: 森半って知ってる？ -->
         <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__anim">
           <div class="p-line-chat__avatar" aria-hidden="true">
@@ -96,18 +90,15 @@ const brandCards = brandEntries.map(e => e.data);
             <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
               <div class="p-line-chat__avatar p-line-chat__avatar--spacer" aria-hidden="true"></div>
               <div class="p-line-chat__bubble p-line-chat__bubble--bot">
-                {text}
+                {text.split('\n').map((line, i, arr) => (
+                  <Fragment>
+                    {line}
+                    {i < arr.length - 1 && <br />}
+                  </Fragment>
+                ))}
               </div>
             </div>
           ))}
-        </div>
-
-        <!-- 最後のボットメッセージ -->
-        <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__after-reply" hidden>
-          <div class="p-line-chat__avatar p-line-chat__avatar--spacer" aria-hidden="true"></div>
-          <div class="p-line-chat__bubble p-line-chat__bubble--bot">
-            {chatData.messages[4].text}
-          </div>
         </div>
 
         <!-- Reason セクション -->
@@ -157,8 +148,6 @@ const brandCards = brandEntries.map(e => e.data);
       </div>
 
       <!-- LINE風入力欄（装飾用） -->
-      <div class="p-line-chat__input-bar">
-        <div class="p-line-chat__input-placeholder">メッセージを入力</div>
       </div>
     </div>
   </div>

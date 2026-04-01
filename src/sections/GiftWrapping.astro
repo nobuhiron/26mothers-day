@@ -24,7 +24,12 @@ import tagImg from '../assets/images/tag.png';
           <Image src={boxImg} alt="母の日専用ギフトボックス" />
         </div>
         <button class="p-gift-wrapping__tap-label" type="button" aria-label="タップして中を見る">
-          <span class="p-gift-wrapping__tap-icon">👆</span>
+          <span class="p-gift-wrapping__tap-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24.8 8.5c2.3-1.8 5.8-.9 6.9 2l3.6 9.2 1.2-11.4c.3-2.9 3-5 5.9-4.8 2.9.3 5 3 4.8 5.9l-.9 10.2 2.3-7.3c.9-2.8 3.9-4.3 6.7-3.5 2.8.9 4.3 3.9 3.5 6.7l-4.8 15.2c1.7 2.1 2.6 4.9 2.2 7.9l-.9 6.8c-.8 5.8-6.2 9.9-12 9.1l-12.7-1.7c-3-.4-5.7-2-7.4-4.4L15 47.6c-2.1-3-1.4-7.1 1.6-9.2 2.4-1.7 5.7-1.5 7.9.3l4.2 3.6-8.1-24.9c-.9-2.9.1-6 2.4-7.9Z" fill="#fff" stroke="#111" stroke-width="3.2" stroke-linejoin="round"/>
+              <path d="M35.3 19.7l1.3 4.1M45.7 19.6l-.4 4.4M24.4 39.2l4.4 3.6" stroke="#111" stroke-width="3.2" stroke-linecap="round"/>
+            </svg>
+          </span>
           <span>タップして<br />中を見る</span>
         </button>
       </div>

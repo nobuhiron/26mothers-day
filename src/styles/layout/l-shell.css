@@ -10,12 +10,38 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(
-    165deg,
-    var(--palette-mint-weak) 0%,
-    var(--color-bg) 38%,
-    var(--palette-peach-weak) 100%
-  );
+  overflow: hidden;
+}
+
+.l-page__bg-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 480ms ease;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.l-page__bg-layer--default {
+  background-image: url('../../assets/images/bg_main.jpg');
+}
+
+.l-page__bg-layer--about {
+  background-image: url('../../assets/images/bg_line.jpg');
+}
+
+.l-page__bg-layer--time-scene {
+  background-image: linear-gradient(179.94deg, #E7BA9B 1.02%, #F3ECB6 17.45%, #DEECD0 30.83%, #D0E5DB 37.64%, #B6DBED 55.02%, #CBB7C0 65.35%, #7696BC 81.78%, #2075B7 98.69%);
+  background-repeat: no-repeat;
+  background-size: 100% calc(var(--time-scene-height, 100vh));
+  background-position: center calc(var(--time-scene-progress, 0) * 100%);
+}
+
+.l-page__bg[data-bg-state='default'] .l-page__bg-layer--default,
+.l-page__bg[data-bg-state='about'] .l-page__bg-layer--about,
+.l-page__bg[data-bg-state='time-scene'] .l-page__bg-layer--time-scene {
+  opacity: 1;
 }
 
 .l-shell {

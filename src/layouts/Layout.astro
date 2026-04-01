@@ -67,7 +67,11 @@ const twitterCard = ogImageUrl ? 'summary_large_image' : 'summary';
     <title>{title}</title>
   </head>
   <body class="l-page">
-    <div class="l-page__bg" aria-hidden="true"></div>
+    <div class="l-page__bg" aria-hidden="true" data-bg-state="default">
+      <div class="l-page__bg-layer l-page__bg-layer--default"></div>
+      <div class="l-page__bg-layer l-page__bg-layer--about"></div>
+      <div class="l-page__bg-layer l-page__bg-layer--time-scene"></div>
+    </div>
     <div class="l-shell">
       <aside class="l-shell__aside l-shell__aside--left" aria-label="ページタイトル">
         <div class="l-shell__sticky">
@@ -85,5 +89,8 @@ const twitterCard = ogImageUrl ? 'summary_large_image' : 'summary';
         </div>
       </aside>
     </div>
+    <script>
+      import '../scripts/main.js';
+    </script>
   </body>
 </html>
