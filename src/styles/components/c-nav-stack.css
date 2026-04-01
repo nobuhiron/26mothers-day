@@ -24,15 +24,15 @@
   padding: var(--spacing-sm) var(--spacing-md);
   padding-right: var(--spacing-sm);
   box-sizing: border-box;
-  font-family: var(--font-jp--sanserif);
-  font-size: var(--font-size-body-sm);
+  font-family: var(--font-jp--serif);
+  font-size: 14px;
   font-weight: var(--fw-medium);
   line-height: 1.45;
   text-decoration: none;
   color: var(--color-text);
   background: #fff;
-  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, var(--palette-border));
-  border-radius: var(--radius-md);
+  border: 1px solid #D4B45D;
+  border-radius: 999px;
   box-shadow: 0 1px 2px color-mix(in srgb, var(--color-text) 6%, transparent);
 }
 
@@ -44,8 +44,8 @@
 
 .c-nav-stack__icon {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   border-radius: var(--radius-xl);
   background: var(--color-main);
   color: #fff;

@@ -17,18 +17,19 @@ const rankingItems = rankingEntries.map(e => e.data);
 <section id="ranking" class="l-section p-ranking" aria-labelledby="heading-ranking">
   <div class="l-container">
 
-    <!-- ヘッダー -->
+    <!-- ヘッダー（あしらい画像のみ・listに重なる） -->
     <header class="p-ranking__header">
       <Image src={flowerRanking} alt="" class="p-ranking__flower" />
       <img src="/ranking.svg" alt="Ranking" class="p-ranking__title-en-img" />
-      <h2 id="heading-ranking" class="p-ranking__title">
-        <span class="p-ranking__title-sub">母の日</span>
-        <span class="p-ranking__title-main">人気ギフトランキング</span>
-      </h2>
     </header>
 
-    <!-- ランキングリスト -->
-    <ol class="p-ranking__list">
+    <!-- リストラッパー（グラデ背景 + 日本語タイトル + リスト） -->
+    <div class="p-ranking__list-wrapper">
+      <h2 id="heading-ranking" class="p-ranking__title">
+        母の日<br />
+        人気ギフトランキング
+      </h2>
+      <ol class="p-ranking__list">
       {rankingItems.map((item) => (
         <li class="p-ranking__item">
           <div class="c-ranking-card" data-flip-card data-rank={item.rank}>
@@ -100,6 +101,7 @@ const rankingItems = rankingEntries.map(e => e.data);
         </li>
       ))}
     </ol>
+    </div>
 
   </div>
 </section>
