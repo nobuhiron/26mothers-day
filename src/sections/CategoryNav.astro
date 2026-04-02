@@ -2,11 +2,20 @@
 /**
  * ページ内ナビゲーション
  */
+import { Image } from 'astro:assets';
 import { CATEGORY_NAV_ITEMS } from '../data/category-nav';
 import NavStackLink from '../components/NavStackLink.astro';
+import flowerNav1 from '../assets/images/flower-nav-1.png';
+import flowerNav2 from '../assets/images/flower-nav-2.png';
 ---
 
 <section id="category" class="l-section l-section--bg-surface p-category-nav" aria-label="ページ内ナビ">
+  <div class="p-category-nav__flower p-category-nav__flower--1" aria-hidden="true">
+    <Image src={flowerNav1} alt="" class="p-category-nav__flower-image" />
+  </div>
+  <div class="p-category-nav__flower p-category-nav__flower--2" aria-hidden="true">
+    <Image src={flowerNav2} alt="" class="p-category-nav__flower-image" />
+  </div>
   <div class="l-container">
     <nav aria-label="ページ内セクションへのジャンプ">
       <ul class="c-nav-stack">
