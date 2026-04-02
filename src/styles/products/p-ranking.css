@@ -45,8 +45,7 @@
 
 /* リスト */
 .p-ranking__list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: var(--spacing-3xl);
   list-style: none;
   padding: 0;
@@ -54,8 +53,7 @@
 }
 
 .p-ranking__item {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
 }
 
@@ -86,3 +84,4 @@
   font-weight: var(--fw-bold);
   font-style: italic;
 }
+

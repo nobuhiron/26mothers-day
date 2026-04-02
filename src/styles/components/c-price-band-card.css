@@ -16,8 +16,7 @@
 
 /* ---------- テキストエリア ---------- */
 .c-price-band-card__body {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   gap: var(--spacing-xl);
   padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-2xl);
@@ -77,4 +76,5 @@
   line-height: 1.8;
   text-align: left;
 }
+
 

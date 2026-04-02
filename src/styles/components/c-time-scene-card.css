@@ -1,8 +1,7 @@
 /* 時間別ギフト用カード */
 
 .c-time-scene-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   text-align: center;
 }
@@ -88,4 +87,5 @@
   line-height: 2;
   letter-spacing: 0.06em;
 }
+
 

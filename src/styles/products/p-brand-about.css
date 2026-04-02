@@ -13,8 +13,7 @@
 }
 .p-line-chat__screen {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   min-height: 720px;
   box-sizing: border-box;
   border: 7px solid #fff;
@@ -100,9 +99,8 @@
 }
 
 .p-line-chat__body {
-  display: flex;
+  display: grid;
   flex: 1;
-  flex-direction: column;
   gap: 10px;
   padding: 8px 12px 22px;
 }
@@ -167,8 +165,7 @@
 }
 
 .p-line-chat__choices {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: flex-end;
   gap: 8px;
 }
@@ -237,8 +234,7 @@
 }
 
 .p-line-chat__reply {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 10px;
 }
 
@@ -427,3 +423,4 @@
 .p-line-chat__after-reply.is-visible {
   animation: fadeInUp 0.4s ease-out forwards;
 }
+

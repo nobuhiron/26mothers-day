@@ -1,108 +1,123 @@
 ---
-/**
- * 人気ギフトランキング
- * カードはクリックで裏返る（3Dフリップ）
- * 表面 = 商品情報（ストライプ枠付き）
- * 裏面 = No.バッジ + 花装飾（全面ストライプ）
- */
 import { Image } from 'astro:assets';
-import flowerRanking from '../assets/images/flower-ranking.png';
 import { getCollection } from 'astro:content';
+import flowerRanking from '../assets/images/flower-ranking.png';
+import ranking1Image from '../assets/images/ranking1_img.jpg';
+import ranking2Image from '../assets/images/ranking2_img.jpg';
+import ranking3Image from '../assets/images/ranking3_img.jpg';
 import { splitLines } from '../utils/text';
 
 const rankingEntries = await getCollection('ranking');
-const rankingItems = rankingEntries.map(e => e.data);
+const rankingItems = rankingEntries.map((entry) => entry.data);
+const rankingImagesByRank = {
+  1: ranking1Image,
+  2: ranking2Image,
+  3: ranking3Image,
+} as const;
+const rankingBackHanaByRank = {
+  1: { tr: '/ranking1_hana-1.svg', bl: '/ranking1_hana-2.svg' },
+  2: { tr: '/ranking2_hana-1.svg', bl: '/ranking2_hana-2.svg' },
+  3: { tr: '/ranking3_hana-1.svg', bl: '/ranking3_hana-2.svg' },
+} as const;
+const isNameSupplementLine = (line: string) => /^\s*[（(].*[）)]\s*$/.test(line);
+const splitNameInlineSegments = (line: string) => line.split(/([［\[].*?[］\]])/g).filter(Boolean);
+const isNameInlineSupplement = (segment: string) => /^[［\[].*?[］\]]$/.test(segment);
 ---
 
 <section id="ranking" class="l-section p-ranking" aria-labelledby="heading-ranking">
   <div class="l-container">
-
-    <!-- ヘッダー（あしらい画像のみ・listに重なる） -->
     <header class="p-ranking__header">
       <Image src={flowerRanking} alt="" class="p-ranking__flower" />
       <img src="/ranking.svg" alt="Ranking" class="p-ranking__title-en-img" />
     </header>
 
-    <!-- リストラッパー（グラデ背景 + 日本語タイトル + リスト） -->
     <div class="p-ranking__list-wrapper">
       <h2 id="heading-ranking" class="p-ranking__title">
         母の日<br />
-        人気ギフトランキング
+        ギフトランキング
       </h2>
-      <ol class="p-ranking__list">
-      {rankingItems.map((item) => (
-        <li class="p-ranking__item">
-          <div class="c-ranking-card" data-flip-card data-rank={item.rank}>
-            <div class="c-ranking-card__inner">
 
-              {/* ===== 表面（商品情報 + ストライプ枠） ===== */}
-              <div class="c-ranking-card__front">
-                <div class="c-ranking-card__front-content">
-                  {/* No.バッジ（小） */}
-                  <div class="c-ranking-card__badge-sm">
-                    <div class="c-ranking-card__badge-sm-row">
-                      <img src="/kusa.svg" alt="" class="c-ranking-card__kusa c-ranking-card__kusa--left" aria-hidden="true" />
-                      <img src={`/no${item.rank}.svg`} alt={`No.${item.rank}`} class="c-ranking-card__no-img" />
-                      <img src="/kusa.svg" alt="" class="c-ranking-card__kusa c-ranking-card__kusa--right" aria-hidden="true" />
+      <ol class="p-ranking__list">
+        {rankingItems.map((item) => (
+          <li class="p-ranking__item">
+            <div class="c-ranking-card is-flipped" data-flip-card data-rank={item.rank}>
+              <div class="c-ranking-card__inner">
+                <div class="c-ranking-card__front">
+                  <div class="c-ranking-card__front-content">
+                    <div class="c-ranking-card__badge-sm">
+                      <div class="c-ranking-card__badge-sm-row">
+                        <img src="/kusa.svg" alt="" class="c-ranking-card__kusa c-ranking-card__kusa--left" aria-hidden="true" />
+                        <img src={`/no${item.rank}.svg`} alt={`No.${item.rank}`} class="c-ranking-card__no-img" />
+                        <img src="/kusa.svg" alt="" class="c-ranking-card__kusa c-ranking-card__kusa--right" aria-hidden="true" />
+                      </div>
+                    </div>
+
+                    <div class="c-ranking-card__media">
+                      <div class="c-ranking-card__image">
+                        <Image
+                          src={rankingImagesByRank[item.rank as 1 | 2 | 3]}
+                          alt={`${item.name.replace('\n', '')}の商品画像`}
+                          class="c-ranking-card__image-el"
+                        />
+                      </div>
+
+                      <div class="c-ranking-card__body">
+                        <div class="c-ranking-card__summary">
+                          <h3 class="c-ranking-card__name">
+                            {splitLines(item.name).map((line, index, lines) => (
+                              <Fragment>
+                                <span class:list={['c-ranking-card__name-line', isNameSupplementLine(line) && 'c-ranking-card__name-line--sub']}>
+                                  {splitNameInlineSegments(line).map((segment) => (
+                                    <span class:list={[isNameInlineSupplement(segment) && 'c-ranking-card__name-inline-sub']}>
+                                      {segment}
+                                    </span>
+                                  ))}
+                                </span>
+                                {index < lines.length - 1 && <br />}
+                              </Fragment>
+                            ))}
+                          </h3>
+                          <div class="c-ranking-card__divider" role="separator"></div>
+                          <p class="c-ranking-card__desc">{item.description}</p>
+                        </div>
+                        <p class="c-ranking-card__price">
+                          <span class="c-ranking-card__price-yen">¥</span>{item.price}<span class="c-ranking-card__price-tax">（税込）</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-
-                  {/* 商品画像 */}
-                  <div class="c-ranking-card__image" role="img" aria-label={`${item.name.replace('\n', '')}の画像`}></div>
-
-                  {/* 商品情報 */}
-                  <div class="c-ranking-card__body">
-                    <h3 class="c-ranking-card__name">
-                      {splitLines(item.name).map((line, index, lines) => (
-                        <Fragment>
-                          {line}
-                          {index < lines.length - 1 && <br />}
-                        </Fragment>
-                      ))}
-                    </h3>
-                    {item.lead && <p class="c-ranking-card__lead">{item.lead}</p>}
-                    <div class="c-ranking-card__divider" role="separator"></div>
-                    <p class="c-ranking-card__desc">{item.description}</p>
-                    <p class="c-ranking-card__price">
-                      <span class="c-ranking-card__price-yen">¥</span>{item.price}<span class="c-ranking-card__price-tax">（税込）</span>
-                    </p>
-                  </div>
-
                 </div>
-              </div>
 
-              {/* ===== 裏面（No.バッジ + 花装飾・全面ストライプ） ===== */}
-              <div class="c-ranking-card__back">
-                <div class="c-ranking-card__back-face">
-                  <div class="c-ranking-card__back-corner c-ranking-card__back-corner--tr" aria-hidden="true"></div>
-                  <div class="c-ranking-card__back-corner c-ranking-card__back-corner--bl" aria-hidden="true"></div>
-                  <div class="c-ranking-card__badge-lg">
-                    <svg class="c-ranking-card__laurel" viewBox="0 0 120 100" width="120" height="100" aria-hidden="true">
-                      <text x="48" y="16" font-size="10" fill="#d4b45d">★</text>
-                      <text x="56" y="10" font-size="12" fill="#d4b45d">★</text>
-                      <text x="66" y="16" font-size="10" fill="#d4b45d">★</text>
-                      <path d="M30 75 Q20 60 25 45 Q18 52 22 65Z" fill="#d4b45d"/>
-                      <path d="M28 68 Q15 55 18 38 Q12 48 18 62Z" fill="#d4b45d"/>
-                      <path d="M25 58 Q14 42 20 28 Q10 40 16 55Z" fill="#d4b45d"/>
-                      <path d="M24 48 Q18 32 26 22 Q14 32 18 46Z" fill="#d4b45d"/>
-                      <path d="M90 75 Q100 60 95 45 Q102 52 98 65Z" fill="#d4b45d"/>
-                      <path d="M92 68 Q105 55 102 38 Q108 48 102 62Z" fill="#d4b45d"/>
-                      <path d="M95 58 Q106 42 100 28 Q110 40 104 55Z" fill="#d4b45d"/>
-                      <path d="M96 48 Q102 32 94 22 Q106 32 102 46Z" fill="#d4b45d"/>
-                    </svg>
-                    <span class="c-ranking-card__badge-lg-no">No.</span>
-                    <span class="c-ranking-card__badge-lg-num">{item.rank}</span>
+                <div class="c-ranking-card__back">
+                  <div class="c-ranking-card__back-face">
+                    <img
+                      src={rankingBackHanaByRank[item.rank as 1 | 2 | 3].tr}
+                      alt=""
+                      class="c-ranking-card__back-hana c-ranking-card__back-hana--tr"
+                      aria-hidden="true"
+                    />
+                    <img
+                      src={rankingBackHanaByRank[item.rank as 1 | 2 | 3].bl}
+                      alt=""
+                      class="c-ranking-card__back-hana c-ranking-card__back-hana--bl"
+                      aria-hidden="true"
+                    />
+                    <div class="c-ranking-card__badge-lg">
+                      <img src="/star.svg" alt="" class="c-ranking-card__badge-lg-star" aria-hidden="true" />
+                      <div class="c-ranking-card__badge-lg-row">
+                        <img src="/kusa.svg" alt="" class="c-ranking-card__kusa c-ranking-card__kusa--lg" aria-hidden="true" />
+                        <img src={`/no${item.rank}.svg`} alt={`No.${item.rank}`} class="c-ranking-card__badge-lg-no-img" />
+                        <img src="/kusa.svg" alt="" class="c-ranking-card__kusa c-ranking-card__kusa--right c-ranking-card__kusa--lg" aria-hidden="true" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
-        </li>
-      ))}
-    </ol>
+          </li>
+        ))}
+      </ol>
     </div>
-
   </div>
 </section>
 

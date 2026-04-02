@@ -6,7 +6,6 @@ const ranking = defineCollection({
   schema: z.object({
     rank: z.number(),
     name: z.string(),
-    lead: z.string().nullable(),
     description: z.string(),
     price: z.string(),
   }),

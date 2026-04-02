@@ -1,4 +1,4 @@
-/* ===== ランキングカード（3Dフリップ） ===== */
+﻿/* ===== ランキングカード（3Dフリップ） ===== */
 /* 表面 = 商品情報（ストライプ枠付き）
    裏面 = No.バッジ + 花装飾（全面ストライプ） */
 
@@ -7,6 +7,9 @@
   perspective: 1200px;
   cursor: pointer;
   width: 100%;
+  --ranking-stripe-color: var(--color-accent);
+  --ranking-base-color: color-mix(in srgb, var(--ranking-stripe-color) 8%, #fff);
+  --ranking-white-stripe: color-mix(in srgb, #fff 92%, transparent);
 }
 
 .c-ranking-card__inner {
@@ -30,17 +33,19 @@
 }
 
 /* ========================================
-   表面（商品情報 + ストライプ枠）
+   表面（商var(--spacing-sm)品情報 + ストライプ枠）
    ======================================== */
 .c-ranking-card__front {
   position: relative;
-  padding: var(--spacing-md);
-  background: repeating-linear-gradient(
+  padding-block: 12px;
+  padding-inline: 10px;
+  background-color: var(--ranking-base-color);
+  background-image: repeating-linear-gradient(
     90deg,
-    #fff 0px,
-    #fff 8px,
-    #fdf0f2 8px,
-    #fdf0f2 16px
+    transparent 0px,
+    transparent 8px,
+    var(--ranking-white-stripe) 8px,
+    var(--ranking-white-stripe) 16px
   );
   box-shadow:
     0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent),
@@ -48,9 +53,10 @@
 }
 
 .c-ranking-card__front-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   background: #fff;
+  padding-inline: 10px;
+  padding-block: 6px 8px;
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
@@ -58,10 +64,9 @@
 /* 表面 No.バッジ（小） */
 .c-ranking-card__badge-sm {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
-  padding: var(--spacing-lg) 0 var(--spacing-md);
+  padding-block-start: 6px;
 }
 
 /* star.svg を疑似要素で上部に配置 */
@@ -103,15 +108,34 @@
 
 /* 商品画像 */
 .c-ranking-card__image {
+  overflow: hidden;
   width: 100%;
   aspect-ratio: 4 / 3;
   background-color: var(--palette-image-placeholder);
 }
 
+.c-ranking-card__image-el {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* 商品テキスト */
+.c-ranking-card__media {
+  display: grid;
+  gap: 10px;
+}
+
 .c-ranking-card__body {
-  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl);
+  display: grid;
+  gap: 16px;
   text-align: left;
+}
+
+.c-ranking-card__summary {
+  display: grid;
+  gap: 10px;
 }
 
 .c-ranking-card__name {
@@ -123,9 +147,17 @@
   color: var(--color-text);
 }
 
-.c-ranking-card__lead {
-  margin: var(--spacing-xs) 0 0;
-  font-family: var(--font-jp--serif);
+.c-ranking-card__name-line {
+  display: inline;
+}
+
+.c-ranking-card__name-line--sub {
+  font-size: clamp(13px, 1.4vw, 15px);
+  line-height: 1.45;
+  color: var(--palette-muted);
+}
+
+.c-ranking-card__name-inline-sub {
   font-size: clamp(13px, 1.4vw, 15px);
   line-height: 1.45;
   color: var(--palette-muted);
@@ -133,9 +165,8 @@
 
 .c-ranking-card__divider {
   position: relative;
-  margin: var(--spacing-md) 0;
   height: 1px;
-  background-color: var(--color-accent);
+  background-color: var(--ranking-stripe-color);
 }
 .c-ranking-card__divider::before,
 .c-ranking-card__divider::after {
@@ -146,7 +177,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--color-accent);
+  background-color: var(--ranking-stripe-color);
 }
 .c-ranking-card__divider::before {
   left: 0;
@@ -155,45 +186,12 @@
   right: 0;
 }
 
-/* ランク別 表面ストライプカラー */
-[data-rank='1'] .c-ranking-card__front {
-  background: repeating-linear-gradient(
-    90deg,
-    #fff 0px,
-    #fff 8px,
-    color-mix(in srgb, var(--color-accent) 3%, transparent) 8px,
-    color-mix(in srgb, var(--color-accent) 3%, transparent) 16px
-  );
+/* ランク別カラー（divider と stripe の共通ソース） */
+.c-ranking-card[data-rank='2'] {
+  --ranking-stripe-color: #767676;
 }
-[data-rank='2'] .c-ranking-card__front {
-  background: repeating-linear-gradient(
-    90deg,
-    #fff 0px,
-    #fff 8px,
-    color-mix(in srgb, #767676 3%, transparent) 8px,
-    color-mix(in srgb, #767676 3%, transparent) 16px
-  );
-}
-[data-rank='3'] .c-ranking-card__front {
-  background: repeating-linear-gradient(
-    90deg,
-    #fff 0px,
-    #fff 8px,
-    color-mix(in srgb, #a17025 3%, transparent) 8px,
-    color-mix(in srgb, #a17025 3%, transparent) 16px
-  );
-}
-
-/* ランク別カラー */
-[data-rank='2'] .c-ranking-card__divider,
-[data-rank='2'] .c-ranking-card__divider::before,
-[data-rank='2'] .c-ranking-card__divider::after {
-  background-color: #767676;
-}
-[data-rank='3'] .c-ranking-card__divider,
-[data-rank='3'] .c-ranking-card__divider::before,
-[data-rank='3'] .c-ranking-card__divider::after {
-  background-color: #a17025;
+.c-ranking-card[data-rank='3'] {
+  --ranking-stripe-color: #a17025;
 }
 
 .c-ranking-card__desc {
@@ -205,7 +203,6 @@
 }
 
 .c-ranking-card__price {
-  margin: var(--spacing-lg) 0 0;
   font-family: var(--font-en);
   font-size: clamp(28px, 6vw, 36px);
   font-weight: var(--fw-bold);
@@ -254,65 +251,62 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: repeating-linear-gradient(
+  background-color: var(--ranking-base-color);
+  background-image: repeating-linear-gradient(
     90deg,
-    #fff 0px,
-    #fff 8px,
-    #fdf0f2 8px,
-    #fdf0f2 16px
+    transparent 0px,
+    transparent 8px,
+    var(--ranking-white-stripe) 8px,
+    var(--ranking-white-stripe) 16px
   );
   box-shadow:
     0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent),
     0 6px 20px color-mix(in srgb, var(--color-text) 6%, transparent);
 }
 
-/* 花コーナー（プレースホルダー） */
-.c-ranking-card__back-corner {
+
+.c-ranking-card__back-hana {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(
-    circle at center,
-    color-mix(in srgb, var(--color-accent) 25%, transparent) 0%,
-    transparent 70%
-  );
+  width: clamp(64px, 18vw, 92px);
+  height: auto;
+  pointer-events: none;
 }
-.c-ranking-card__back-corner--tr {
+.c-ranking-card__back-hana--tr {
   top: 0;
   right: 0;
 }
-.c-ranking-card__back-corner--bl {
+.c-ranking-card__back-hana--bl {
   bottom: 0;
   left: 0;
 }
 
-/* 裏面 No.バッジ（大） */
 .c-ranking-card__badge-lg {
   position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  z-index: 1;
+}
+
+.c-ranking-card__badge-lg-star {
+  display: block;
+  width: 48px;
+  height: auto;
+}
+
+.c-ranking-card__badge-lg-row {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
+  gap: var(--spacing-sm);
 }
-.c-ranking-card__laurel {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+.c-ranking-card__kusa--lg {
+  width: 36px;
 }
-.c-ranking-card__badge-lg-no {
-  font-family: var(--font-en);
-  font-size: clamp(24px, 5vw, 32px);
-  font-weight: var(--fw-regular);
-  color: var(--color-accent);
-  position: relative;
-  z-index: 1;
-}
-.c-ranking-card__badge-lg-num {
-  font-family: var(--font-en);
-  font-size: clamp(48px, 12vw, 72px);
-  font-weight: var(--fw-bold);
-  color: var(--color-accent);
-  line-height: 1;
-  position: relative;
-  z-index: 1;
+
+.c-ranking-card__badge-lg-no-img {
+  display: block;
+  width: 72px;
+  height: auto;
 }
