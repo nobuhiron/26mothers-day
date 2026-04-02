@@ -1,16 +1,9 @@
 /* nav: 縦並びボタン。右にベージュ丸＋白 chevron */
 
 .c-nav-stack {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: grid;
-  gap: var(--spacing-sm);
+  gap: 12px;
   width: 100%;
-}
-
-.c-nav-stack__item {
-  margin: 0;
 }
 
 .c-nav-stack__btn {
@@ -20,19 +13,33 @@
   gap: var(--spacing-sm);
   width: 100%;
   min-height: 44px;
-  padding: var(--spacing-sm) var(--spacing-md);
-  padding-right: var(--spacing-sm);
+  padding: 14px var(--spacing-lg);
   box-sizing: border-box;
   font-family: var(--font-jp--serif);
   font-size: 14px;
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   line-height: 1.45;
-  text-decoration: none;
   color: var(--color-text);
   background: #fff;
-  border: 1px solid #D4B45D;
+  border: 1px solid #d4b45d;
   border-radius: 999px;
-  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-text) 6%, transparent);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.c-nav-stack__btn:hover {
+  color: #fff;
+  background-color: var(--color-main);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--color-main) 24%, transparent);
+  transform: translateY(-1px);
+}
+
+.c-nav-stack__btn:hover .c-nav-stack__icon {
+  background: #fff;
+  color: var(--color-main);
 }
 
 .c-nav-stack__label {
@@ -54,9 +61,8 @@
 }
 
 .c-nav-stack__chevron {
-  width: 14px;
-  height: 14px;
-  margin-left: 2px;
+  width: 12px;
+  height: 12px;
   display: block;
 }
 
@@ -84,8 +90,6 @@
 }
 
 .c-nav-stack--compact .c-nav-stack__btn--compact .c-nav-stack__chevron {
-  width: 12px;
+  width: 6px;
   height: 12px;
-  margin-left: 1px;
 }
-

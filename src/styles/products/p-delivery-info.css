@@ -38,6 +38,9 @@
 /* ---------- 年バッジ（リボン + 2026） ---------- */
 .p-delivery-info__year-badge {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .p-delivery-info__year-ribbon {
   display: block;

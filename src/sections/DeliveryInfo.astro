@@ -1,8 +1,10 @@
 ---
 /**
- * 配送・締切
- * 残り日数は 0–99 を想定し、常に2桁（白枠2つ）で表示
+ * 配送情報セクション
  */
+import { Image } from 'astro:assets';
+import flowerDelivery from '../assets/images/flower-delivery.png';
+
 const today = new Date();
 const target = new Date(today.getFullYear(), 4, 10); // 5/10
 if (target <= today) target.setFullYear(today.getFullYear() + 1);
@@ -13,9 +15,9 @@ const digitOnes = digitStr[1];
 ---
 
 <section id="delivery" class="p-delivery-info" aria-labelledby="heading-delivery">
-  <img src="/flower-delivery.png" alt="" class="p-delivery-info__flower" aria-hidden="true" />
+  <Image src={flowerDelivery} alt="" class="p-delivery-info__flower" aria-hidden="true" />
   <div class="l-container">
-    <h2 id="heading-delivery" class="visually-hidden">配送・締切</h2>
+    <h2 id="heading-delivery" class="visually-hidden">配送情報</h2>
     <div class="p-delivery-info__inner">
       <div class="p-delivery-info__lead">
         {/* 年バッジ（リボン + 2026） */}
@@ -30,7 +32,7 @@ const digitOnes = digitStr[1];
           <span class="p-delivery-info__date-value">5.10<span class="p-delivery-info__date-wday">［sun］</span></span>
         </p>
 
-        {/* あと [桁][桁] 日 */}
+        {/* あと XX 日 */}
         <p class="p-delivery-info__countdown-line">
           <span class="p-delivery-info__count-text">あと</span>
           <span class="p-delivery-info__digits" aria-label={`あと${daysLeft}日`}>
@@ -41,7 +43,7 @@ const digitOnes = digitStr[1];
         </p>
       </div>
 
-      {/* 配達情報 */}
+      {/* 配送案内 */}
       <div class="p-delivery-info__notice">
         <img src="/delivery-icon.svg" alt="" class="p-delivery-info__notice-icon" width="32" height="32" />
         <p class="p-delivery-info__tagline">
