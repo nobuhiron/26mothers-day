@@ -1,8 +1,7 @@
 /* PC 右カラム：縦ナビ（c-nav-stack）+ LINE */
 
 .p-page-chrome-right {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: var(--spacing-lg);
 }
 
@@ -87,3 +86,4 @@
     display: none;
   }
 }
+

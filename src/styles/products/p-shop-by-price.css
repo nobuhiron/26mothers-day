@@ -26,8 +26,7 @@
 
 /* 価格帯グループ */
 .p-shop-by-price__bands {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: var(--spacing-5xl);
 }
 
@@ -84,7 +83,7 @@
   list-style: none;
   margin: var(--spacing-xl) 0 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: var(--spacing-3xl);
 }
+

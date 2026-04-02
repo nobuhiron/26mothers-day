@@ -5,8 +5,7 @@
 }
 
 .p-page-chrome-left__title {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: var(--spacing-sm);
   margin: 0;
   font-family: var(--font-jp--serif);
@@ -29,3 +28,4 @@
     display: none;
   }
 }
+

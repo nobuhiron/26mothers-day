@@ -10,8 +10,7 @@
 }
 
 .p-delivery-info__inner {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   text-align: center;
   gap: var(--spacing-4xl);
@@ -29,8 +28,7 @@
   pointer-events: none;
 }
 .p-delivery-info__lead {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   text-align: center;
   gap: var(--spacing-xs);
@@ -198,3 +196,4 @@
   font-weight: var(--fw-regular);
   color: var(--color-text);
 }
+
