@@ -31,7 +31,6 @@
   align-items: center;
   justify-content: center;
   width: 255px;
-  margin-top: var(--spacing-xl);
   padding: var(--spacing-md) 0;
   background-color: var(--color-main);
   color: #fff;
