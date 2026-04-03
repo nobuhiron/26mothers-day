@@ -7,35 +7,44 @@ import { LINK_BASE } from '../data/links';
 import { getCollection } from 'astro:content';
 
 const tsEntries = await getCollection('timeSceneProducts');
-const timeSceneProducts = tsEntries.map(e => e.data);
+const timeSceneProducts = tsEntries.map((e) => e.data);
 ---
 
-<section id="time-scene" class="l-section l-section--bg-base p-time-scene" aria-labelledby="heading-time-scene">
-  <div class="l-container">
-
+<section
+  id='time-scene'
+  class='l-section l-section--bg-base p-time-scene'
+  aria-labelledby='heading-time-scene'
+>
+  <div class='l-container'>
     <!-- ヘッダー -->
-    <header class="p-time-scene__header">
-      <span class="p-time-scene__badge">母の日限定タグ付き</span>
-      <p class="p-time-scene__lead">おかあさんに届けたい</p>
-      <h2 id="heading-time-scene" class="p-time-scene__title">
-        <span class="p-time-scene__title-main">"時間"で選ぶ母の日の贈り物</span>
-        <img src="/timetorelax.svg" alt="Time to Relax" class="p-time-scene__title-en-img" />
+    <header class='p-time-scene__header'>
+      <span class='p-time-scene__badge'>母の日限定タグ付き</span>
+      <h2 id='heading-time-scene' class='p-time-scene__title'>
+        <span class='p-time-scene__title-main'
+          >おかあさんに届けたい<br />"時間"で選ぶ母の日の贈り物</span
+        >
+        <img
+          src='/timetorelax.svg'
+          alt='Time to Relax'
+          class='p-time-scene__title-en-img'
+        />
       </h2>
     </header>
 
     <!-- 商品リスト -->
-    <ul class="p-time-scene__list">
-      {timeSceneProducts.map((product) => (
-        <li class="p-time-scene__item">
-          <TimeSceneCard
-            name={product.name}
-            price={product.price}
-            description={product.description}
-            href={LINK_BASE}
-          />
-        </li>
-      ))}
+    <ul class='p-time-scene__list'>
+      {
+        timeSceneProducts.map((product) => (
+          <li class='p-time-scene__item'>
+            <TimeSceneCard
+              name={product.name}
+              price={product.price}
+              description={product.description}
+              href={LINK_BASE}
+            />
+          </li>
+        ))
+      }
     </ul>
-
   </div>
 </section>

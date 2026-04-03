@@ -1,5 +1,13 @@
 /* ===== Time Scene セクションレイアウト ===== */
-
+.p-time-scene {
+  background: linear-gradient(
+    179.55deg,
+    #fff3c2 0.39%,
+    #b7e2fa 50.94%,
+    #e5a49f 74.96%,
+    #016fbd 99.82%
+  );
+}
 .p-time-scene > .l-container {
   padding-inline: 20px;
 }
@@ -11,36 +19,31 @@
 }
 .p-time-scene__badge {
   display: inline-block;
-  padding: var(--spacing-sm) var(--spacing-xl);
+  width: 205px;
+  height: 41px;
   background: url('/ribon_bg.svg') center / contain no-repeat;
-  font-size: 12px;
   font-family: var(--font-jp--serif);
   color: var(--color-main);
+  font-weight: var(--fw-semibold);
   letter-spacing: 0.08em;
-}
-.p-time-scene__lead {
-  margin-top: var(--spacing-md);
-  font-family: var(--font-jp--serif);
-  font-size: clamp(14px, 1.6vw, 16px);
-  color: var(--color-text);
+  padding-block-start: 0.2em;
 }
 .p-time-scene__title {
-  margin-top: var(--spacing-xs);
+  display: grid;
+  gap: var(--spacing-sm);
 }
 .p-time-scene__title-main {
-  display: block;
   font-family: var(--font-jp--serif);
-  font-size: clamp(18px, 4vw, 24px);
-  font-weight: var(--fw-bold);
+  font-size: 24px;
+  font-weight: var(--fw-semibold);
   color: var(--color-text);
-  line-height: 1.4;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
 }
 .p-time-scene__title-en-img {
   display: block;
-  margin-top: var(--spacing-xs);
   margin-inline: auto;
-  width: clamp(140px, 35vw, 200px);
-  height: auto;
+  width: 95px;
 }
 
 /* リスト */
@@ -49,6 +52,5 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: var(--spacing-3xl);
+  gap: 60px;
 }
-
