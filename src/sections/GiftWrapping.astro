@@ -1,86 +1,144 @@
----
+﻿---
 /**
  * ギフトラッピングセクション
  * Dedicated box + Gift bag の2パート構成
  */
 import { Image } from 'astro:assets';
 import boxImg from '../assets/images/box_img.png';
+import flowerGiftImg from '../assets/images/flower-gift-1.png';
+import flowerDeliveryImg from '../assets/images/flower-delivery.png';
+import fingerIcon from '../assets/images/finger_icon.png';
+import messageImg1 from '../assets/images/tag-img-1.jpg';
+import messageImg2 from '../assets/images/tag-img-2.jpg';
 import tagImg from '../assets/images/tag.png';
 ---
 
-<section id="gift" class="p-gift-wrapping" aria-labelledby="heading-gift-wrapping">
-
+<section id='gift' class='p-gift-wrapping' aria-labelledby='gift-bag-tag'>
+  <div class='p-gift-wrapping__decor p-gift-wrapping__decor--top' aria-hidden='true'>
+    <Image src={flowerGiftImg} alt='' class='p-gift-wrapping__decor-image' />
+  </div>
+  <div class='p-gift-wrapping__decor p-gift-wrapping__decor--bottom' aria-hidden='true'>
+    <Image src={flowerDeliveryImg} alt='' class='p-gift-wrapping__decor-image' />
+  </div>
   <!-- ===== Dedicated box ===== -->
-  <div id="gift-bag-tag" class="p-gift-wrapping__anchor" aria-hidden="true"></div>
-  <div class="p-gift-wrapping__block">
-    <div class="l-container">
-      <header class="p-gift-wrapping__heading">
-        <img src="/dedicated-box.svg" alt="Dedicated box" class="p-gift-wrapping__heading-en-img" />
-        <p class="p-gift-wrapping__heading-ja">メッセージ付き専用BOXでお届け<br />抹茶スイーツお試しセット</p>
-      </header>
-
-      <div class="p-gift-wrapping__box-visual">
-        <div class="p-gift-wrapping__box-image">
-          <Image src={boxImg} alt="母の日専用ギフトボックス" />
-        </div>
-        <button class="p-gift-wrapping__tap-label" type="button" aria-label="タップして中を見る">
-          <span class="p-gift-wrapping__tap-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24.8 8.5c2.3-1.8 5.8-.9 6.9 2l3.6 9.2 1.2-11.4c.3-2.9 3-5 5.9-4.8 2.9.3 5 3 4.8 5.9l-.9 10.2 2.3-7.3c.9-2.8 3.9-4.3 6.7-3.5 2.8.9 4.3 3.9 3.5 6.7l-4.8 15.2c1.7 2.1 2.6 4.9 2.2 7.9l-.9 6.8c-.8 5.8-6.2 9.9-12 9.1l-12.7-1.7c-3-.4-5.7-2-7.4-4.4L15 47.6c-2.1-3-1.4-7.1 1.6-9.2 2.4-1.7 5.7-1.5 7.9.3l4.2 3.6-8.1-24.9c-.9-2.9.1-6 2.4-7.9Z" fill="#fff" stroke="#111" stroke-width="3.2" stroke-linejoin="round"/>
-              <path d="M35.3 19.7l1.3 4.1M45.7 19.6l-.4 4.4M24.4 39.2l4.4 3.6" stroke="#111" stroke-width="3.2" stroke-linecap="round"/>
-            </svg>
-          </span>
-          <span>タップして<br />中を見る</span>
-        </button>
-      </div>
-
-      <div class="p-gift-wrapping__price-area">
-        <span class="p-gift-wrapping__badge-shipping">送 料 無 料</span>
-        <p class="p-gift-wrapping__price">
-          <span class="p-gift-wrapping__price-yen">¥</span><span class="p-gift-wrapping__price-num">2,500</span><span class="p-gift-wrapping__price-tax">（税込）</span>
+  <div class='p-gift-wrapping__dedicated'>
+    <div class='p-gift-wrapping__dedicated-box-layout'>
+      <header id='gift-bag-tag' class='p-gift-wrapping__dedicated-heading'>
+        <img
+          src='/dedicated-box.svg'
+          alt='Dedicated box'
+          class='p-gift-wrapping__dedicated-heading-en-img'
+        />
+        <p class='p-gift-wrapping__dedicated-heading-ja'>
+          メッセージ付き専用BOXでお届け<br />抹茶スイーツお試しセット
         </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== Gift bag ===== -->
-  <div id="gift-mothers-wrap" class="p-gift-wrapping__anchor" aria-hidden="true"></div>
-  <div class="p-gift-wrapping__block">
-    <div class="l-container">
-      <header class="p-gift-wrapping__heading" id="heading-gift-wrapping">
-        <img src="/gift-bag.svg" alt="Gift bag" class="p-gift-wrapping__heading-en-img" />
-        <p class="p-gift-wrapping__heading-ja">森半オリジナルギフト袋<br />＆メッセージタグ</p>
       </header>
 
-      <div class="p-gift-wrapping__bag-visual">
-        <div class="p-gift-wrapping__bag-badge">
-          <p class="p-gift-wrapping__bag-badge-text">
-            <span class="p-gift-wrapping__bag-badge-highlight">母の日<br />限定タグ</span>を<br />つけてお届けいた<br />します。
+      <div class='p-gift-wrapping__dedicated-box-panel'>
+        <div class='p-gift-wrapping__dedicated-box-visual'>
+          <div class='p-gift-wrapping__dedicated-box-image'>
+            <Image src={boxImg} alt='母の日専用ギフトボックス' />
+          </div>
+          <button
+            class='p-gift-wrapping__tap-label'
+            type='button'
+            aria-label='タップして中を見る'
+          >
+            <img
+              class='p-gift-wrapping__tap-icon'
+              src={fingerIcon.src}
+              alt=''
+              aria-hidden='true'
+            />
+            <span>タップして<br />中を見る</span>
+          </button>
+        </div>
+        <div class='p-gift-wrapping__price-area'>
+          <span class='p-gift-wrapping__badge-shipping'>送 料 無 料</span>
+          <p class='p-gift-wrapping__price'>
+            <span class='p-gift-wrapping__price-yen'>¥</span><span
+              class='p-gift-wrapping__price-num'>2,500</span
+            ><span class='p-gift-wrapping__price-tax'>（税込）</span>
           </p>
-          <span class="p-gift-wrapping__bag-badge-tail"></span>
-        </div>
-        <div class="p-gift-wrapping__bag-image">
-          <Image src={tagImg} alt="森半オリジナルギフト袋" />
         </div>
       </div>
-
-      <div class="p-gift-wrapping__message-row">
-        <div class="p-gift-wrapping__message-item">
-          <div class="p-gift-wrapping__message-image" role="img" aria-label="メッセージ付きギフト袋">
-            <!-- メッセージ付き画像 -->
-          </div>
-          <p class="p-gift-wrapping__message-caption">メッセージ付きで<br />想いを伝える</p>
-        </div>
-        <div class="p-gift-wrapping__message-item">
-          <p class="p-gift-wrapping__message-caption p-gift-wrapping__message-caption--left">直筆メッセージで<br />想いを伝える</p>
-          <div class="p-gift-wrapping__message-image" role="img" aria-label="直筆メッセージタグ">
-            <!-- 直筆メッセージ画像 -->
-          </div>
-        </div>
-      </div>
-
-      <p class="p-gift-wrapping__note">※メッセージの代筆は承っておりません。</p>
     </div>
   </div>
+  <!-- ===== Gift bag ===== -->
+  <div class='p-gift-wrapping__gift-bag'>
+    <div class='l-container p-gift-wrapping__gift-bag-container'>
+      <header id='gift-mothers-wrap' class='p-gift-wrapping__gift-bag-heading'>
+        <img
+          src='/gift-bag.svg'
+          alt='Gift bag'
+          class='p-gift-wrapping__gift-bag-heading-en-img'
+        />
+        <p class='p-gift-wrapping__gift-bag-heading-ja'>
+          森半オリジナルギフト袋<br />＆メッセージタグ</p>
+      </header>
+      <div class='p-gift-wrapping__gift-bag-body'>
+        <div class='p-gift-wrapping__gift-bag-visual'>
+          <div class='p-gift-wrapping__gift-bag-badge'>
+            <p class='p-gift-wrapping__gift-bag-badge-text'>
+              <span class='p-gift-wrapping__gift-bag-badge-highlight'
+                >母の日<br />限定タグ</span
+              >を<br />つけてお届けいた<br />します。
+            </p>
+            <span class='p-gift-wrapping__gift-bag-badge-tail'></span>
+          </div>
+          <div class='p-gift-wrapping__gift-bag-image'>
+            <Image src={tagImg} alt='森半オリジナルギフト袋' />
+          </div>
+        </div>
 
+        <div class='p-gift-wrapping__message-row'>
+          <div class='p-gift-wrapping__message-item'>
+            <div class='p-gift-wrapping__message-image'>
+              <div class='p-gift-wrapping__message-photo-frame'>
+                <Image
+                  class='p-gift-wrapping__message-photo'
+                  src={messageImg1}
+                  alt='メッセージ付きギフト袋'
+                />
+              </div>
+              <img
+                class='p-gift-wrapping__message-tag p-gift-wrapping__message-tag--1'
+                src='/tag-1.svg'
+                alt=''
+                aria-hidden='true'
+              />
+            </div>
+            <p class='p-gift-wrapping__message-caption'>
+              メッセージ付きで<br />想いを伝える
+            </p>
+          </div>
+          <div class='p-gift-wrapping__message-item'>
+            <p
+              class='p-gift-wrapping__message-caption p-gift-wrapping__message-caption--left'
+            >
+              直筆メッセージで<br />想いを伝える
+            </p>
+            <div class='p-gift-wrapping__message-image'>
+              <div class='p-gift-wrapping__message-photo-frame'>
+                <Image
+                  class='p-gift-wrapping__message-photo'
+                  src={messageImg2}
+                  alt='直筆メッセージタグ'
+                />
+              </div>
+              <img
+                class='p-gift-wrapping__message-tag p-gift-wrapping__message-tag--2'
+                src='/tag-2.svg'
+                alt=''
+                aria-hidden='true'
+              />
+            </div>
+          </div>
+          <p class='p-gift-wrapping__note'>
+※メッセージの代筆は承っておりません。
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
