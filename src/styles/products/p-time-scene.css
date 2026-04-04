@@ -54,3 +54,10 @@
   display: grid;
   gap: 60px;
 }
+
+.p-time-scene__item:nth-child(4) .c-time-scene-card__name,
+.p-time-scene__item:nth-child(4) .c-time-scene-card__price,
+.p-time-scene__item:nth-child(5) .c-time-scene-card__name,
+.p-time-scene__item:nth-child(5) .c-time-scene-card__price {
+  color: #fff;
+}
