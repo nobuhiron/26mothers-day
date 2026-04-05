@@ -1,31 +1,39 @@
 /* PC 左カラム：ページタイトル */
 
+.l-page__chrome-left {
+  display: none;
+}
+
 .p-page-chrome-left {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
-.p-page-chrome-left__title {
-  display: grid;
-  gap: var(--spacing-sm);
-  margin: 0;
-  font-family: var(--font-jp--serif);
-  font-weight: var(--fw-semibold);
-  font-size: var(--font-size-title-ja);
-  line-height: 1.35;
-  color: var(--color-text);
-}
-
-.p-page-chrome-left__brand {
-  font-size: var(--font-size-title-ja-lg);
-}
-
-.p-page-chrome-left__event {
-  font-size: var(--font-size-body-sm);
+.p-page-chrome-left__image {
+  display: block;
+  width: min(100%, 232px);
+  height: auto;
 }
 
 @media (max-width: 1023px) {
   .p-page-chrome-left {
     display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .l-page__chrome-left {
+    position: fixed;
+    left: clamp(16px, 2vw, 32px);
+    top: 50%;
+    z-index: 5;
+    display: block;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .l-page__chrome-left .p-page-chrome-left {
+    pointer-events: none;
   }
 }
 

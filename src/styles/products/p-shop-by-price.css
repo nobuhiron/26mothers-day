@@ -1,4 +1,7 @@
 /* ===== Shop by price セクション ===== */
+.p-shop-by-price {
+  overflow-x: hidden;
+}
 
 .p-shop-by-price > .l-container {
   padding-inline: 20px;
@@ -6,22 +9,92 @@
 
 /* ヘッダー */
 .p-shop-by-price__header {
+  position: relative;
+  overflow: visible;
   text-align: center;
-  margin-bottom: var(--spacing-3xl);
+  display: grid;
+  gap: var(--spacing-xs);
+  padding-top: 16px;
+  margin-inline: auto;
 }
+
+.p-shop-by-price__header-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.p-shop-by-price__header h2,
+.p-shop-by-price__header-visual {
+  position: relative;
+  z-index: 1;
+}
+
 .p-shop-by-price__heading-en-img {
   display: block;
-  margin-top: var(--spacing-md);
   margin-inline: auto;
-  width: clamp(160px, 40vw, 240px);
-  height: auto;
+  width: 313px;
 }
 .p-shop-by-price__heading-ja {
   display: block;
-  margin-top: var(--spacing-xs);
-  font-family: var(--font-jp--serif);
-  font-size: clamp(14px, 1.6vw, 16px);
+  font-size: 14px;
+  font-weight: var(--fw-medium);
   color: var(--color-text);
+  line-height: 1.7;
+}
+
+.p-shop-by-price__header-visual {
+  position: relative;
+  width: calc(100% + 40px);
+  margin: 28px auto 0;
+  margin-inline: -20px;
+}
+
+.p-shop-by-price__header-decor-image {
+  position: absolute;
+  display: block;
+  height: auto;
+}
+
+.p-shop-by-price__header-decor-image--1 {
+  top: 80px;
+  left: 0;
+  width: 85px;
+  transform-origin: top left;
+}
+
+.p-shop-by-price__header-decor-image--2 {
+  right: 0;
+  bottom: -42px;
+  width: 94px;
+  transform-origin: bottom right;
+}
+
+.p-shop-by-price__header-band {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 145px;
+  background-color: #e9e9e9;
+}
+
+.p-shop-by-price__header-image-frame {
+  width: 197px;
+  aspect-ratio: 197 / 267;
+  overflow: hidden;
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.p-shop-by-price__header-image {
+  display: block;
+  width: 197px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 /* 価格帯グループ */
@@ -43,37 +116,43 @@
 }
 .p-shop-by-price__band-arch-img {
   display: block;
-  width: clamp(200px, 50vw, 300px);
+  width: 115px;
   height: auto;
+}
+
+.p-shop-by-price__band:last-child .p-shop-by-price__band-arch-img {
+  width: 90px;
 }
 
 /* 価格帯タイトル（数字大きく、「円」小さく） */
 .p-shop-by-price__band-title {
   margin: 0;
   font-family: var(--font-jp--serif);
-  font-weight: var(--fw-bold);
+  font-size: 28px;
+  font-weight: var(--fw-semibold);
   color: var(--color-text);
   line-height: 1.2;
 }
 .p-shop-by-price__band-num {
-  font-size: clamp(32px, 8vw, 52px);
+  font-size: inherit;
   letter-spacing: -0.02em;
 }
 .p-shop-by-price__band-yen {
-  font-size: clamp(16px, 3vw, 22px);
+  font-size: 14px;
   vertical-align: baseline;
 }
 .p-shop-by-price__band-tilde {
-  font-size: clamp(24px, 5vw, 36px);
+  font-size: 24px;
   margin-inline: 0.1em;
 }
 
 /* おすすめアイテム */
 .p-shop-by-price__band-sub {
-  margin: var(--spacing-md) 0 0;
+  display: inline-block;
+  margin-left: 0.25em;
   font-family: var(--font-jp--serif);
-  font-size: clamp(18px, 4vw, 26px);
-  font-weight: var(--fw-medium);
+  font-size: 24px;
+  font-weight: var(--fw-semibold);
   color: var(--color-text);
   letter-spacing: 0.1em;
 }
@@ -86,4 +165,3 @@
   display: grid;
   gap: var(--spacing-3xl);
 }
-
