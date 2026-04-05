@@ -4,15 +4,17 @@ export function initSiteScripts() {
 
 function initPageBackground() {
   const pageBg = document.querySelector('.l-page__bg');
+  const page = document.querySelector('.l-page');
   const aboutSection = document.getElementById('about');
   const timeSceneSection = document.getElementById('time-scene');
 
-  if (!(pageBg instanceof HTMLElement) || !aboutSection || !timeSceneSection) {
+  if (!(pageBg instanceof HTMLElement) || !(page instanceof HTMLElement) || !aboutSection || !timeSceneSection) {
     return;
   }
 
   const setBackgroundState = (state) => {
     pageBg.dataset.bgState = state;
+    page.dataset.chromeState = state;
   };
 
   const getStateFromViewportCenter = () => {

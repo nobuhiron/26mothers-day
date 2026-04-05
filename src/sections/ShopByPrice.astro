@@ -6,22 +6,35 @@ import PriceBandCard from '../components/PriceBandCard.astro';
 import { LINK_BASE } from '../data/links';
 import { getCollection } from 'astro:content';
 import { formatPriceBandLabel } from '../utils/text';
+import { Image } from 'astro:assets';
+import wrappingImg from '../assets/images/wrapping_img.png';
+import flowerPriceImg1 from '../assets/images/flower-price-1.png';
+import flowerPriceImg2 from '../assets/images/flower-price-2.png';
 
 const pbEntries = await getCollection('priceBands');
 const bands = pbEntries.map(e => e.data);
 ---
 
 <section id="price" class="l-section l-section--bg-surface p-shop-by-price" aria-labelledby="heading-price">
+  <!-- ヘッダー -->
+  <header class="p-shop-by-price__header">
+    <div class="p-shop-by-price__header-decor" aria-hidden="true">
+      <Image src={flowerPriceImg1} alt="" class="p-shop-by-price__header-decor-image p-shop-by-price__header-decor-image--1" />
+      <Image src={flowerPriceImg2} alt="" class="p-shop-by-price__header-decor-image p-shop-by-price__header-decor-image--2" />
+    </div>
+    <h2 id="heading-price">
+      <img src="/Shop by price.svg" alt="Shop by price" class="p-shop-by-price__heading-en-img" />
+      <span class="p-shop-by-price__heading-ja">母の日限定包装紙でお包み<br />価格帯でえらぶ</span>
+    </h2>
+    <div class="p-shop-by-price__header-visual" aria-hidden="true">
+      <span class="p-shop-by-price__header-band"></span>
+      <div class="p-shop-by-price__header-image-frame">
+        <img src={wrappingImg.src} alt="" class="p-shop-by-price__header-image" />
+      </div>
+    </div>
+  </header>
+
   <div class="l-container">
-
-    <!-- ヘッダー -->
-    <header class="p-shop-by-price__header">
-      <h2 id="heading-price">
-        <img src="/Shop by price.svg" alt="Shop by price" class="p-shop-by-price__heading-en-img" />
-        <span class="p-shop-by-price__heading-ja">母の日限定包装紙でお包み<br />価格帯でえらぶ</span>
-      </h2>
-    </header>
-
     <!-- 価格帯グループ -->
     <div class="p-shop-by-price__bands">
       {bands.map((band) => (
@@ -35,8 +48,8 @@ const bands = pbEntries.map(e => e.data);
               {formatPriceBandLabel(band.label).map((part) => (
                 part.className ? <span class={part.className}>{part.text}</span> : part.text
               ))}
+              <span class="p-shop-by-price__band-sub">おすすめアイテム</span>
             </h3>
-            <p class="p-shop-by-price__band-sub">おすすめアイテム</p>
           </header>
           <ul class="p-shop-by-price__list">
             {band.items.map((product) => (
@@ -53,6 +66,5 @@ const bands = pbEntries.map(e => e.data);
         </section>
       ))}
     </div>
-
   </div>
 </section>

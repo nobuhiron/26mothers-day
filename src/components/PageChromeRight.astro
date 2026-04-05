@@ -1,22 +1,30 @@
 ---
+import { Image } from 'astro:assets';
 import { CATEGORY_NAV_ITEMS } from '../data/category-nav';
 import NavStackLink from './NavStackLink.astro';
 import { LINE_URL } from '../data/links';
+import linePromoImg from '../assets/images/line.png';
+import lineAboutImg from '../assets/images/line-about.png';
 ---
 
 <div class="p-page-chrome-right">
-  <nav class="p-page-chrome-right__nav" aria-label="ページ内リンク（PC）">
-    <ul class="c-nav-stack c-nav-stack--compact">
-      {CATEGORY_NAV_ITEMS.map((item) => (
-        <li class="c-nav-stack__item">
-          <NavStackLink href={item.href} label={item.label} compact />
-        </li>
-      ))}
-    </ul>
-  </nav>
-  <div class="p-page-chrome-right__line">
-    <a href={LINE_URL} class="p-page-chrome-right__line-btn">
-      LINE 登録でお得な情報を受け取る
-    </a>
+  <div class="p-page-chrome-right__default">
+    <nav class="p-page-chrome-right__nav" aria-label="ページ内リンク（PC）">
+      <ul class="c-nav-stack c-nav-stack--compact">
+        {CATEGORY_NAV_ITEMS.map((item) => (
+          <li class="c-nav-stack__item">
+            <NavStackLink href={item.href} label={item.label} compact />
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="p-page-chrome-right__line">
+      <a href={LINE_URL} class="p-page-chrome-right__line-link" aria-label="LINE登録でお得な情報を受け取る">
+        <Image src={linePromoImg} alt="" class="p-page-chrome-right__line-image" />
+      </a>
+    </div>
+  </div>
+  <div class="p-page-chrome-right__about" aria-hidden="true">
+    <Image src={lineAboutImg} alt="" class="p-page-chrome-right__about-image" />
   </div>
 </div>

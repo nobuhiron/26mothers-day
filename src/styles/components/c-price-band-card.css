@@ -2,8 +2,11 @@
 
 .c-price-band-card {
   background-color: var(--color-bg);
-  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  border-radius: 12px;
   overflow: hidden;
+  display: grid;
+  gap: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
@@ -12,6 +15,8 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   background-color: var(--palette-image-placeholder);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 /* ---------- テキストエリア ---------- */
@@ -19,7 +24,7 @@
   display: grid;
   align-items: center;
   gap: var(--spacing-xl);
-  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-2xl);
+  padding: 0;
 }
 
 /* テキスト情報ブロック */
@@ -35,29 +40,26 @@
   gap: 4px;
 }
 .c-price-band-card__name {
-  margin: 0;
   font-family: var(--font-jp--serif);
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: var(--fw-bold);
+  font-size: 16px;
+  font-weight: var(--fw-semibold);
   color: var(--color-text);
   line-height: 1.6;
 }
 .c-price-band-card__price {
   margin: 0;
-  font-family: var(--font-en);
-  font-size: clamp(28px, 6vw, 36px);
-  font-weight: var(--fw-bold);
+  font-family: var(--font-jp--serif);
+  font-size: 30px;
+  font-weight: var(--fw-medium);
   color: var(--color-accent);
-  line-height: 1.2;
+  line-height: 1;
 }
 .c-price-band-card__price-yen {
-  font-size: 0.65em;
+  font-size: 14px;
 }
 .c-price-band-card__price-tax {
-  font-size: 13px;
-  font-family: var(--font-jp--sanserif);
+  font-size: 10px;
   font-weight: var(--fw-regular);
-  color: var(--color-accent);
 }
 
 /* 区切り線 */
@@ -71,10 +73,8 @@
 .c-price-band-card__desc {
   margin: 0;
   font-family: var(--font-jp--sanserif);
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-size: 14px;
+  font-weight: var(--fw-regular);
   color: var(--color-text);
-  line-height: 1.8;
-  text-align: left;
+  line-height: 1.6;
 }
-
-

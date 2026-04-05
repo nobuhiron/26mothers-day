@@ -72,22 +72,20 @@ const twitterCard = ogImageUrl ? 'summary_large_image' : 'summary';
       <div class="l-page__bg-layer l-page__bg-layer--about"></div>
       <div class="l-page__bg-layer l-page__bg-layer--time-scene"></div>
     </div>
+    <div class="l-page__chrome-left">
+      <PageChromeLeft />
+    </div>
+    <div class="l-page__chrome-right" aria-label="補助ナビとLINE登録">
+      <PageChromeRight />
+    </div>
     <div class="l-shell">
-      <aside class="l-shell__aside l-shell__aside--left" aria-label="ページタイトル">
-        <div class="l-shell__sticky">
-          <PageChromeLeft />
-        </div>
-      </aside>
+      <aside class="l-shell__aside l-shell__aside--left" aria-hidden="true"></aside>
       <div class="l-shell__main">
         <main id="main-content" class="l-main-column">
           <slot />
         </main>
       </div>
-      <aside class="l-shell__aside l-shell__aside--right" aria-label="補助ナビとLINE登録">
-        <div class="l-shell__sticky">
-          <PageChromeRight />
-        </div>
-      </aside>
+      <aside class="l-shell__aside l-shell__aside--right" aria-hidden="true"></aside>
     </div>
     <script>
       import '../scripts/main.js';
