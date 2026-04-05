@@ -71,19 +71,27 @@
 @media (--lg) {
   .l-shell {
     display: grid;
-    grid-template-columns: minmax(120px, 1fr) var(--layout-main-width) minmax(140px, 1fr);
+    grid-template-columns: minmax(0, 1fr) var(--layout-main-width) minmax(0, 1fr);
     align-items: start;
     gap: 0;
-    padding-inline: var(--spacing-md);
   }
 
   .l-shell__aside {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .l-shell__aside--left,
   .l-shell__aside--right {
     min-width: 0;
+  }
+
+  .l-shell__aside--left,
+  .l-shell__aside--right {
+    position: sticky;
+    top: 0;
+    height: 100vh;
   }
 
   .l-shell__main {

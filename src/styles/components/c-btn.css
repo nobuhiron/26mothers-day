@@ -32,18 +32,31 @@
   justify-content: center;
   width: 255px;
   padding: var(--spacing-md) 0;
-  background-color: var(--color-main);
-  color: #fff;
+  --pill-bg: var(--color-main);
+  --pill-fg: #fff;
+  --pill-icon-bg: #fff;
+  --pill-icon-stroke: var(--color-main);
+  --pill-icon-arrow: var(--color-main);
+  background-color: var(--pill-bg);
+  color: var(--pill-fg);
+  border: 1px solid transparent;
   border-radius: 100px;
   font-family: var(--font-jp--sanserif);
   font-size: clamp(14px, 1.6vw, 16px);
   font-weight: var(--fw-bold);
   text-decoration: none;
   letter-spacing: 0.08em;
-  transition: opacity 0.2s;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 .c-btn-pill:hover {
-  opacity: 0.85;
+  --pill-bg: #fff;
+  --pill-fg: var(--color-main);
+  --pill-icon-bg: var(--color-main);
+  --pill-icon-stroke: var(--color-main);
+  --pill-icon-arrow: #fff;
+  border-color: var(--color-main);
 }
 .c-btn-pill__arrow {
   position: absolute;
@@ -59,17 +72,26 @@
   height: 24px;
 }
 .c-btn-pill__arrow circle {
-  fill: #fff;
-  stroke: #fff;
+  fill: var(--pill-icon-bg);
+  stroke: var(--pill-icon-stroke);
 }
 .c-btn-pill__arrow path {
-  stroke: var(--color-main);
+  stroke: var(--pill-icon-arrow);
 }
 
 /* data-color バリエーション */
 .c-btn-pill[data-color="accent"] {
-  background-color: var(--color-accent);
+  --pill-bg: var(--color-accent);
+  --pill-icon-arrow: var(--color-accent);
 }
 .c-btn-pill[data-color="accent"] .c-btn-pill__arrow path {
-  stroke: var(--color-accent);
+  stroke: var(--pill-icon-arrow);
+}
+.c-btn-pill[data-color="accent"]:hover {
+  --pill-bg: #fff;
+  --pill-fg: var(--color-accent);
+  --pill-icon-bg: var(--color-accent);
+  --pill-icon-stroke: var(--color-accent);
+  --pill-icon-arrow: #fff;
+  border-color: var(--color-accent);
 }
