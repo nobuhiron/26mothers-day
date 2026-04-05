@@ -2,13 +2,67 @@
 /**
  * ブランド / 森半について — LINE風チャットUI
  */
+import { Image } from 'astro:assets';
 import { LINK_BASE } from '../data/links';
 import { getCollection } from 'astro:content';
 import { splitLines } from '../utils/text';
 import chatData from '../data/line-chat.json';
+import kumaIconInitial from '../assets/images/icon_kuma4.png';
+import kumaIconReplyA1 from '../assets/images/icon_kuma2.png';
+import kumaIconReplyA2 from '../assets/images/icon_kuma1.png';
+import kumaIconFooter from '../assets/images/icon_kuma3.png';
+import boxImg from '../assets/images/box_img.png';
+import tagImg1 from '../assets/images/tag-img-1.jpg';
+import tagImg2 from '../assets/images/tag-img-2.jpg';
+import wrappingImg from '../assets/images/wrapping_img.png';
 
 const brandEntries = await getCollection('brandCards');
 const brandCards = brandEntries.map(e => e.data);
+const replyAAvatars = [kumaIconReplyA1, kumaIconReplyA2];
+const replyBAvatars = [kumaIconReplyA1, kumaIconReplyA2];
+const replyBCarouselCards = [
+  {
+    kind: 'brand',
+    headerLabel: 'Chosen as a gift',
+    title: '森半がギフトに選ばれる理由',
+    reason: 'Gift 01',
+    heading: '安心・丁寧なのし紙サービス',
+    image: boxImg,
+    imageAlt: '母の日ギフトボックス',
+    body: 'お客様のご要望に合わせて、ショッピングカート内で、さまざまなパターンをお選びいただけます。',
+    ctas: ['ギフトラッピングについて', 'のしガイド'],
+  },
+  {
+    kind: 'gift',
+    reason: 'Gift 02',
+    heading: '贈り物用の手提げ袋サービス',
+    image: tagImg1,
+    imageAlt: '贈り物用の手提げ袋',
+    body:
+      'ご注文時の備考欄に必要枚数・ご希望のサイズ、もしくは手提げ袋を使用予定の商品名を書き添えてください。\n※紙袋商品は入れない状態でのお届けとなります。\n※ご注文確定後・発送後の別送は致しかねます。',
+    ctas: ['お手提げ袋について'],
+  },
+  {
+    kind: 'gift',
+    reason: 'Gift 03',
+    heading: '配達日・時間帯指定\nいただけます',
+    image: tagImg2,
+    imageAlt: '配達時の受け渡しイメージ',
+    body:
+      '5営業日以降〜3週間後までお選びいただけます。ご指定のない場合は原則、2営業日〜5営業日以内の発送となります。\nご購入手続きの際にご選択ください。',
+    ctas: [],
+  },
+  {
+    kind: 'gift',
+    reason: 'Gift 04',
+    heading: '贈りたい方へ直接、\n丁寧な梱包でお届けいたします',
+    image: wrappingImg,
+    imageAlt: '丁寧な梱包で届くギフト',
+    body:
+      'お届けする商品が傷つかないよう、段ボールに緩衝材を入れて丁寧に梱包し発送いたします。\nまた、贈り物として安心してご利用いただけるよう、金額が分かる明細書や納品書は同梱しておりません。',
+    ctas: [],
+  },
+];
 ---
 
 <section id="about" class="l-section p-brand-about" aria-labelledby="brand-about-title">
@@ -43,8 +97,12 @@ const brandCards = brandEntries.map(e => e.data);
       <div class="p-line-chat__body">
         <!-- ボットメッセージ: 森半って知ってる？ -->
         <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__anim">
-          <div class="p-line-chat__avatar" aria-hidden="true">
-            <span>森</span>
+          <div
+            class="p-line-chat__avatar p-line-chat__avatar--spacer"
+            data-avatar="initial"
+            aria-hidden="true"
+          >
+            <Image src={kumaIconInitial} alt="" class="p-line-chat__avatar-image" />
           </div>
           <div class="p-line-chat__bubble p-line-chat__bubble--bot">
             {chatData.messages[0].text}
@@ -69,9 +127,15 @@ const brandCards = brandEntries.map(e => e.data);
 
         <!-- 返答A -->
         <div class="p-line-chat__reply" data-reply="a" hidden>
-          {chatData.messages[2].texts.map((text) => (
+          {chatData.messages[2].texts.map((text, index) => (
             <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
-              <div class="p-line-chat__avatar p-line-chat__avatar--spacer" aria-hidden="true"></div>
+              <div
+                class="p-line-chat__avatar p-line-chat__avatar--spacer"
+                data-avatar={`reply-a-${index + 1}`}
+                aria-hidden="true"
+              >
+                <Image src={replyAAvatars[index] ?? kumaIconReplyA1} alt="" class="p-line-chat__avatar-image" />
+              </div>
               <div class="p-line-chat__bubble p-line-chat__bubble--bot">
                 {text.split('\n').map((line, i, arr) => (
                   <Fragment>
@@ -86,19 +150,138 @@ const brandCards = brandEntries.map(e => e.data);
 
         <!-- 返答B -->
         <div class="p-line-chat__reply" data-reply="b" hidden>
-          {chatData.messages[3].texts.map((text) => (
+          <div class="p-line-chat__reply-b">
             <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
-              <div class="p-line-chat__avatar p-line-chat__avatar--spacer" aria-hidden="true"></div>
+              <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-1" aria-hidden="true">
+                <Image src={replyBAvatars[0]} alt="" class="p-line-chat__avatar-image" />
+              </div>
               <div class="p-line-chat__bubble p-line-chat__bubble--bot">
-                {text.split('\n').map((line, i, arr) => (
-                  <Fragment>
-                    {line}
-                    {i < arr.length - 1 && <br />}
-                  </Fragment>
-                ))}
+                {chatData.messages[3].texts[0]}
               </div>
             </div>
-          ))}
+
+            <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
+              <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-2" aria-hidden="true">
+                <Image src={replyBAvatars[1]} alt="" class="p-line-chat__avatar-image" />
+              </div>
+              <div class="p-line-chat__bubble p-line-chat__bubble--bot">
+                {chatData.messages[3].texts[1]}
+              </div>
+            </div>
+
+            <div class="p-line-chat__reason p-line-chat__reason--pink p-line-chat__reply-msg">
+              <div class="p-line-chat__reason-heading">
+                <span>森半が選ばれる理由</span>
+              </div>
+              <div id="brand-carousel-b" class="splide p-line-chat__carousel" aria-label="森半が選ばれる理由">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    {brandCards.map((card) => (
+                      <li class="splide__slide">
+                        <article class="p-line-chat__card p-line-chat__reason-card" aria-label="森半が選ばれる理由">
+                          <span class="p-line-chat__card-reason">{card.reason}</span>
+                          <h3 class="p-line-chat__card-title">{card.title}</h3>
+                          <div class="p-line-chat__card-image" role="img" aria-label={`${card.title}のイメージ`}></div>
+                          <p class="p-line-chat__card-desc">
+                            {splitLines(card.description).map((line, index, lines) => (
+                              <Fragment>
+                                {line}
+                                {index < lines.length - 1 && <br />}
+                              </Fragment>
+                            ))}
+                          </p>
+                          {card.cta && (
+                            <a href={LINK_BASE} class="p-line-chat__card-link">
+                              <span>{card.cta}</span>
+                            </a>
+                          )}
+                        </article>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
+              <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-3" aria-hidden="true">
+                <Image src={kumaIconFooter} alt="" class="p-line-chat__avatar-image" />
+              </div>
+              <div class="p-line-chat__bubble p-line-chat__bubble--bot">
+                森半tea&coffeeでは初めての贈り物でも安心していただけるよう下記のようなギフト対応もしていて、多くのお客様へお届けしています。
+              </div>
+            </div>
+
+            <div class="p-line-chat__reason p-line-chat__reason--pink p-line-chat__reply-msg">
+              <div class="p-line-chat__reason-heading">
+                <span>森半が選ばれる理由</span>
+              </div>
+              <div id="brand-carousel-b2" class="splide p-line-chat__carousel" aria-label="森半が選ばれる理由">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    {replyBCarouselCards.map((card) => (
+                      <li class="splide__slide">
+                        <article class:list={['p-line-chat__reply-b2-card', card.kind === 'brand' && 'p-line-chat__reply-b2-card--brand']}>
+                          {card.kind === 'brand' ? (
+                            <>
+                              <h4 class="p-line-chat__reply-b2-card-header-ja">{card.title}</h4>
+                              <div class="p-line-chat__reply-b2-card-reason">{card.reason}</div>
+                              <div class="p-line-chat__reply-b2-card-title">{card.heading}</div>
+                              <div class="p-line-chat__reply-b2-card-visual">
+                                <Image src={card.image} alt={card.imageAlt} class="p-line-chat__reply-b2-card-image" />
+                              </div>
+                              <p class="p-line-chat__reply-b2-card-text">{card.body}</p>
+                              <div class="p-line-chat__reply-b2-card-actions">
+                                {card.ctas.map((cta) => (
+                                  <a href={LINK_BASE} class="p-line-chat__reply-b2-card-btn">
+                                    <span>{cta}</span>
+                                    <span class="p-line-chat__reply-b2-card-btn-icon" aria-hidden="true">›</span>
+                                  </a>
+                                ))}
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div class="p-line-chat__reply-b2-card-reason p-line-chat__reply-b2-card-reason--small">{card.reason}</div>
+                              <div class="p-line-chat__reply-b2-card-title p-line-chat__reply-b2-card-title--gift">
+                                {card.heading.split('\n').map((line, i, arr) => (
+                                  <Fragment>
+                                    {line}
+                                    {i < arr.length - 1 && <br />}
+                                  </Fragment>
+                                ))}
+                              </div>
+                              <div class="p-line-chat__reply-b2-card-visual p-line-chat__reply-b2-card-visual--gift">
+                                <Image src={card.image} alt={card.imageAlt} class="p-line-chat__reply-b2-card-image" />
+                              </div>
+                              <p class="p-line-chat__reply-b2-card-text p-line-chat__reply-b2-card-text--gift">
+                                {card.body.split('\n').map((line, i, arr) => (
+                                  <Fragment>
+                                    {line}
+                                    {i < arr.length - 1 && <br />}
+                                  </Fragment>
+                                ))}
+                              </p>
+                              {card.ctas.length > 0 && (
+                                <div class="p-line-chat__reply-b2-card-actions">
+                                  {card.ctas.map((cta) => (
+                                    <a href={LINK_BASE} class="p-line-chat__reply-b2-card-btn">
+                                      <span>{cta}</span>
+                                      <span class="p-line-chat__reply-b2-card-btn-icon" aria-hidden="true">›</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </article>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Reason セクション -->
@@ -106,14 +289,12 @@ const brandCards = brandEntries.map(e => e.data);
           <div class="p-line-chat__reason-heading">
             <span>森半が選ばれる理由</span>
           </div>
-
-          <!-- Splide カルーセル -->
           <div id="brand-carousel" class="splide p-line-chat__carousel" aria-label="森半が選ばれる理由">
             <div class="splide__track">
               <ul class="splide__list">
                 {brandCards.map((card) => (
                   <li class="splide__slide">
-                    <article class="p-line-chat__card">
+                    <article class="p-line-chat__card p-line-chat__reason-card" aria-label="森半が選ばれる理由">
                       <span class="p-line-chat__card-reason">{card.reason}</span>
                       <h3 class="p-line-chat__card-title">{card.title}</h3>
                       <div class="p-line-chat__card-image" role="img" aria-label={`${card.title}のイメージ`}></div>
@@ -140,7 +321,13 @@ const brandCards = brandEntries.map(e => e.data);
 
         <!-- フッターメッセージ -->
         <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__after-reply" hidden>
-          <div class="p-line-chat__avatar p-line-chat__avatar--spacer" aria-hidden="true"></div>
+          <div
+            class="p-line-chat__avatar p-line-chat__avatar--spacer"
+            data-avatar="footer"
+            aria-hidden="true"
+          >
+            <Image src={kumaIconFooter} alt="" class="p-line-chat__avatar-image" />
+          </div>
           <div class="p-line-chat__bubble p-line-chat__bubble--bot p-line-chat__bubble--footer">
             {chatData.footer.text}
           </div>
@@ -163,7 +350,16 @@ const brandCards = brandEntries.map(e => e.data);
   const replyB = document.querySelector<HTMLElement>('[data-reply="b"]');
   const afterReplyEls = document.querySelectorAll<HTMLElement>('.p-line-chat__after-reply');
   let currentChoice: string | null = null;
-  let splideInstance: Splide | null = null;
+  const mountedCarousels = new Set<string>();
+
+  const mountCarousel = (selector: string, options: ConstructorParameters<typeof Splide>[1]) => {
+    if (mountedCarousels.has(selector)) return;
+    const element = document.querySelector<HTMLElement>(selector);
+    if (!element) return;
+
+    mountedCarousels.add(selector);
+    new Splide(element, options).mount();
+  };
 
   choiceBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -198,28 +394,56 @@ const brandCards = brandEntries.map(e => e.data);
         });
       }
 
-      // 後続要素を表示（初回のみアニメーション）
-      afterReplyEls.forEach((el) => {
-        if (el.hidden) {
-          el.hidden = false;
-          el.style.animationDelay = '0.6s';
-          el.classList.add('is-visible');
-        }
-      });
+      if (choice === 'a') {
+        // 後続要素を表示（初回のみアニメーション）
+        afterReplyEls.forEach((el) => {
+          if (el.hidden) {
+            el.hidden = false;
+            el.style.animationDelay = '0.6s';
+            el.classList.add('is-visible');
+          }
+        });
 
-      // Splide初期化（初回のみ）
-      if (!splideInstance) {
         setTimeout(() => {
-          splideInstance = new Splide('#brand-carousel', {
+          mountCarousel('#brand-carousel', {
             type: 'loop',
             perPage: 1,
+            perMove: 1,
             gap: '0px',
             padding: 0,
+            trimSpace: true,
             pagination: true,
             arrows: true,
             autoplay: false,
             autoHeight: true,
-          }).mount();
+          });
+        }, 800);
+      } else {
+        setTimeout(() => {
+          mountCarousel('#brand-carousel-b', {
+            type: 'loop',
+            perPage: 1,
+            perMove: 1,
+            gap: '0px',
+            padding: 0,
+            trimSpace: true,
+            pagination: true,
+            arrows: true,
+            autoplay: false,
+            autoHeight: true,
+          });
+          mountCarousel('#brand-carousel-b2', {
+            type: 'loop',
+            perPage: 1,
+            perMove: 1,
+            gap: '0px',
+            padding: 0,
+            trimSpace: true,
+            pagination: true,
+            arrows: true,
+            autoplay: false,
+            autoHeight: true,
+          });
         }, 800);
       }
     });

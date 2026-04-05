@@ -1,12 +1,8 @@
-/* PC 左カラム：ページタイトル */
-
-.l-page__chrome-left {
-  display: none;
-}
-
 .p-page-chrome-left {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .p-page-chrome-left__image {
@@ -22,18 +18,8 @@
 }
 
 @media (min-width: 1024px) {
-  .l-page__chrome-left {
-    position: fixed;
-    left: clamp(16px, 2vw, 32px);
-    top: 50%;
-    z-index: 5;
-    display: block;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  .l-page__chrome-left .p-page-chrome-left {
-    pointer-events: none;
+  .p-page-chrome-left {
+    width: 232px;
   }
 }
 

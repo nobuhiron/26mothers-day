@@ -5,12 +5,14 @@
  */
 import { Image } from 'astro:assets';
 import boxImg from '../assets/images/box_img.png';
+import tapImg from '../assets/images/tap-img.png';
 import flowerGiftImg from '../assets/images/flower-gift-1.png';
 import flowerDeliveryImg from '../assets/images/flower-delivery.png';
 import fingerIcon from '../assets/images/finger_icon.png';
 import messageImg1 from '../assets/images/tag-img-1.jpg';
 import messageImg2 from '../assets/images/tag-img-2.jpg';
 import tagImg from '../assets/images/tag.png';
+
 ---
 
 <section id='gift' class='p-gift-wrapping' aria-labelledby='gift-bag-tag'>
@@ -43,6 +45,8 @@ import tagImg from '../assets/images/tag.png';
             class='p-gift-wrapping__tap-label'
             type='button'
             aria-label='タップして中を見る'
+            aria-controls='giftbox-modal'
+            aria-expanded='false'
           >
             <img
               class='p-gift-wrapping__tap-icon'
@@ -142,3 +146,43 @@ import tagImg from '../assets/images/tag.png';
     </div>
   </div>
 </section>
+
+<div class='p-gift-wrapping__modal' id='giftbox-modal' aria-hidden='true' data-state='closed'>
+  <button class='p-gift-wrapping__modal-overlay' type='button' aria-label='モーダルを閉じる'></button>
+  <div class='p-gift-wrapping__modal-panel' role='dialog' aria-modal='true' aria-labelledby='giftbox-modal-title'>
+    <button class='p-gift-wrapping__modal-close' type='button' aria-label='モーダルを閉じる'>
+      <span aria-hidden='true'>×</span>
+    </button>
+    <h3 id='giftbox-modal-title' class='visually-hidden'>母の日ギフトボックス</h3>
+    <Image src={tapImg} alt='母の日ギフトボックスの商品画像' class='p-gift-wrapping__modal-image' />
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('giftbox-modal');
+  const openBtn = document.querySelector('.p-gift-wrapping__tap-label');
+
+  if (modal instanceof HTMLElement && openBtn instanceof HTMLButtonElement) {
+    const closeBtn = modal.querySelector('.p-gift-wrapping__modal-close');
+    const overlayBtn = modal.querySelector('.p-gift-wrapping__modal-overlay');
+
+    const setOpen = (open) => {
+      modal.dataset.state = open ? 'open' : 'closed';
+      modal.setAttribute('aria-hidden', String(!open));
+      openBtn.setAttribute('aria-expanded', String(open));
+      document.documentElement.classList.toggle('is-modal-open', open);
+    };
+
+    const closeModal = () => setOpen(false);
+
+    openBtn.addEventListener('click', () => setOpen(true));
+    closeBtn?.addEventListener('click', closeModal);
+    overlayBtn?.addEventListener('click', closeModal);
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.dataset.state === 'open') {
+        closeModal();
+      }
+    });
+  }
+</script>
