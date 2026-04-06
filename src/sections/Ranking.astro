@@ -5,6 +5,7 @@ import flowerRanking from '../assets/images/flower-ranking.png';
 import ranking1Image from '../assets/images/ranking1_img.jpg';
 import ranking2Image from '../assets/images/ranking2_img.jpg';
 import ranking3Image from '../assets/images/ranking3_img.jpg';
+import { LINK_BASE } from '../data/links';
 import { splitLines } from '../utils/text';
 
 const rankingEntries = await getCollection('ranking');
@@ -21,7 +22,7 @@ const rankingBackHanaByRank = {
 } as const;
 const isNameSupplementLine = (line: string) => /^\s*[（(].*[）)]\s*$/.test(line);
 const splitNameInlineSegments = (line: string) => line.split(/([［\[].*?[］\]])/g).filter(Boolean);
-const isNameInlineSupplement = (segment: string) => /^[［\[].*?[］\]]$/.test(segment);
+const isNameInlineSupplement = (segment: string) => /^\[.*?\]$/.test(segment);
 ---
 
 <section id="ranking" class="l-section p-ranking" aria-labelledby="heading-ranking">
@@ -34,7 +35,7 @@ const isNameInlineSupplement = (segment: string) => /^[［\[].*?[］\]]$/.test(s
     <div class="p-ranking__list-wrapper">
       <h2 id="heading-ranking" class="p-ranking__title">
         母の日<br />
-        ギフトランキング
+        人気ギフトランキング
       </h2>
 
       <ol class="p-ranking__list">
@@ -42,7 +43,7 @@ const isNameInlineSupplement = (segment: string) => /^[［\[].*?[］\]]$/.test(s
           <li class="p-ranking__item">
             <div class="c-ranking-card is-flipped" data-flip-card data-rank={item.rank}>
               <div class="c-ranking-card__inner">
-                <div class="c-ranking-card__front">
+                <a href={LINK_BASE} class="c-ranking-card__front" aria-label={`${item.name}の商品ページ`}>
                   <div class="c-ranking-card__front-content">
                     <div class="c-ranking-card__badge-sm">
                       <div class="c-ranking-card__badge-sm-row">
@@ -81,12 +82,12 @@ const isNameInlineSupplement = (segment: string) => /^[［\[].*?[］\]]$/.test(s
                           <p class="c-ranking-card__desc">{item.description}</p>
                         </div>
                         <p class="c-ranking-card__price">
-                          <span class="c-ranking-card__price-yen">¥</span>{item.price}<span class="c-ranking-card__price-tax">（税込）</span>
+                          <span class="c-ranking-card__price-yen">¥</span>{item.price}<span class="c-ranking-card__price-tax">(税込)</span>
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
 
                 <div class="c-ranking-card__back">
                   <div class="c-ranking-card__back-face">
@@ -123,8 +124,11 @@ const isNameInlineSupplement = (segment: string) => /^[［\[].*?[］\]]$/.test(s
 
 <script>
   document.querySelectorAll('[data-flip-card]').forEach((card) => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('is-flipped');
-    });
+    const handleCardClick = () => {
+      card.classList.remove('is-flipped');
+      card.removeEventListener('click', handleCardClick);
+    };
+
+    card.addEventListener('click', handleCardClick);
   });
 </script>

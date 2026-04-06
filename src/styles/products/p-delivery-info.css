@@ -81,6 +81,7 @@
   font-size: 32px;
   font-family: var(--font-jp--serif);
   font-weight: var(--fw-regular);
+  line-height: 1;
 }
 .p-delivery-info__date-wday {
   flex-shrink: 0;
@@ -199,4 +200,3 @@
   font-weight: var(--fw-regular);
   color: var(--color-text);
 }
-

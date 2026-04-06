@@ -37,6 +37,7 @@
    ======================================== */
 .c-ranking-card__front {
   position: relative;
+  display: block;
   padding-block: 12px;
   padding-inline: 10px;
   background-color: var(--ranking-base-color);
@@ -50,13 +51,15 @@
   box-shadow:
     0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent),
     0 6px 20px color-mix(in srgb, var(--color-text) 6%, transparent);
+  color: inherit;
+  text-decoration: none;
 }
 
 .c-ranking-card__front-content {
   display: grid;
   background: #fff;
   padding-inline: 10px;
-  padding-block: 6px 8px;
+  padding-block: 16px 8px;
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
@@ -66,7 +69,7 @@
   position: relative;
   display: grid;
   align-items: center;
-  padding-block-start: 6px;
+  padding-block-start: 3px;
 }
 
 /* star.svg を疑似要素で上部に配置 */
@@ -83,8 +86,8 @@
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 8px;
   background: url('/star.svg') center / contain no-repeat;
   margin-bottom: 2px;
 }
@@ -92,7 +95,7 @@
 /* 草（左右の葉飾り） */
 .c-ranking-card__kusa {
   display: block;
-  width: clamp(20px, 5vw, 28px);
+  width: 16px;
   height: auto;
 }
 .c-ranking-card__kusa--right {
@@ -102,7 +105,8 @@
 /* No.X SVG画像 */
 .c-ranking-card__no-img {
   display: block;
-  width: clamp(40px, 10vw, 56px);
+  width: 32px;
+  padding-block-end: 5px;
   height: auto;
 }
 
@@ -141,9 +145,9 @@
 .c-ranking-card__name {
   margin: 0;
   font-family: var(--font-jp--serif);
-  font-size: clamp(18px, 4vw, 22px);
-  font-weight: var(--fw-bold);
-  line-height: 1.5;
+  font-size: 20px;
+  font-weight: var(--fw-semibold);
+  line-height: 1;
   color: var(--color-text);
 }
 
@@ -160,7 +164,6 @@
 .c-ranking-card__name-inline-sub {
   font-size: clamp(13px, 1.4vw, 15px);
   line-height: 1.45;
-  color: var(--palette-muted);
 }
 
 .c-ranking-card__divider {
@@ -198,16 +201,16 @@
   margin: 0;
   font-family: var(--font-jp--sanserif);
   font-size: var(--font-size-body-sm);
-  line-height: 1.8;
+  font-weight: var(--fw-regular);
   color: var(--color-text);
 }
 
 .c-ranking-card__price {
   font-family: var(--font-en);
-  font-size: clamp(28px, 6vw, 36px);
-  font-weight: var(--fw-bold);
+  font-size: 32px;
+  font-weight: var(--fw-medium);
   color: var(--color-accent);
-  line-height: 1.2;
+  line-height: 1;
 }
 [data-rank='2'] .c-ranking-card__price {
   color: #767676;
@@ -228,7 +231,7 @@
   font-size: 13px;
   font-family: var(--font-jp--sanserif);
   font-weight: var(--fw-regular);
-  color: var(--palette-muted);
+  color: var(--color-accent);
 }
 
 /* ========================================

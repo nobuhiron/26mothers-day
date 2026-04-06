@@ -301,6 +301,7 @@
 .p-gift-wrapping__note {
   font-size: 12px;
   font-family: var(--font-jp--sanserif);
+  font-weight: var(--fw-regular);
   text-align: right;
 }
 
