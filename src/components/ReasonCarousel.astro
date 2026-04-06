@@ -1,0 +1,79 @@
+﻿---
+import { Image } from 'astro:assets';
+import { LINK_BASE } from '../data/links';
+import { splitLines } from '../utils/text';
+
+type CarouselCard = {
+  reason: string;
+  title: string;
+  description: string;
+  image?: any;
+  imageAlt?: string;
+  buttons?: string[];
+};
+
+type Props = {
+  carouselId: string;
+  heading: string;
+  ariaLabel: string;
+  cards: CarouselCard[];
+  containerClass?: string;
+  hidden?: boolean;
+};
+
+const { carouselId, heading, ariaLabel, cards, containerClass, hidden } = Astro.props as Props;
+---
+
+<div
+  class:list={[
+    'p-line-chat__reason',
+    'p-line-chat__reason--pink',
+    'p-line-chat__reply-msg',
+    containerClass,
+  ]}
+  data-reason-carousel
+  hidden={hidden}
+>
+  <div class="p-line-chat__reason-heading">
+    <span>{heading}</span>
+  </div>
+  <div id={carouselId} class="splide p-line-chat__carousel" aria-label={ariaLabel}>
+    <div class="splide__track">
+      <ul class="splide__list">
+        {cards.map((card) => (
+          <li class="splide__slide">
+            <article class="p-line-chat__card" data-reason-carousel-card aria-label={ariaLabel}>
+              <span class="p-line-chat__card-reason">{card.reason}</span>
+              <h3 class="p-line-chat__card-title">{card.title}</h3>
+              {card.image ? (
+                <div class="p-line-chat__card-media">
+                  <Image src={card.image} alt={card.imageAlt ?? ''} class="p-line-chat__card-media-image" />
+                </div>
+              ) : (
+                <div class="p-line-chat__card-image" role="img" aria-label={`${card.title}のイメージ`}></div>
+              )}
+              <p class="p-line-chat__card-desc">
+                {splitLines(card.description).map((line, index, lines) => (
+                  <Fragment>
+                    {line}
+                    {index < lines.length - 1 && <br />}
+                  </Fragment>
+                ))}
+              </p>
+              {!!card.buttons?.length && (
+                <div class="p-line-chat__card-actions">
+                  {card.buttons.map((button) => (
+                    <a href={LINK_BASE} class="p-line-chat__card-link">
+                      <span>{button}</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
+
