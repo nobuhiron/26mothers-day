@@ -31,7 +31,8 @@
   align-items: center;
   justify-content: center;
   width: 255px;
-  padding: var(--spacing-md) 0;
+  padding-block: 12px;
+  padding-inline: 0;
   --pill-bg: var(--color-main);
   --pill-fg: #fff;
   --pill-icon-bg: #fff;

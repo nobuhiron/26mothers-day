@@ -1,6 +1,7 @@
 /* ===== Shop by price セクション ===== */
 .p-shop-by-price {
   overflow-x: hidden;
+  padding-block-end: var(--spacing-5xl);
 }
 
 .p-shop-by-price > .l-container {
@@ -16,6 +17,11 @@
   gap: var(--spacing-xs);
   padding-top: 16px;
   margin-inline: auto;
+}
+
+.p-shop-by-price__heading {
+  display: grid;
+  gap: 10px;
 }
 
 .p-shop-by-price__header-decor {
@@ -107,6 +113,10 @@
 .p-shop-by-price__band-header {
   text-align: center;
   margin-bottom: var(--spacing-2xl);
+}
+
+.p-shop-by-price__band:first-child {
+  padding-block-start: var(--spacing-3xl);
 }
 
 /* アーチ形SVG */
