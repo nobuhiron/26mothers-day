@@ -21,6 +21,14 @@
     transform 260ms ease;
 }
 
+.p-page-chrome-right__stack {
+  display: grid;
+  gap: 32px;
+  width: 100%;
+  max-width: 287px;
+  justify-self: center;
+}
+
 .p-page-chrome-right__about {
   position: absolute;
   inset: 0;
@@ -38,11 +46,13 @@
 
 .p-page-chrome-right__about-image {
   display: block;
-  width: 286px;
+  width: min(53.66%, 286px);
   height: auto;
 }
 
 .p-page-chrome-right__nav {
+  display: inline-grid;
+  justify-self: center;
   padding: 0;
   background: transparent;
   border: none;
@@ -108,18 +118,20 @@
 }
 
 .p-page-chrome-right__line {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .p-page-chrome-right__line-link {
   display: block;
+  width: 100%;
   text-decoration: none;
 }
 
 .p-page-chrome-right__line-image {
   display: block;
-  width: 286px;
+  width: 100%;
   height: auto;
 }
 

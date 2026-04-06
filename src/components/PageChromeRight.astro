@@ -9,19 +9,21 @@ import lineAboutImg from '../assets/images/line-about.png';
 
 <div class="p-page-chrome-right">
   <div class="p-page-chrome-right__default">
-    <nav class="p-page-chrome-right__nav" aria-label="ページ内リンク（PC）">
-      <ul class="c-nav-stack c-nav-stack--compact">
-        {CATEGORY_NAV_ITEMS.map((item) => (
-          <li class="c-nav-stack__item">
-            <NavStackLink href={item.href} label={item.label} compact />
-          </li>
-        ))}
-      </ul>
-    </nav>
-    <div class="p-page-chrome-right__line">
-      <a href={LINE_URL} class="p-page-chrome-right__line-link" aria-label="LINE登録でお得な情報を受け取る">
-        <Image src={linePromoImg} alt="" class="p-page-chrome-right__line-image" />
-      </a>
+    <div class="p-page-chrome-right__stack">
+      <nav class="p-page-chrome-right__nav" aria-label="ページ内リンク（PC）">
+        <ul class="c-nav-stack c-nav-stack--compact">
+          {CATEGORY_NAV_ITEMS.map((item) => (
+            <li class="c-nav-stack__item">
+              <NavStackLink href={item.href} label={item.label} compact />
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="p-page-chrome-right__line">
+        <a href={LINE_URL} class="p-page-chrome-right__line-link" aria-label="LINE登録でお得な情報を受け取る">
+          <Image src={linePromoImg} alt="" class="p-page-chrome-right__line-image" />
+        </a>
+      </div>
     </div>
   </div>
   <div class="p-page-chrome-right__about" aria-hidden="true">
