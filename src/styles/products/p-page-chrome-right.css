@@ -38,11 +38,12 @@
 
 .p-page-chrome-right__about-image {
   display: block;
-  width: 286px;
+  width: min(53.66%, 286px);
   height: auto;
 }
 
 .p-page-chrome-right__nav {
+  width: min(53.66%, 286px);
   padding: 0;
   background: transparent;
   border: none;
@@ -119,7 +120,7 @@
 
 .p-page-chrome-right__line-image {
   display: block;
-  width: 286px;
+  width: min(53.66%, 286px);
   height: auto;
 }
 
