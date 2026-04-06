@@ -89,7 +89,6 @@
 .c-nav-stack--compact .c-nav-stack__btn--compact .c-nav-stack__label {
   font-size: 16px;
   font-weight: var(--fw-bold);
-  letter-spacing: 0.08em;
 }
 
 .c-nav-stack--compact .c-nav-stack__btn--compact .c-nav-stack__icon {
