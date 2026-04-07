@@ -8,7 +8,11 @@
   cursor: pointer;
   width: 100%;
   --ranking-stripe-color: var(--color-accent);
-  --ranking-base-color: color-mix(in srgb, var(--ranking-stripe-color) 8%, #fff);
+  --ranking-base-color: color-mix(
+    in srgb,
+    var(--ranking-stripe-color) 8%,
+    #fff
+  );
   --ranking-white-stripe: color-mix(in srgb, #fff 92%, transparent);
 }
 
@@ -59,7 +63,7 @@
   display: grid;
   background: #fff;
   padding-inline: 10px;
-  padding-block: 16px 8px;
+  padding-block: 14px;
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
@@ -147,12 +151,12 @@
 }
 
 .c-ranking-card__name {
-  margin: 0;
   font-family: var(--font-jp--serif);
   font-size: 20px;
   font-weight: var(--fw-semibold);
-  line-height: 1;
+  line-height: 1.4;
   color: var(--color-text);
+  letter-spacing: -0.02em;
 }
 
 .c-ranking-card__name-line {
@@ -270,7 +274,6 @@
     0 1px 3px color-mix(in srgb, var(--color-text) 8%, transparent),
     0 6px 20px color-mix(in srgb, var(--color-text) 6%, transparent);
 }
-
 
 .c-ranking-card__back-hana {
   position: absolute;

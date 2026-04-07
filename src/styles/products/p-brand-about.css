@@ -78,7 +78,6 @@
 }
 
 .p-line-chat__header-name {
-  display: block;
   font-family: var(--font-jp--sanserif);
   font-size: 24px;
   font-weight: var(--fw-medium);
@@ -88,7 +87,6 @@
 
 .p-line-chat__header-sub {
   display: block;
-  margin-top: 2px;
   font-family: var(--font-jp--serif);
   font-size: 14px;
   line-height: 1;

@@ -87,7 +87,6 @@
   flex-shrink: 0;
   font-size: 14px;
   font-weight: var(--fw-regular);
-  color: var(--palette-muted);
 }
 
 /* ---------- あと [桁][桁] 日 ---------- */
@@ -151,7 +150,7 @@
   font-family: var(--font-jp--serif);
   font-size: 18px;
   font-weight: var(--fw-regular);
-  line-height: 1.55;
+  line-height: 1;
   color: var(--color-text);
 }
 .p-delivery-info__tagline-black {
@@ -170,7 +169,6 @@
   font-family: var(--font-jp--serif);
   font-size: 18px;
   font-weight: var(--fw-regular);
-  line-height: 1.85;
   color: var(--color-text);
 }
 .p-delivery-info__deadline-num {

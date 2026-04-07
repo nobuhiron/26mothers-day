@@ -27,13 +27,10 @@
 
 /* ---------- ナビゲーション ---------- */
 .p-footer__nav {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: grid;
   justify-items: center;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
 }
 
 .p-footer__nav a {
