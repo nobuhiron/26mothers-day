@@ -1,7 +1,8 @@
 ﻿---
-import type { ImageMetadata } from 'astro:assets';
-import { CDN_URL, LINK_BASE } from '../data/links';
+import { Image, type ImageMetadata } from 'astro:assets';
+import { LINK_BASE } from '../data/links';
 import { splitLines } from '../utils/text';
+import { publicAssetPath } from '../utils/assets';
 
 type CarouselCard = {
   reason: string;
@@ -17,22 +18,33 @@ type CarouselCard = {
 type Props = {
   carouselId: string;
   eyebrow?: string;
+  eyebrowImageSrc?: string;
   heading: string;
   ariaLabel: string;
   cards: CarouselCard[];
   containerClass?: string;
   hidden?: boolean;
+  tone?: 'accent' | 'gold';
 };
 
-const { carouselId, eyebrow, heading, ariaLabel, cards, containerClass, hidden } = Astro.props as Props;
-const cdnBase = CDN_URL ? CDN_URL.replace(/\/$/, '') : '';
-const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBase}${src}` : src);
+const {
+  carouselId,
+  eyebrow,
+  eyebrowImageSrc,
+  heading,
+  ariaLabel,
+  cards,
+  containerClass,
+  hidden,
+  tone = 'accent',
+} = Astro.props as Props;
+const themeClass = tone === 'gold' ? 'p-line-chat__reason--gold' : 'p-line-chat__reason--accent';
 ---
 
 <div
   class:list={[
     'p-line-chat__reason',
-    'p-line-chat__reason--pink',
+    themeClass,
     'p-line-chat__reply-msg',
     containerClass,
   ]}
@@ -41,20 +53,33 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
 >
   <div class="p-line-chat__reason-heading">
     <span class="p-line-chat__reason-heading-badge">
-      {eyebrow && <span class="p-line-chat__reason-heading-en">{eyebrow}</span>}
+      {eyebrowImageSrc ? (
+        <img
+          src={publicAssetPath(eyebrowImageSrc)}
+          alt={eyebrow ?? ''}
+          class="p-line-chat__reason-heading-en-image"
+        />
+      ) : (
+        eyebrow && <span class="p-line-chat__reason-heading-en">{eyebrow}</span>
+      )}
       <span class="p-line-chat__reason-heading-ja">{heading}</span>
     </span>
   </div>
-  <div id={carouselId} class="splide p-line-chat__carousel" aria-label={ariaLabel}>
+  <div
+    id={carouselId}
+    class="splide p-line-chat__carousel"
+    aria-label={ariaLabel}
+    style={`--splide-arrow-icon: url("${publicAssetPath('/arrow.svg')}")`}
+  >
     <div class="splide__track">
       <ul class="splide__list">
-        {cards.map((card) => (
+        {cards.map((card, cardIndex) => (
           <li class="splide__slide">
             <article class="p-line-chat__card" data-reason-carousel-card aria-label={ariaLabel}>
               {card.reasonImage && (
                 <div class="p-line-chat__card-reason-image">
                   <img
-                    src={toAssetSrc(card.reasonImage)}
+                    src={publicAssetPath(card.reasonImage)}
                     alt={card.reasonImageAlt ?? card.reason}
                     loading="lazy"
                     decoding="async"
@@ -65,13 +90,9 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
               <h3 class="p-line-chat__card-title">{card.title}</h3>
               {card.image ? (
                 <div class="p-line-chat__card-media">
-                  <img
-                    src={toAssetSrc(card.image.src)}
+                  <Image
+                    src={card.image}
                     alt={card.imageAlt ?? ''}
-                    width={card.image.width}
-                    height={card.image.height}
-                    loading="lazy"
-                    decoding="async"
                     class="p-line-chat__card-media-image"
                   />
                 </div>
@@ -88,9 +109,19 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
               </p>
               {!!card.buttons?.length && (
                 <div class="p-line-chat__card-actions">
-                  {card.buttons.map((button) => (
-                    <a href={LINK_BASE} class="p-line-chat__card-link">
+                  {card.buttons.map((button, buttonIndex) => (
+                    <a
+                      href={LINK_BASE}
+                      class="p-line-chat__card-link"
+                      data-link-tone={carouselId === 'gift-carousel' && cardIndex === 0 && buttonIndex === 1 ? 'gold' : 'accent'}
+                    >
                       <span>{button}</span>
+                      <span class="c-btn-pill__arrow" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <circle cx="12" cy="12" r="11" fill="currentColor" />
+                          <path d="M10 8l4 4-4 4" stroke="var(--pill-arrow-color, currentColor)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </span>
                     </a>
                   ))}
                 </div>

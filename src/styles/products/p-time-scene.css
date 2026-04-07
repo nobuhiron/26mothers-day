@@ -21,7 +21,7 @@
   display: inline-block;
   width: 205px;
   height: 41px;
-  background: url('/ribon_bg.svg') center / contain no-repeat;
+  background: var(--time-scene-ribbon-bg) center / contain no-repeat;
   font-family: var(--font-jp--serif);
   color: var(--color-main);
   font-weight: var(--fw-semibold);

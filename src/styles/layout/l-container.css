@@ -1,5 +1,3 @@
-@import '../global/variables.css';
-
 .l-container {
   width: min(100%, var(--layout-main-width));
   max-width: 100%;

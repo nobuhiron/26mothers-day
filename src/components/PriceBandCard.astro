@@ -1,6 +1,5 @@
 ---
-import type { ImageMetadata } from 'astro:assets';
-import { CDN_URL } from '../data/links';
+import { Image, type ImageMetadata } from 'astro:assets';
 
 interface Props {
   name: string;
@@ -11,19 +10,13 @@ interface Props {
 }
 
 const { name, price, description, href = '#', image } = Astro.props;
-const cdnBase = CDN_URL ? CDN_URL.replace(/\/$/, '') : '';
-const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBase}${src}` : src);
 ---
 
 <article class="c-price-band-card">
   <div class="c-price-band-card__image">
-    <img
-      src={toAssetSrc(image.src)}
+    <Image
+      src={image}
       alt={`${name}の商品画像`}
-      width={image.width}
-      height={image.height}
-      loading="lazy"
-      decoding="async"
       class="c-price-band-card__image-el"
     />
   </div>

@@ -6,6 +6,7 @@ import PriceBandCard from '../components/PriceBandCard.astro';
 import { getCollection } from 'astro:content';
 import { formatPriceBandLabel } from '../utils/text';
 import { Image } from 'astro:assets';
+import { publicAssetPath } from '../utils/assets';
 import wrappingImg from '../assets/images/wrapping_img.png';
 import flowerPriceImg1 from '../assets/images/flower-price-1.png';
 import flowerPriceImg2 from '../assets/images/flower-price-2.png';
@@ -41,13 +42,13 @@ const bandImages = {
       <Image src={flowerPriceImg2} alt="" class="p-shop-by-price__header-decor-image p-shop-by-price__header-decor-image--2" />
     </div>
     <h2 id="heading-price" class="p-shop-by-price__heading">
-      <img src="/Shop by price.svg" alt="Shop by price" class="p-shop-by-price__heading-en-img" />
+      <img src={publicAssetPath('/Shop by price.svg')} alt="Shop by price" class="p-shop-by-price__heading-en-img" />
       <span class="p-shop-by-price__heading-ja">母の日限定包装紙でお包み<br />価格帯でえらぶ</span>
     </h2>
     <div class="p-shop-by-price__header-visual" aria-hidden="true">
       <span class="p-shop-by-price__header-band"></span>
       <div class="p-shop-by-price__header-image-frame">
-        <img src={wrappingImg.src} alt="" class="p-shop-by-price__header-image" />
+        <Image src={wrappingImg} alt="" class="p-shop-by-price__header-image" />
       </div>
     </div>
   </header>
@@ -60,7 +61,7 @@ const bandImages = {
           <header class="p-shop-by-price__band-header">
             {/* アーチSVG用スペース */}
             <div class="p-shop-by-price__band-arch" aria-hidden="true">
-              <img src={band.arch} alt={band.labelEn} class="p-shop-by-price__band-arch-img" />
+              <img src={publicAssetPath(band.arch)} alt={band.labelEn} class="p-shop-by-price__band-arch-img" />
             </div>
             <h3 id={`heading-${band.id}`} class="p-shop-by-price__band-title">
               {formatPriceBandLabel(band.label).map((part) => (

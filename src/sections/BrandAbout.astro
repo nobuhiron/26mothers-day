@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 import ReasonCarousel from '../components/ReasonCarousel.astro';
 import chatData from '../data/line-chat.json';
 import choiceIcon from '../assets/images/icon_usagi.png';
-import { CDN_URL } from '../data/links';
+import { publicAssetPath } from '../utils/assets';
 
 const brandEntries = await getCollection('brandCards');
 const brandCarouselCards = brandEntries.map((entry) => ({
@@ -31,9 +31,6 @@ const giftCarouselCards = giftEntries.map((entry) => ({
   reasonImageAlt: entry.data.reasonImageAlt,
   buttons: entry.data.buttons,
 }));
-const reasonHeading = '森半が選ばれる理由';
-const cdnBase = CDN_URL ? CDN_URL.replace(/\/$/, '') : '';
-const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBase}${src}` : src);
 ---
 
 <section id="about" class="l-section p-brand-about" aria-labelledby="brand-about-title">
@@ -54,9 +51,9 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
           <span class="p-line-chat__header-sub">about MORIHAN</span>
         </h2>
         <div class="p-line-chat__header-icons">
-          <img src="/icon-search.svg" alt="" aria-hidden="true" width="20" height="20" />
-          <img src="/icon-telephone.svg" alt="" aria-hidden="true" width="20" height="20" />
-          <img src="/icon-hamburger.svg" alt="" aria-hidden="true" width="20" height="20" />
+          <img src={publicAssetPath('/icon-search.svg')} alt="" aria-hidden="true" width="20" height="20" />
+          <img src={publicAssetPath('/icon-telephone.svg')} alt="" aria-hidden="true" width="20" height="20" />
+          <img src={publicAssetPath('/icon-hamburger.svg')} alt="" aria-hidden="true" width="20" height="20" />
         </div>
       </div>
 
@@ -70,7 +67,7 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
             aria-hidden="true"
           >
             <img
-              src={toAssetSrc(chatData.messages[0].avatar)}
+              src={publicAssetPath(chatData.messages[0].avatar)}
               alt=""
               loading="lazy"
               decoding="async"
@@ -115,7 +112,7 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
                 aria-hidden="true"
               >
                 <img
-                  src={toAssetSrc(chatData.messages[2].avatars?.[index] ?? chatData.messages[2].avatars?.[0])}
+                  src={publicAssetPath(chatData.messages[2].avatars?.[index] ?? chatData.messages[2].avatars?.[0] ?? '')}
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -140,7 +137,7 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
             <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
               <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-1" aria-hidden="true">
                 <img
-                  src={toAssetSrc(chatData.messages[3].avatars?.[0])}
+                  src={publicAssetPath(chatData.messages[3].avatars?.[0] ?? '')}
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -155,7 +152,7 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
             <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
               <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-2" aria-hidden="true">
                 <img
-                  src={toAssetSrc(chatData.messages[3].avatars?.[1])}
+                  src={publicAssetPath(chatData.messages[3].avatars?.[1] ?? '')}
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -172,19 +169,32 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
 
         <!-- Reason carousel -->
         <ReasonCarousel
-          carouselId="brand-carousel"
+          carouselId="brand-carousel-a"
           eyebrow="Reason"
-          heading={reasonHeading}
-          ariaLabel={reasonHeading}
+          eyebrowImageSrc="/Reason.svg"
+          heading="森半が選ばれる理由"
+          ariaLabel="森半が選ばれる理由"
           cards={brandCarouselCards}
-          containerClass="p-line-chat__after-reply"
+          containerClass="p-line-chat__after-reply p-line-chat__after-reply--brand-a"
           hidden
+        />
+
+        <ReasonCarousel
+          carouselId="brand-carousel-b"
+          eyebrow="Brand"
+          eyebrowImageSrc="/Brand.svg"
+          heading="森半とは"
+          ariaLabel="森半とは"
+          cards={brandCarouselCards}
+          containerClass="p-line-chat__after-reply p-line-chat__after-reply--brand-b"
+          hidden
+          tone="gold"
         />
 
         <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__after-reply p-line-chat__after-reply--b-note" hidden>
           <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-3" aria-hidden="true">
             <img
-              src={toAssetSrc(chatData.messages[3].avatars?.[2])}
+              src={publicAssetPath(chatData.messages[3].avatars?.[2] ?? '')}
               alt=""
               loading="lazy"
               decoding="async"
@@ -192,18 +202,20 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
             />
           </div>
           <div class="p-line-chat__bubble p-line-chat__bubble--bot">
-            森半ea&coffeeでは、まずはじめての方にも選びやすいギフトをご用意しています。用途に合わせて、贈りやすい組み合わせをご提案します。
+            {chatData.messages[3].texts[2]}
           </div>
         </div>
 
         <ReasonCarousel
           carouselId="gift-carousel"
           eyebrow="Gift"
-          heading="ギフトの選び方"
-          ariaLabel="ギフトの選び方"
+          eyebrowImageSrc="/Chosen.svg"
+          heading="森半がギフトに選ばれる理由"
+          ariaLabel="森半がギフトに選ばれる理由"
           cards={giftCarouselCards}
           containerClass="p-line-chat__after-reply p-line-chat__after-reply--gift"
           hidden
+          tone="accent"
         />
 
         <!-- Footer message -->
@@ -214,7 +226,7 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
             aria-hidden="true"
           >
             <img
-              src={toAssetSrc(chatData.footer.avatar)}
+              src={publicAssetPath(chatData.footer.avatar)}
               alt=""
               loading="lazy"
               decoding="async"
@@ -241,8 +253,10 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
   const choiceBtns = document.querySelectorAll<HTMLButtonElement>('.p-line-chat__choice-btn');
   const replyA = document.querySelector<HTMLElement>('[data-reply="a"]');
   const replyB = document.querySelector<HTMLElement>('[data-reply="b"]');
-  const afterReplyEls = document.querySelectorAll<HTMLElement>(
-    '.p-line-chat__after-reply:not(.p-line-chat__after-reply--gift):not(.p-line-chat__after-reply--b-note)'
+  const afterReplyBrandA = document.querySelectorAll<HTMLElement>('.p-line-chat__after-reply--brand-a');
+  const afterReplyBrandB = document.querySelectorAll<HTMLElement>('.p-line-chat__after-reply--brand-b');
+  const afterReplyFooter = document.querySelectorAll<HTMLElement>(
+    '.p-line-chat__after-reply:not(.p-line-chat__after-reply--gift):not(.p-line-chat__after-reply--b-note):not(.p-line-chat__after-reply--brand-a):not(.p-line-chat__after-reply--brand-b)'
   );
   const afterReplyBNote = document.querySelector<HTMLElement>('.p-line-chat__after-reply--b-note');
   const giftCarouselEls = document.querySelectorAll<HTMLElement>('.p-line-chat__after-reply--gift');
@@ -261,8 +275,8 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
     autoHeight: true,
   } as const;
   const carouselSelectors = {
-    shared: ['#brand-carousel'],
-    b: ['#gift-carousel'],
+    a: ['#brand-carousel-a'],
+    b: ['#brand-carousel-b', '#gift-carousel'],
   } as const;
   const reasonCarouselRoots = document.querySelectorAll<HTMLElement>('[data-reason-carousel]');
 
@@ -304,8 +318,10 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
       const maxHeight = Math.max(
         ...Array.from(cards).map((card) => card.getBoundingClientRect().height)
       );
+      const minCardHeight = root.classList.contains('p-line-chat__after-reply--gift') ? 560 : 0;
+      const targetHeight = Math.ceil(Math.max(maxHeight, minCardHeight));
 
-      if (!Number.isFinite(maxHeight) || maxHeight <= 0) return;
+      if (!Number.isFinite(targetHeight) || targetHeight <= 0) return;
       if (Number.isFinite(maxTitleHeight) && maxTitleHeight > 0) {
         titles.forEach((title) => {
           title.style.minHeight = `${maxTitleHeight}px`;
@@ -313,12 +329,12 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
       }
 
       slides.forEach((slide) => {
-        slide.style.height = `${maxHeight}px`;
+        slide.style.height = `${targetHeight}px`;
       });
 
       cards.forEach((card) => {
         card.style.height = '100%';
-        card.style.minHeight = `${maxHeight}px`;
+        card.style.minHeight = `${targetHeight}px`;
       });
     });
   };
@@ -364,8 +380,17 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
         });
       }
 
-      // 共通の理由カルーセルとフッターを表示
-      afterReplyEls.forEach((el) => {
+      const showElements = choice === 'a'
+        ? [...afterReplyBrandA, ...afterReplyFooter]
+        : [...afterReplyBrandB, ...afterReplyFooter];
+      const hideElements = choice === 'a' ? afterReplyBrandB : afterReplyBrandA;
+
+      hideElements.forEach((el) => {
+        el.hidden = true;
+        el.classList.remove('is-visible');
+      });
+
+      showElements.forEach((el) => {
         if (el.hidden) {
           el.hidden = false;
           el.style.animationDelay = '0.6s';
@@ -397,10 +422,7 @@ const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBas
       }
 
       setTimeout(() => {
-        mountCarousels(carouselSelectors.shared);
-        if (choice === 'b') {
-          mountCarousels(carouselSelectors.b);
-        }
+        mountCarousels(choice === 'a' ? carouselSelectors.a : carouselSelectors.b);
         scheduleReasonCarouselSync();
       }, 800);
     });

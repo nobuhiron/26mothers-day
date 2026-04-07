@@ -4,6 +4,7 @@
  */
 import { Image } from 'astro:assets';
 import flowerDelivery from '../assets/images/flower-delivery.png';
+import { publicAssetPath } from '../utils/assets';
 
 const today = new Date();
 const target = new Date(today.getFullYear(), 4, 10); // 5/10
@@ -22,8 +23,8 @@ const digitOnes = digitStr[1];
       <div class="p-delivery-info__lead">
         {/* 年バッジ（リボン + 2026） */}
         <div class="p-delivery-info__year-badge">
-          <img src="/ribon.svg" alt="" class="p-delivery-info__year-ribbon" width="129" height="29" />
-          <img src="/2026.svg" alt="2026" class="p-delivery-info__year-text" width="48" height="12" />
+          <img src={publicAssetPath('/ribon.svg')} alt="" class="p-delivery-info__year-ribbon" width="129" height="29" />
+          <img src={publicAssetPath('/2026.svg')} alt="2026" class="p-delivery-info__year-text" width="48" height="12" />
         </div>
 
         {/* 母の日は 5.10 */}
@@ -45,7 +46,7 @@ const digitOnes = digitStr[1];
 
       {/* 配送案内 */}
       <div class="p-delivery-info__notice">
-        <img src="/delivery-icon.svg" alt="" class="p-delivery-info__notice-icon" width="32" height="32" />
+        <img src={publicAssetPath('/delivery-icon.svg')} alt="" class="p-delivery-info__notice-icon" width="32" height="32" />
         <p class="p-delivery-info__tagline">
           <span class="p-delivery-info__tagline-black">母の日</span><span class="p-delivery-info__tagline-em">当日配達可能</span><span class="p-delivery-info__tagline-black">です</span>
         </p>

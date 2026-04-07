@@ -13,10 +13,16 @@ import messageImg1 from '../assets/images/tag-img-1.jpg';
 import messageImg2 from '../assets/images/tag-img-2.jpg';
 import tagImg from '../assets/images/tag.png';
 import { LINK_BASE } from '../data/links';
+import { publicAssetPath } from '../utils/assets';
 
 ---
 
-<section id='gift' class='p-gift-wrapping' aria-labelledby='gift-bag-tag'>
+<section
+  id='gift'
+  class='p-gift-wrapping'
+  aria-labelledby='gift-bag-tag'
+  style={`--gift-paint-url: url("${publicAssetPath('/paint.svg')}"); --gift-paint-beige-url: url("${publicAssetPath('/paint-beige.svg')}");`}
+>
   <div class='p-gift-wrapping__decor p-gift-wrapping__decor--top' aria-hidden='true'>
     <Image src={flowerGiftImg} alt='' class='p-gift-wrapping__decor-image' />
   </div>
@@ -28,7 +34,7 @@ import { LINK_BASE } from '../data/links';
     <div class='p-gift-wrapping__dedicated-box-layout'>
       <header id='gift-bag-tag' class='p-gift-wrapping__dedicated-heading'>
         <img
-          src='/dedicated-box.svg'
+          src={publicAssetPath('/dedicated-box.svg')}
           alt='Dedicated box'
           class='p-gift-wrapping__dedicated-heading-en-img'
         />
@@ -64,12 +70,7 @@ import { LINK_BASE } from '../data/links';
           aria-controls='giftbox-modal'
           aria-expanded='false'
         >
-          <img
-            class='p-gift-wrapping__tap-icon'
-            src={fingerIcon.src}
-            alt=''
-            aria-hidden='true'
-          />
+          <Image class='p-gift-wrapping__tap-icon' src={fingerIcon} alt='' aria-hidden='true' />
           <span>タップして<br />中を見る</span>
         </button>
       </div>
@@ -80,7 +81,7 @@ import { LINK_BASE } from '../data/links';
     <div class='l-container p-gift-wrapping__gift-bag-container'>
       <header id='gift-mothers-wrap' class='p-gift-wrapping__gift-bag-heading'>
         <img
-          src='/gift-bag.svg'
+          src={publicAssetPath('/gift-bag.svg')}
           alt='Gift bag'
           class='p-gift-wrapping__gift-bag-heading-en-img'
         />
@@ -118,7 +119,7 @@ import { LINK_BASE } from '../data/links';
               </div>
               <img
                 class='p-gift-wrapping__message-tag p-gift-wrapping__message-tag--1'
-                src='/tag-1.svg'
+                src={publicAssetPath('/tag-1.svg')}
                 alt=''
                 aria-hidden='true'
               />
@@ -143,7 +144,7 @@ import { LINK_BASE } from '../data/links';
               </div>
               <img
                 class='p-gift-wrapping__message-tag p-gift-wrapping__message-tag--2'
-                src='/tag-2.svg'
+                src={publicAssetPath('/tag-2.svg')}
                 alt=''
                 aria-hidden='true'
               />
