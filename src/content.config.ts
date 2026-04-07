@@ -14,14 +14,33 @@ const ranking = defineCollection({
 
 const brandCards = defineCollection({
   loader: file('src/data/brand-cards.json'),
-  schema: z.object({
-    reason: z.string(),
-    title: z.string(),
-    description: z.string(),
-    cta: z.string().nullable(),
-    href: z.string().nullable().default(null),
-    image: z.string().nullable().default(null),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      reason: z.string(),
+      title: z.string(),
+      description: z.string(),
+      cta: z.string().nullable(),
+      href: z.string().nullable().default(null),
+      image: image(),
+      imageAlt: z.string(),
+      reasonImage: z.string(),
+      reasonImageAlt: z.string(),
+    }),
+});
+
+const giftCards = defineCollection({
+  loader: file('src/data/gift-cards.json'),
+  schema: ({ image }) =>
+    z.object({
+      reason: z.string(),
+      title: z.string(),
+      description: z.string(),
+      image: image(),
+      imageAlt: z.string(),
+      reasonImage: z.string(),
+      reasonImageAlt: z.string(),
+      buttons: z.array(z.string()).default([]),
+    }),
 });
 
 const timeSceneProducts = defineCollection({
@@ -53,4 +72,4 @@ const priceBands = defineCollection({
   }),
 });
 
-export const collections = { ranking, brandCards, timeSceneProducts, priceBands };
+export const collections = { ranking, brandCards, giftCards, timeSceneProducts, priceBands };

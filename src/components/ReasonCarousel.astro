@@ -1,14 +1,16 @@
 ﻿---
-import { Image } from 'astro:assets';
-import { LINK_BASE } from '../data/links';
+import type { ImageMetadata } from 'astro:assets';
+import { CDN_URL, LINK_BASE } from '../data/links';
 import { splitLines } from '../utils/text';
 
 type CarouselCard = {
   reason: string;
   title: string;
   description: string;
-  image?: any;
+  image?: ImageMetadata | null;
   imageAlt?: string;
+  reasonImage?: string;
+  reasonImageAlt?: string;
   buttons?: string[];
 };
 
@@ -23,6 +25,8 @@ type Props = {
 };
 
 const { carouselId, eyebrow, heading, ariaLabel, cards, containerClass, hidden } = Astro.props as Props;
+const cdnBase = CDN_URL ? CDN_URL.replace(/\/$/, '') : '';
+const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBase}${src}` : src);
 ---
 
 <div
@@ -47,11 +51,29 @@ const { carouselId, eyebrow, heading, ariaLabel, cards, containerClass, hidden }
         {cards.map((card) => (
           <li class="splide__slide">
             <article class="p-line-chat__card" data-reason-carousel-card aria-label={ariaLabel}>
-              <span class="p-line-chat__card-reason">{card.reason}</span>
+              {card.reasonImage && (
+                <div class="p-line-chat__card-reason-image">
+                  <img
+                    src={toAssetSrc(card.reasonImage)}
+                    alt={card.reasonImageAlt ?? card.reason}
+                    loading="lazy"
+                    decoding="async"
+                    class="p-line-chat__card-reason-image-el"
+                  />
+                </div>
+              )}
               <h3 class="p-line-chat__card-title">{card.title}</h3>
               {card.image ? (
                 <div class="p-line-chat__card-media">
-                  <Image src={card.image} alt={card.imageAlt ?? ''} class="p-line-chat__card-media-image" />
+                  <img
+                    src={toAssetSrc(card.image.src)}
+                    alt={card.imageAlt ?? ''}
+                    width={card.image.width}
+                    height={card.image.height}
+                    loading="lazy"
+                    decoding="async"
+                    class="p-line-chat__card-media-image"
+                  />
                 </div>
               ) : (
                 <div class="p-line-chat__card-image" role="img" aria-label={`${card.title}のイメージ`}></div>

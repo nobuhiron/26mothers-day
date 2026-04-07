@@ -6,64 +6,34 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import ReasonCarousel from '../components/ReasonCarousel.astro';
 import chatData from '../data/line-chat.json';
-import kumaIconInitial from '../assets/images/icon_kuma4.png';
-import kumaIconReplyA1 from '../assets/images/icon_kuma2.png';
-import kumaIconReplyA2 from '../assets/images/icon_kuma1.png';
-import kumaIconFooter from '../assets/images/icon_kuma3.png';
 import choiceIcon from '../assets/images/icon_usagi.png';
-import boxImg from '../assets/images/box_img.png';
-import tagImg1 from '../assets/images/tag-img-1.jpg';
-import tagImg2 from '../assets/images/tag-img-2.jpg';
-import wrappingImg from '../assets/images/wrapping_img.png';
+import { CDN_URL } from '../data/links';
 
 const brandEntries = await getCollection('brandCards');
 const brandCarouselCards = brandEntries.map((entry) => ({
   reason: entry.data.reason,
   title: entry.data.title,
   description: entry.data.description,
+  image: entry.data.image,
+  imageAlt: entry.data.imageAlt,
+  reasonImage: entry.data.reasonImage,
+  reasonImageAlt: entry.data.reasonImageAlt,
   buttons: entry.data.cta ? [entry.data.cta] : [],
 }));
-const replyAAvatars = [kumaIconReplyA1, kumaIconReplyA2];
-const replyBAvatars = [kumaIconReplyA1, kumaIconReplyA2];
+const giftEntries = await getCollection('giftCards');
+const giftCarouselCards = giftEntries.map((entry) => ({
+  reason: entry.data.reason,
+  title: entry.data.title,
+  description: entry.data.description,
+  image: entry.data.image,
+  imageAlt: entry.data.imageAlt,
+  reasonImage: entry.data.reasonImage,
+  reasonImageAlt: entry.data.reasonImageAlt,
+  buttons: entry.data.buttons,
+}));
 const reasonHeading = '森半が選ばれる理由';
-const giftCarouselCards = [
-  {
-    reason: 'Gift 01',
-    title: '贈りものにちょうどいいセット',
-    description:
-      '用途や予算に合わせて選びやすい組み合わせです。\nラッピングや熨斗の相談もまとめてできます。',
-    image: boxImg,
-    imageAlt: 'ギフトボックスのイメージ',
-    buttons: ['ギフトラッピングについて', '贈り方ガイド'],
-  },
-  {
-    reason: 'Gift 02',
-    title: '季節のご挨拶に合う手土産',
-    description:
-      '相手を選びにくく、持ち運びもしやすい内容です。\nちょっとしたお礼にも使いやすいカードです。',
-    image: tagImg1,
-    imageAlt: '季節の手土産のイメージ',
-    buttons: ['用途で選ぶ'],
-  },
-  {
-    reason: 'Gift 03',
-    title: '日持ちや保存が気になるときに',
-    description:
-      'すぐに食べきらなくてもよいものを選びたいときに向いています。\n配りやすさも重視したい場面に合います。',
-    image: tagImg2,
-    imageAlt: '保存しやすい贈りもののイメージ',
-    buttons: [],
-  },
-  {
-    reason: 'Gift 04',
-    title: '少し特別感を出したいときに',
-    description:
-      'ラッピングを添えることで、贈りものとしての印象を高められます。\n記念日やきちんとした場面にも使いやすいです。',
-    image: wrappingImg,
-    imageAlt: 'ラッピングされた贈りもののイメージ',
-    buttons: [],
-  },
-];
+const cdnBase = CDN_URL ? CDN_URL.replace(/\/$/, '') : '';
+const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBase}${src}` : src);
 ---
 
 <section id="about" class="l-section p-brand-about" aria-labelledby="brand-about-title">
@@ -99,7 +69,13 @@ const giftCarouselCards = [
             data-avatar="initial"
             aria-hidden="true"
           >
-            <Image src={kumaIconInitial} alt="" class="p-line-chat__avatar-image" />
+            <img
+              src={toAssetSrc(chatData.messages[0].avatar)}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              class="p-line-chat__avatar-image"
+            />
           </div>
           <div class="p-line-chat__bubble p-line-chat__bubble--bot">
             {chatData.messages[0].text}
@@ -138,7 +114,13 @@ const giftCarouselCards = [
                 data-avatar={`reply-a-${index + 1}`}
                 aria-hidden="true"
               >
-                <Image src={replyAAvatars[index] ?? kumaIconReplyA1} alt="" class="p-line-chat__avatar-image" />
+                <img
+                  src={toAssetSrc(chatData.messages[2].avatars?.[index] ?? chatData.messages[2].avatars?.[0])}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="p-line-chat__avatar-image"
+                />
               </div>
               <div class="p-line-chat__bubble p-line-chat__bubble--bot">
                 {text.split('\n').map((line, i, arr) => (
@@ -157,7 +139,13 @@ const giftCarouselCards = [
           <div class="p-line-chat__reply-b">
             <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
               <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-1" aria-hidden="true">
-                <Image src={replyBAvatars[0]} alt="" class="p-line-chat__avatar-image" />
+                <img
+                  src={toAssetSrc(chatData.messages[3].avatars?.[0])}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="p-line-chat__avatar-image"
+                />
               </div>
               <div class="p-line-chat__bubble p-line-chat__bubble--bot">
                 {chatData.messages[3].texts[0]}
@@ -166,7 +154,13 @@ const giftCarouselCards = [
 
             <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
               <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-2" aria-hidden="true">
-                <Image src={replyBAvatars[1]} alt="" class="p-line-chat__avatar-image" />
+                <img
+                  src={toAssetSrc(chatData.messages[3].avatars?.[1])}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="p-line-chat__avatar-image"
+                />
               </div>
               <div class="p-line-chat__bubble p-line-chat__bubble--bot">
                 {chatData.messages[3].texts[1]}
@@ -189,7 +183,13 @@ const giftCarouselCards = [
 
         <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__after-reply p-line-chat__after-reply--b-note" hidden>
           <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-3" aria-hidden="true">
-            <Image src={kumaIconFooter} alt="" class="p-line-chat__avatar-image" />
+            <img
+              src={toAssetSrc(chatData.messages[3].avatars?.[2])}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              class="p-line-chat__avatar-image"
+            />
           </div>
           <div class="p-line-chat__bubble p-line-chat__bubble--bot">
             森半ea&coffeeでは、まずはじめての方にも選びやすいギフトをご用意しています。用途に合わせて、贈りやすい組み合わせをご提案します。
@@ -213,7 +213,13 @@ const giftCarouselCards = [
             data-avatar="footer"
             aria-hidden="true"
           >
-            <Image src={kumaIconFooter} alt="" class="p-line-chat__avatar-image" />
+            <img
+              src={toAssetSrc(chatData.footer.avatar)}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              class="p-line-chat__avatar-image"
+            />
           </div>
           <div class="p-line-chat__bubble p-line-chat__bubble--bot p-line-chat__bubble--footer">
             {chatData.footer.text}
@@ -279,6 +285,7 @@ const giftCarouselCards = [
 
       const slides = root.querySelectorAll<HTMLElement>('.splide__slide');
       const cards = root.querySelectorAll<HTMLElement>('[data-reason-carousel-card]');
+      const titles = root.querySelectorAll<HTMLElement>('.p-line-chat__card-title');
       if (!slides.length || !cards.length) return;
 
       slides.forEach((slide) => {
@@ -288,12 +295,22 @@ const giftCarouselCards = [
         card.style.height = 'auto';
         card.style.minHeight = '0';
       });
-
+      titles.forEach((title) => {
+        title.style.minHeight = '0';
+      });
+      const maxTitleHeight = Math.max(
+        ...Array.from(titles).map((title) => title.getBoundingClientRect().height)
+      );
       const maxHeight = Math.max(
         ...Array.from(cards).map((card) => card.getBoundingClientRect().height)
       );
 
       if (!Number.isFinite(maxHeight) || maxHeight <= 0) return;
+      if (Number.isFinite(maxTitleHeight) && maxTitleHeight > 0) {
+        titles.forEach((title) => {
+          title.style.minHeight = `${maxTitleHeight}px`;
+        });
+      }
 
       slides.forEach((slide) => {
         slide.style.height = `${maxHeight}px`;

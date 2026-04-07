@@ -1,0 +1,46 @@
+[
+  {
+    "id": "01",
+    "reason": "Gift 01",
+    "title": "安心・丁寧なのし紙サービス",
+    "description": "お客様のご要望に合わせて、ショッピングカート内で、さまざまなパターンをお選びいただけます。",
+    "image": "../assets/images/gift-1.jpg",
+    "imageAlt": "ギフトボックスのイメージ",
+    "reasonImage": "/Gift01.svg",
+    "reasonImageAlt": "Gift 01",
+    "buttons": ["ギフトラッピングについて", "のしガイド"]
+  },
+  {
+    "id": "02",
+    "reason": "Gift 02",
+    "title": "贈り物用の手提げ袋サービス",
+    "description": "ご注文時の備考欄に必要枚数・ご希望のサイズ、もしくは手提げ袋を使用予定の商品名をお書き添えください。\n※紙袋へ商品は入れていない状態でのお届けとなります。\n※ご注文確定後・発送後の別送は致しかねます。",
+    "image": "../assets/images/gift-2.jpg",
+    "imageAlt": "季節の手土産のイメージ",
+    "reasonImage": "/Gift02.svg",
+    "reasonImageAlt": "Gift 02",
+    "buttons": ["お手提げ袋について"]
+  },
+  {
+    "id": "03",
+    "reason": "Gift 03",
+    "title": "配達日・時間帯指定いただけます",
+    "description": "すぐに食べき5営業日以降～3週間後までお選びいただけます。ご指定のない場合は原則、2営業日～5営業日以内の発送となります。\nご購入手続きの際にご選択ください。",
+    "image": "../assets/images/gift-3.jpg",
+    "imageAlt": "保存しやすい贈りもののイメージ",
+    "reasonImage": "/Gift03.svg",
+    "reasonImageAlt": "Gift 03",
+    "buttons": []
+  },
+  {
+    "id": "04",
+    "reason": "Gift 04",
+    "title": "贈りたい方へ直接、\n丁寧な梱包でお届けいたします",
+    "description": "お届けする商品が傷つかないよう、段ボールに緩衝材を入れて丁寧に梱包し発送いたします。\nまた、贈り物として安心してご利用いただけるよう、金額が分かる明細書や納品書は同梱しておりません。",
+    "image": "../assets/images/gift-4.jpg",
+    "imageAlt": "ラッピングされた贈りもののイメージ",
+    "reasonImage": "/Gift04.svg",
+    "reasonImageAlt": "Gift 04",
+    "buttons": []
+  }
+]

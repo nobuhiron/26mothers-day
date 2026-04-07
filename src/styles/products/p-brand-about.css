@@ -137,7 +137,7 @@
   height: 70px;
   border-radius: 50%;
   border: 2px solid #fff;
-  background: linear-gradient(180deg, #f6fff4 0%, #d8efb6 100%);
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,7 +390,7 @@
 
 .p-line-chat__reason-heading {
   position: absolute;
-  top: 20px;
+  top: 16px;
   left: 50%;
   z-index: 2;
   padding: 0;
@@ -539,6 +539,18 @@
   letter-spacing: 0.04em;
 }
 
+.p-line-chat__card-reason-image {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 10px;
+}
+
+.p-line-chat__card-reason-image-el {
+  display: block;
+  width: auto;
+  height: 14px;
+}
+
 .p-line-chat__card-title {
   margin: 0 0 10px;
   font-family: var(--font-jp--serif);
@@ -546,6 +558,11 @@
   font-weight: var(--fw-bold);
   line-height: 1.45;
   color: var(--color-text);
+  min-height: calc(1.45em * 2);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .p-line-chat__card-image {
