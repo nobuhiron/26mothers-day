@@ -31,7 +31,7 @@
 }
 
 .c-nav-stack__btn:hover {
-  color: #fff;
+  color: #fff !important;
   background-color: var(--color-main);
   box-shadow: 0 6px 16px color-mix(in srgb, var(--color-main) 24%, transparent);
   transform: translateY(-1px);
