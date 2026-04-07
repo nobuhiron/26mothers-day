@@ -14,15 +14,19 @@ export interface BrandCard {
 }
 
 export interface TimeSceneProduct {
+  id: string;
   name: string;
   price: string;
   description: string;
+  href: string;
+  image: string | null;
 }
 
 export interface PriceBandItem {
   name: string;
   price: string;
   description: string;
+  href: string;
 }
 
 export interface PriceBand {

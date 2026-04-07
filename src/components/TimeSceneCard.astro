@@ -1,16 +1,22 @@
-﻿---
+---
+import type { ImageMetadata } from 'astro:assets';
 import { splitLines } from '../utils/text';
+import { CDN_URL } from '../data/links';
 
 interface Props {
   name: string;
   price: string;
   description: string;
   href?: string;
+  mainImage: ImageMetadata;
+  subImage: ImageMetadata;
 }
 
-const { name, price, description, href = '#' } = Astro.props;
+const { name, price, description, href = '#', mainImage, subImage } = Astro.props;
 const nameLines = splitLines(name);
 const descLines = splitLines(description);
+const cdnBase = CDN_URL ? CDN_URL.replace(/\/$/, '') : '';
+const toAssetSrc = (src: string) => (import.meta.env.PROD && cdnBase ? `${cdnBase}${src}` : src);
 ---
 
 <article class="c-time-scene-card">
@@ -29,11 +35,30 @@ const descLines = splitLines(description);
   </div>
 
   <div class="c-time-scene-card__visual">
-    <div class="c-time-scene-card__inset" role="img" aria-label="蝠・刀繝代ャ繧ｱ繝ｼ繧ｸ">
-      <!-- 蝠・刀繝代ャ繧ｱ繝ｼ繧ｸ -->
+    <div class="c-time-scene-card__inset">
+      <img
+        src={toAssetSrc(subImage.src)}
+        alt={`${nameLines[0]}のサブ画像`}
+        width={subImage.width}
+        height={subImage.height}
+        loading="lazy"
+        decoding="async"
+        class="c-time-scene-card__inset-image"
+      />
     </div>
-    <div class="c-time-scene-card__image" role="img" aria-label={`${nameLines[0]}縺ｮ繧､繝｡繝ｼ繧ｸ`}>
-      <!-- 繝｡繧､繝ｳ蝠・刀逕ｻ蜒・-->
+
+    <div class="c-time-scene-card__image">
+      <div class="c-time-scene-card__image-frame">
+        <img
+          src={toAssetSrc(mainImage.src)}
+          alt={`${nameLines[0]}のメイン画像`}
+          width={mainImage.width}
+          height={mainImage.height}
+          loading="lazy"
+          decoding="async"
+          class="c-time-scene-card__image-el"
+        />
+      </div>
     </div>
 
     <div class="c-time-scene-card__desc-box">
@@ -57,5 +82,3 @@ const descLines = splitLines(description);
     </a>
   </div>
 </article>
-
-

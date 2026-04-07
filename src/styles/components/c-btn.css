@@ -42,10 +42,10 @@
   border: 1px solid transparent;
   border-radius: 100px;
   font-family: var(--font-jp--sanserif);
-  font-size: clamp(14px, 1.6vw, 16px);
-  font-weight: var(--fw-bold);
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
   text-decoration: none;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   transition:
     background-color 0.2s ease,
     color 0.2s ease;

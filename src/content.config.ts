@@ -27,15 +27,18 @@ const brandCards = defineCollection({
 const timeSceneProducts = defineCollection({
   loader: file('src/data/time-scene-products.json'),
   schema: z.object({
+    id: z.string(),
     name: z.string(),
     price: z.string(),
     description: z.string(),
+    href: z.string(),
   }),
 });
 
 const priceBands = defineCollection({
   loader: file('src/data/price-bands.json'),
   schema: z.object({
+    id: z.string(),
     label: z.string(),
     labelEn: z.string(),
     arch: z.string(),
@@ -44,6 +47,7 @@ const priceBands = defineCollection({
         name: z.string(),
         price: z.string(),
         description: z.string(),
+        href: z.string(),
       })
     ),
   }),

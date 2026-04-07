@@ -46,9 +46,26 @@
 .c-time-scene-card__image {
   width: 100%;
   aspect-ratio: 4 / 3;
-  background-color: var(--palette-image-placeholder);
   border-radius: 0 40px 0 40px;
-  box-shadow: inset 0 0 0 6px #fff;
+  box-shadow: 3px 3px 0px 0px #0000001a;
+  background: #fff;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.c-time-scene-card__image-frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0 34px 0 34px;
+}
+
+.c-time-scene-card__image-el,
+.c-time-scene-card__inset-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .c-time-scene-card__inset {
@@ -62,15 +79,7 @@
   border: 1px solid var(--color-main);
   padding: 3px 4px;
   box-sizing: border-box;
-}
-
-.c-time-scene-card__inset::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: var(--palette-image-placeholder);
-  border: 1px solid var(--color-main);
+  overflow: hidden;
 }
 
 .c-time-scene-card__desc-box {
@@ -92,7 +101,6 @@
   font-weight: var(--fw-medium);
   color: var(--color-text);
   line-height: 1.45;
-  letter-spacing: 0.06em;
 }
 
 .c-time-scene-card__btn {

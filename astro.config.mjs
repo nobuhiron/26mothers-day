@@ -1,12 +1,13 @@
 import { defineConfig, envField } from 'astro/config';
 
-const cdnUrl = process.env.CDN_URL || '';
+const cdnUrl = process.env.PUBLIC_CDN_URL || process.env.CDN_URL || '';
 
 export default defineConfig({
   env: {
     schema: {
       PUBLIC_LINK_BASE: envField.string({ context: 'client', access: 'public', default: '#' }),
       PUBLIC_LINE_URL: envField.string({ context: 'client', access: 'public', default: '#' }),
+      PUBLIC_CDN_URL: envField.string({ context: 'client', access: 'public', default: '' }),
     },
   },
   build: {

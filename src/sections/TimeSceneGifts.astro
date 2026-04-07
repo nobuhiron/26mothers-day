@@ -3,11 +3,27 @@
  * 「時間」で選ぶ母の日の贈り物
  */
 import TimeSceneCard from '../components/TimeSceneCard.astro';
-import { LINK_BASE } from '../data/links';
 import { getCollection } from 'astro:content';
+import relaxMain1 from '../assets/images/relax-main-1.jpg';
+import relaxMain2 from '../assets/images/relax-main-2.jpg';
+import relaxMain3 from '../assets/images/relax-main-3.jpg';
+import relaxMain4 from '../assets/images/relax-main-4.jpg';
+import relaxMain5 from '../assets/images/relax-main-5.jpg';
+import relaxSub1 from '../assets/images/relax-sub-1.jpg';
+import relaxSub2 from '../assets/images/relax-sub-2.jpg';
+import relaxSub3 from '../assets/images/relax-sub-3.jpg';
+import relaxSub4 from '../assets/images/relax-sub-4.jpg';
+import relaxSub5 from '../assets/images/relax-sub-5.jpg';
 
 const tsEntries = await getCollection('timeSceneProducts');
 const timeSceneProducts = tsEntries.map((e) => e.data);
+const timeSceneVisuals = {
+  morning: { main: relaxMain1, sub: relaxSub1 },
+  hobby: { main: relaxMain2, sub: relaxSub2 },
+  afternoon: { main: relaxMain3, sub: relaxSub3 },
+  evening: { main: relaxMain4, sub: relaxSub4 },
+  night: { main: relaxMain5, sub: relaxSub5 },
+} as const;
 ---
 
 <section
@@ -18,7 +34,7 @@ const timeSceneProducts = tsEntries.map((e) => e.data);
   <div class='l-container'>
     <!-- ヘッダー -->
     <header class='p-time-scene__header'>
-      <span class='p-time-scene__badge'>母の日限定タグ付き</span>
+      <span class='p-time-scene__badge'>時間のタグ付き</span>
       <h2 id='heading-time-scene' class='p-time-scene__title'>
         <span class='p-time-scene__title-main'
           >おかあさんに届けたい<br />"時間"で選ぶ母の日の贈り物</span
@@ -31,19 +47,25 @@ const timeSceneProducts = tsEntries.map((e) => e.data);
       </h2>
     </header>
 
-    <!-- 商品リスト -->
+    <!-- リスト -->
     <ul class='p-time-scene__list'>
       {
-        timeSceneProducts.map((product) => (
-          <li class='p-time-scene__item'>
-            <TimeSceneCard
-              name={product.name}
-              price={product.price}
-              description={product.description}
-              href={LINK_BASE}
-            />
-          </li>
-        ))
+        timeSceneProducts.map((product) => {
+          const visuals = timeSceneVisuals[product.id as keyof typeof timeSceneVisuals];
+
+          return (
+            <li class='p-time-scene__item'>
+              <TimeSceneCard
+                name={product.name}
+                price={product.price}
+                description={product.description}
+                href={product.href}
+                mainImage={visuals.main}
+                subImage={visuals.sub}
+              />
+            </li>
+          );
+        })
       }
     </ul>
   </div>
