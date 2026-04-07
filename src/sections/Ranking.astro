@@ -5,7 +5,6 @@ import flowerRanking from '../assets/images/flower-ranking.png';
 import ranking1Image from '../assets/images/ranking1_img.jpg';
 import ranking2Image from '../assets/images/ranking2_img.jpg';
 import ranking3Image from '../assets/images/ranking3_img.jpg';
-import { LINK_BASE } from '../data/links';
 import { splitLines } from '../utils/text';
 
 const rankingEntries = await getCollection('ranking');
@@ -43,7 +42,7 @@ const isNameInlineSupplement = (segment: string) => /^\[.*?\]$/.test(segment);
           <li class="p-ranking__item">
             <div class="c-ranking-card is-flipped" data-flip-card data-rank={item.rank}>
               <div class="c-ranking-card__inner">
-                <a href={LINK_BASE} class="c-ranking-card__front" aria-label={`${item.name}の商品ページ`}>
+                <a href={item.href} class="c-ranking-card__front" aria-label={`${item.name}の商品ページ`}>
                   <div class="c-ranking-card__front-content">
                     <div class="c-ranking-card__badge-sm">
                       <div class="c-ranking-card__badge-sm-row">

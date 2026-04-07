@@ -1,4 +1,4 @@
-.c-btn {
+﻿.c-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@
   border: 1px solid currentColor;
 }
 
-/* ---------- カード用ピルボタン ---------- */
+/* ---------- 繧ｫ繝ｼ繝臥畑繝斐Ν繝懊ち繝ｳ ---------- */
 .c-btn-pill {
   position: relative;
   display: inline-flex;
@@ -35,9 +35,8 @@
   padding-inline: 0;
   --pill-bg: var(--color-main);
   --pill-fg: #fff;
-  --pill-icon-bg: #fff;
-  --pill-icon-stroke: var(--color-main);
-  --pill-icon-arrow: var(--color-main);
+  --pill-circle-fill: #fff;
+  --pill-arrow-color: var(--color-main);
   background-color: var(--pill-bg);
   color: var(--pill-fg);
   border: 1px solid transparent;
@@ -54,9 +53,8 @@
 .c-btn-pill:hover {
   --pill-bg: #fff;
   --pill-fg: var(--color-main);
-  --pill-icon-bg: var(--color-main);
-  --pill-icon-stroke: var(--color-main);
-  --pill-icon-arrow: #fff;
+  --pill-circle-fill: var(--color-main);
+  --pill-arrow-color: #fff;
   border-color: var(--color-main);
 }
 .c-btn-pill__arrow {
@@ -67,32 +65,31 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--pill-fg);
 }
 .c-btn-pill__arrow svg {
+  display: block;
   width: 24px;
   height: 24px;
 }
 .c-btn-pill__arrow circle {
-  fill: var(--pill-icon-bg);
-  stroke: var(--pill-icon-stroke);
+  fill: var(--pill-circle-fill);
 }
 .c-btn-pill__arrow path {
-  stroke: var(--pill-icon-arrow);
+  stroke: var(--pill-arrow-color);
 }
 
-/* data-color バリエーション */
+/* data-color 繝舌Μ繧ｨ繝ｼ繧ｷ繝ｧ繝ｳ */
 .c-btn-pill[data-color="accent"] {
   --pill-bg: var(--color-accent);
-  --pill-icon-arrow: var(--color-accent);
-}
-.c-btn-pill[data-color="accent"] .c-btn-pill__arrow path {
-  stroke: var(--pill-icon-arrow);
 }
 .c-btn-pill[data-color="accent"]:hover {
   --pill-bg: #fff;
   --pill-fg: var(--color-accent);
-  --pill-icon-bg: var(--color-accent);
-  --pill-icon-stroke: var(--color-accent);
-  --pill-icon-arrow: #fff;
+  --pill-circle-fill: var(--color-accent);
+  --pill-arrow-color: #fff;
   border-color: var(--color-accent);
 }
+

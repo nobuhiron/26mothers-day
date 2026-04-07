@@ -2,22 +2,25 @@
   {
     "id": "1",
     "rank": 1,
-    "name": "スイーツお試しセット\n（母の日限定box）",
+    "name": "スイーツお試しセット\n(母の日限定box)",
     "description": "森半のスイーツを初めてご利用の方に、人気の3種を詰め合わせたお試しセットです。",
-    "price": "2,268"
+    "price": "2,268",
+    "href": "https://www.tea-and-coffee.shop/view/item/000000000607"
   },
   {
     "id": "2",
     "rank": 2,
-    "name": "CHASTA（チャスタ）・\nISSEN［10P入り］ギフトセット",
+    "name": "CHASTA(チャスタ)・\nISSEN[10P入り]ギフトセット",
     "description": "日常を整える、とっておきの急須時間を。届いてすぐに五感で楽しめます。",
-    "price": "5,390"
+    "price": "5,390",
+    "href": "https://www.tea-and-coffee.shop/view/item/000000000654"
   },
   {
     "id": "3",
     "rank": 3,
     "name": "森半\nお茶屋のスイーツ満足セット",
     "description": "人気の抹茶スイーツが8種類入った詰め合わせ。",
-    "price": "5,508"
+    "price": "5,508",
+    "href": "https://www.tea-and-coffee.shop/view/item/000000000307"
   }
 ]

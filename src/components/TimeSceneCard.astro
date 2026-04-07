@@ -1,4 +1,4 @@
----
+﻿---
 import { splitLines } from '../utils/text';
 
 interface Props {
@@ -24,16 +24,16 @@ const descLines = splitLines(description);
     <p class="c-time-scene-card__price">
       <span class="c-time-scene-card__price-yen">¥</span>
       {price}
-      <span class="c-time-scene-card__price-tax">（税込）</span>
+      <span class="c-time-scene-card__price-tax">(税込)</span>
     </p>
   </div>
 
   <div class="c-time-scene-card__visual">
-    <div class="c-time-scene-card__inset" role="img" aria-label="商品パッケージ">
-      <!-- 商品パッケージ -->
+    <div class="c-time-scene-card__inset" role="img" aria-label="蝠・刀繝代ャ繧ｱ繝ｼ繧ｸ">
+      <!-- 蝠・刀繝代ャ繧ｱ繝ｼ繧ｸ -->
     </div>
-    <div class="c-time-scene-card__image" role="img" aria-label={`${nameLines[0]}のイメージ`}>
-      <!-- メイン商品画像 -->
+    <div class="c-time-scene-card__image" role="img" aria-label={`${nameLines[0]}縺ｮ繧､繝｡繝ｼ繧ｸ`}>
+      <!-- 繝｡繧､繝ｳ蝠・刀逕ｻ蜒・-->
     </div>
 
     <div class="c-time-scene-card__desc-box">
@@ -50,16 +50,12 @@ const descLines = splitLines(description);
       <span>詳しくはこちら</span>
       <span class="c-btn-pill__arrow" aria-hidden="true">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5" />
-          <path
-            d="M10 8l4 4-4 4"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+          <circle cx="12" cy="12" r="11" fill="currentColor" />
+          <path d="M10 8l4 4-4 4" stroke="var(--pill-arrow-color, currentColor)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </span>
     </a>
   </div>
 </article>
+
+

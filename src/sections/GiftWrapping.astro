@@ -12,6 +12,7 @@ import fingerIcon from '../assets/images/finger_icon.png';
 import messageImg1 from '../assets/images/tag-img-1.jpg';
 import messageImg2 from '../assets/images/tag-img-2.jpg';
 import tagImg from '../assets/images/tag.png';
+import { LINK_BASE } from '../data/links';
 
 ---
 
@@ -37,34 +38,40 @@ import tagImg from '../assets/images/tag.png';
       </header>
 
       <div class='p-gift-wrapping__dedicated-box-panel'>
-        <div class='p-gift-wrapping__dedicated-box-visual'>
-          <div class='p-gift-wrapping__dedicated-box-image'>
-            <Image src={boxImg} alt='母の日専用ギフトボックス' />
+        <a
+          href="https://www.tea-and-coffee.shop/view/item/000000000607"
+          class='p-gift-wrapping__dedicated-box-link'
+          aria-label='抹茶スイーツお試しセットの商品ページを開く'
+        >
+          <div class='p-gift-wrapping__dedicated-box-visual'>
+            <div class='p-gift-wrapping__dedicated-box-image'>
+              <Image src={boxImg} alt='母の日専用ギフトボックス' />
+            </div>
           </div>
-          <button
-            class='p-gift-wrapping__tap-label'
-            type='button'
-            aria-label='タップして中を見る'
-            aria-controls='giftbox-modal'
-            aria-expanded='false'
-          >
-            <img
-              class='p-gift-wrapping__tap-icon'
-              src={fingerIcon.src}
-              alt=''
-              aria-hidden='true'
-            />
-            <span>タップして<br />中を見る</span>
-          </button>
-        </div>
-        <div class='p-gift-wrapping__price-area'>
-          <span class='p-gift-wrapping__badge-shipping'>送 料 無 料</span>
-          <p class='p-gift-wrapping__price'>
-            <span class='p-gift-wrapping__price-yen'>¥</span><span
-              class='p-gift-wrapping__price-num'>2,500</span
-            ><span class='p-gift-wrapping__price-tax'>（税込）</span>
-          </p>
-        </div>
+          <div class='p-gift-wrapping__price-area'>
+            <span class='p-gift-wrapping__badge-shipping'>送 料 無 料</span>
+            <p class='p-gift-wrapping__price'>
+              <span class='p-gift-wrapping__price-yen'>¥</span><span
+                class='p-gift-wrapping__price-num'>2,500</span
+              ><span class='p-gift-wrapping__price-tax'>(税込)</span>
+            </p>
+          </div>
+        </a>
+        <button
+          class='p-gift-wrapping__tap-label'
+          type='button'
+          aria-label='タップして中を見る'
+          aria-controls='giftbox-modal'
+          aria-expanded='false'
+        >
+          <img
+            class='p-gift-wrapping__tap-icon'
+            src={fingerIcon.src}
+            alt=''
+            aria-hidden='true'
+          />
+          <span>タップして<br />中を見る</span>
+        </button>
       </div>
     </div>
   </div>
@@ -81,7 +88,11 @@ import tagImg from '../assets/images/tag.png';
           森半オリジナルギフト袋<br />＆メッセージタグ</p>
       </header>
       <div class='p-gift-wrapping__gift-bag-body'>
-        <div class='p-gift-wrapping__gift-bag-visual'>
+        <a
+          href="https://www.tea-and-coffee.shop/view/item/000000000842"
+          class='p-gift-wrapping__gift-bag-visual'
+          aria-label='森半オリジナルギフト袋の商品ページを開く'
+        >
           <div class='p-gift-wrapping__gift-bag-badge'>
             <p class='p-gift-wrapping__gift-bag-badge-text'>
               <span class='p-gift-wrapping__gift-bag-badge-highlight'
@@ -93,7 +104,7 @@ import tagImg from '../assets/images/tag.png';
           <div class='p-gift-wrapping__gift-bag-image'>
             <Image src={tagImg} alt='森半オリジナルギフト袋' />
           </div>
-        </div>
+        </a>
 
         <div class='p-gift-wrapping__message-row'>
           <div class='p-gift-wrapping__message-item'>

@@ -1,16 +1,18 @@
----
+﻿---
 import { Image } from 'astro:assets';
 import { CATEGORY_NAV_ITEMS } from '../data/category-nav';
 import NavStackLink from './NavStackLink.astro';
-import { LINE_URL } from '../data/links';
 import linePromoImg from '../assets/images/line.png';
 import lineAboutImg from '../assets/images/line-about.png';
+
+const LINE_URL =
+  'https://cdn.omiseconnect.jp/liff/index.html?channel_id=2004048028&liff.state=%3Focsrc%3Doc_popup&liff.referrer=https%3A%2F%2Fl.omct.jp%2F';
 ---
 
 <div class="p-page-chrome-right">
   <div class="p-page-chrome-right__default">
     <div class="p-page-chrome-right__stack">
-      <nav class="p-page-chrome-right__nav" aria-label="ページ内リンク（PC）">
+      <nav class="p-page-chrome-right__nav" aria-label="Open LINE link"">
         <ul class="c-nav-stack c-nav-stack--compact">
           {CATEGORY_NAV_ITEMS.map((item) => (
             <li class="c-nav-stack__item">
@@ -20,13 +22,26 @@ import lineAboutImg from '../assets/images/line-about.png';
         </ul>
       </nav>
       <div class="p-page-chrome-right__line">
-        <a href={LINE_URL} class="p-page-chrome-right__line-link" aria-label="LINE登録でお得な情報を受け取る">
+        <a
+          href={LINE_URL}
+          class="p-page-chrome-right__line-link"
+          aria-label="Open LINE link""_blank"
+          rel="noopener noreferrer"
+        >
           <Image src={linePromoImg} alt="" class="p-page-chrome-right__line-image" />
         </a>
       </div>
     </div>
   </div>
   <div class="p-page-chrome-right__about" aria-hidden="true">
-    <Image src={lineAboutImg} alt="" class="p-page-chrome-right__about-image" />
+    <a
+      href={LINE_URL}
+      class="p-page-chrome-right__about-link"
+      aria-label="Open LINE link""_blank"
+      rel="noopener noreferrer"
+    >
+      <Image src={lineAboutImg} alt="" class="p-page-chrome-right__about-image" />
+    </a>
   </div>
 </div>
+

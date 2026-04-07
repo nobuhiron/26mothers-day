@@ -25,7 +25,6 @@
   font-weight: var(--fw-medium);
   color: var(--color-text);
   line-height: 1;
-  letter-spacing: 0.08em;
 }
 
 .c-time-scene-card__price-yen {

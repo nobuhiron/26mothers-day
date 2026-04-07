@@ -27,6 +27,11 @@
   padding: 0;
 }
 
+.c-price-band-card__cta {
+  display: flex;
+  justify-content: center;
+}
+
 /* テキスト情報ブロック */
 .c-price-band-card__info {
   display: grid;
