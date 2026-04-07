@@ -14,6 +14,7 @@ type CarouselCard = {
 
 type Props = {
   carouselId: string;
+  eyebrow?: string;
   heading: string;
   ariaLabel: string;
   cards: CarouselCard[];
@@ -21,7 +22,7 @@ type Props = {
   hidden?: boolean;
 };
 
-const { carouselId, heading, ariaLabel, cards, containerClass, hidden } = Astro.props as Props;
+const { carouselId, eyebrow, heading, ariaLabel, cards, containerClass, hidden } = Astro.props as Props;
 ---
 
 <div
@@ -35,7 +36,10 @@ const { carouselId, heading, ariaLabel, cards, containerClass, hidden } = Astro.
   hidden={hidden}
 >
   <div class="p-line-chat__reason-heading">
-    <span>{heading}</span>
+    <span class="p-line-chat__reason-heading-badge">
+      {eyebrow && <span class="p-line-chat__reason-heading-en">{eyebrow}</span>}
+      <span class="p-line-chat__reason-heading-ja">{heading}</span>
+    </span>
   </div>
   <div id={carouselId} class="splide p-line-chat__carousel" aria-label={ariaLabel}>
     <div class="splide__track">

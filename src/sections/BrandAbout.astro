@@ -75,7 +75,7 @@ const giftCarouselCards = [
       <!-- LINE header -->
       <div class="p-line-chat__header">
         <button class="p-line-chat__header-back" aria-label="戻る">
-          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" aria-hidden="true">
+          <svg width="8" height="14" viewBox="0 0 10 18" fill="none" aria-hidden="true">
             <path d="M9 1L1 9l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
@@ -84,20 +84,16 @@ const giftCarouselCards = [
           <span class="p-line-chat__header-sub">about MORIHAN</span>
         </h2>
         <div class="p-line-chat__header-icons">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="15" y1="15" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 4h14M3 10h14M3 16h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+          <img src="/icon-search.svg" alt="" aria-hidden="true" width="20" height="20" />
+          <img src="/icon-telephone.svg" alt="" aria-hidden="true" width="20" height="20" />
+          <img src="/icon-hamburger.svg" alt="" aria-hidden="true" width="20" height="20" />
         </div>
       </div>
 
       <!-- Chat body -->
       <div class="p-line-chat__body">
         <!-- Initial bot message -->
-        <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__anim">
+        <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__anim is-visible">
           <div
             class="p-line-chat__avatar p-line-chat__avatar--spacer"
             data-avatar="initial"
@@ -111,7 +107,7 @@ const giftCarouselCards = [
         </div>
 
         <!-- A/B choices -->
-        <div class="p-line-chat__row p-line-chat__row--user p-line-chat__anim">
+        <div class="p-line-chat__row p-line-chat__row--user p-line-chat__anim is-visible">
           <div class="p-line-chat__choices-layout">
             <div class="p-line-chat__choices-panel">
               <div class="p-line-chat__choices">
@@ -177,20 +173,13 @@ const giftCarouselCards = [
               </div>
             </div>
 
-            <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__reply-msg">
-              <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-3" aria-hidden="true">
-                <Image src={kumaIconFooter} alt="" class="p-line-chat__avatar-image" />
-              </div>
-              <div class="p-line-chat__bubble p-line-chat__bubble--bot">
-                森半ea&coffeeでは、まずはじめての方にも選びやすいギフトをご用意しています。用途に合わせて、贈りやすい組み合わせをご提案します。
-              </div>
-            </div>
           </div>
         </div>
 
         <!-- Reason carousel -->
         <ReasonCarousel
           carouselId="brand-carousel"
+          eyebrow="Reason"
           heading={reasonHeading}
           ariaLabel={reasonHeading}
           cards={brandCarouselCards}
@@ -198,8 +187,18 @@ const giftCarouselCards = [
           hidden
         />
 
+        <div class="p-line-chat__row p-line-chat__row--bot p-line-chat__after-reply p-line-chat__after-reply--b-note" hidden>
+          <div class="p-line-chat__avatar p-line-chat__avatar--spacer" data-avatar="reply-b-3" aria-hidden="true">
+            <Image src={kumaIconFooter} alt="" class="p-line-chat__avatar-image" />
+          </div>
+          <div class="p-line-chat__bubble p-line-chat__bubble--bot">
+            森半ea&coffeeでは、まずはじめての方にも選びやすいギフトをご用意しています。用途に合わせて、贈りやすい組み合わせをご提案します。
+          </div>
+        </div>
+
         <ReasonCarousel
           carouselId="gift-carousel"
+          eyebrow="Gift"
           heading="ギフトの選び方"
           ariaLabel="ギフトの選び方"
           cards={giftCarouselCards}
@@ -236,7 +235,10 @@ const giftCarouselCards = [
   const choiceBtns = document.querySelectorAll<HTMLButtonElement>('.p-line-chat__choice-btn');
   const replyA = document.querySelector<HTMLElement>('[data-reply="a"]');
   const replyB = document.querySelector<HTMLElement>('[data-reply="b"]');
-  const afterReplyEls = document.querySelectorAll<HTMLElement>('.p-line-chat__after-reply:not(.p-line-chat__after-reply--gift)');
+  const afterReplyEls = document.querySelectorAll<HTMLElement>(
+    '.p-line-chat__after-reply:not(.p-line-chat__after-reply--gift):not(.p-line-chat__after-reply--b-note)'
+  );
+  const afterReplyBNote = document.querySelector<HTMLElement>('.p-line-chat__after-reply--b-note');
   const giftCarouselEls = document.querySelectorAll<HTMLElement>('.p-line-chat__after-reply--gift');
   let currentChoice: string | null = null;
   const mountedCarousels = new Set<string>();
@@ -354,6 +356,11 @@ const giftCarouselCards = [
         }
       });
       if (choice === 'b') {
+        if (afterReplyBNote && afterReplyBNote.hidden) {
+          afterReplyBNote.hidden = false;
+          afterReplyBNote.style.animationDelay = '0.75s';
+          afterReplyBNote.classList.add('is-visible');
+        }
         giftCarouselEls.forEach((el) => {
           if (el.hidden) {
             el.hidden = false;
@@ -362,6 +369,10 @@ const giftCarouselCards = [
           }
         });
       } else {
+        if (afterReplyBNote) {
+          afterReplyBNote.hidden = true;
+          afterReplyBNote.classList.remove('is-visible');
+        }
         giftCarouselEls.forEach((el) => {
           el.hidden = true;
           el.classList.remove('is-visible');
