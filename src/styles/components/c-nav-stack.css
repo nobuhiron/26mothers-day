@@ -85,6 +85,9 @@
   min-height: 40px;
   line-height: 1.35;
 }
+.c-nav-stack__btn--compact:hover {
+  color: #d0d0d0 !important;
+}
 
 .c-nav-stack--compact .c-nav-stack__btn--compact .c-nav-stack__label {
   font-size: 16px;

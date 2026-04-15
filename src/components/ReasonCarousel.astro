@@ -1,18 +1,23 @@
 ﻿---
 import { Image, type ImageMetadata } from 'astro:assets';
-import { LINK_BASE } from '../data/links';
 import { splitLines } from '../utils/text';
 import { publicAssetPath } from '../utils/assets';
+
+type CarouselButton = {
+  label: string;
+  href?: string | null;
+};
 
 type CarouselCard = {
   reason: string;
   title: string;
   description: string;
+  href?: string | null;
   image?: ImageMetadata | null;
   imageAlt?: string;
   reasonImage?: string;
   reasonImageAlt?: string;
-  buttons?: string[];
+  buttons?: Array<string | CarouselButton>;
 };
 
 type Props = {
@@ -25,6 +30,20 @@ type Props = {
   containerClass?: string;
   hidden?: boolean;
   tone?: 'accent' | 'gold';
+};
+
+const getButtonConfig = (card: CarouselCard, button: string | CarouselButton) => {
+  if (typeof button === 'string') {
+    return {
+      label: button,
+      href: card.href ?? '#',
+    };
+  }
+
+  return {
+    label: button.label,
+    href: button.href ?? card.href ?? '#',
+  };
 };
 
 const {
@@ -109,21 +128,25 @@ const themeClass = tone === 'gold' ? 'p-line-chat__reason--gold' : 'p-line-chat_
               </p>
               {!!card.buttons?.length && (
                 <div class="p-line-chat__card-actions">
-                  {card.buttons.map((button, buttonIndex) => (
-                    <a
-                      href={LINK_BASE}
-                      class="p-line-chat__card-link"
-                      data-link-tone={carouselId === 'gift-carousel' && cardIndex === 0 && buttonIndex === 1 ? 'gold' : 'accent'}
-                    >
-                      <span>{button}</span>
-                      <span class="c-btn-pill__arrow" aria-hidden="true">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                          <circle cx="12" cy="12" r="11" fill="currentColor" />
-                          <path d="M10 8l4 4-4 4" stroke="var(--pill-arrow-color, currentColor)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                      </span>
-                    </a>
-                  ))}
+                  {card.buttons.map((button, buttonIndex) => {
+                    const { label, href } = getButtonConfig(card, button);
+
+                    return (
+                      <a
+                        href={href}
+                        class="p-line-chat__card-link"
+                        data-link-tone={carouselId === 'gift-carousel' && cardIndex === 0 && buttonIndex === 1 ? 'gold' : 'accent'}
+                      >
+                        <span>{label}</span>
+                        <span class="c-btn-pill__arrow" aria-hidden="true">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <circle cx="12" cy="12" r="11" fill="currentColor" />
+                            <path d="M10 8l4 4-4 4" stroke="var(--pill-arrow-color, currentColor)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                      </a>
+                    );
+                  })}
                 </div>
               )}
             </article>

@@ -5,3 +5,9 @@
   display: grid;
 }
 
+@media (max-width: 767px) and (orientation: portrait) {
+  .l-container {
+    width: 100%;
+  }
+}
+

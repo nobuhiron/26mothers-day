@@ -99,7 +99,7 @@ MakeShop 向け LP 制作用の Astro スターターです。
 
 - `PUBLIC_LINK_BASE`
   MakeShop の商品 URL ベース
-- `CDN_URL`
+- `PUBLIC_CDN_URL`
   `assetsPrefix` に渡す CDN パス
 
 ## コマンド

@@ -11,6 +11,7 @@ export interface BrandCard {
   title: string;
   description: string;
   cta: string | null;
+  ctaHref?: string | null;
 }
 
 export interface TimeSceneProduct {

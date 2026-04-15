@@ -8,7 +8,10 @@
     "imageAlt": "ギフトボックスのイメージ",
     "reasonImage": "/Gift01.svg",
     "reasonImageAlt": "Gift 01",
-    "buttons": ["ギフトラッピングについて", "のしガイド"]
+    "buttons": [
+      { "label": "ギフトラッピングについて", "href": "https://www.tea-and-coffee.shop/view/page/gift" },
+      { "label": "のしガイド", "href": "https://www.tea-and-coffee.shop/view/page/gift#noshi" }
+    ]
   },
   {
     "id": "02",
@@ -19,13 +22,15 @@
     "imageAlt": "季節の手土産のイメージ",
     "reasonImage": "/Gift02.svg",
     "reasonImageAlt": "Gift 02",
-    "buttons": ["お手提げ袋について"]
+    "buttons": [
+      { "label": "お手提げ袋について", "href": "https://www.tea-and-coffee.shop/view/page/gift#paperbag" }
+    ]
   },
   {
     "id": "03",
     "reason": "Gift 03",
     "title": "配達日・時間帯指定いただけます",
-    "description": "すぐに食べき5営業日以降～3週間後までお選びいただけます。ご指定のない場合は原則、2営業日～5営業日以内の発送となります。\nご購入手続きの際にご選択ください。",
+    "description": "5営業日以降～3週間後までお選びいただけます。ご指定のない場合は原則、2営業日～5営業日以内の発送となります。\nご購入手続きの際にご選択ください。",
     "image": "../assets/images/gift-3.jpg",
     "imageAlt": "保存しやすい贈りもののイメージ",
     "reasonImage": "/Gift03.svg",

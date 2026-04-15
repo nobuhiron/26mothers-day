@@ -3,12 +3,18 @@
 .l-page {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
+  isolation: isolate;
 }
 
 .l-page__bg {
   position: fixed;
-  inset: 0;
-  z-index: -1;
+  inset: -1px;
+  inset: calc(env(safe-area-inset-top, 0px) * -1)
+        calc(env(safe-area-inset-right, 0px) * -1)
+        calc(env(safe-area-inset-bottom, 0px) * -1)
+        calc(env(safe-area-inset-left, 0px) * -1);
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
@@ -46,6 +52,8 @@
 
 .l-shell {
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .l-shell__aside {
@@ -100,5 +108,11 @@
 
   .l-main-column {
     margin-inline: 0;
+  }
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .l-main-column {
+    max-width: none;
   }
 }

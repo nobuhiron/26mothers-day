@@ -305,12 +305,19 @@
   width: 100%;
 }
 
+/* テキストグループ（キャプション + 注釈） */
+.p-gift-wrapping__message-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* 注釈 */
 .p-gift-wrapping__note {
-  font-size: 12px;
+  font-size: 10px;
   font-family: var(--font-jp--sanserif);
   font-weight: var(--fw-regular);
-  text-align: right;
+  text-align: left;
 }
 
 /* ---------- Gift bag heading ---------- */

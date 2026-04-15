@@ -20,6 +20,7 @@ const brandCards = defineCollection({
       title: z.string(),
       description: z.string(),
       cta: z.string().nullable(),
+      ctaHref: z.string().nullable().default(null),
       href: z.string().nullable().default(null),
       image: image(),
       imageAlt: z.string(),
@@ -35,11 +36,22 @@ const giftCards = defineCollection({
       reason: z.string(),
       title: z.string(),
       description: z.string(),
+      href: z.string().nullable().default(null),
       image: image(),
       imageAlt: z.string(),
       reasonImage: z.string(),
       reasonImageAlt: z.string(),
-      buttons: z.array(z.string()).default([]),
+      buttons: z
+        .array(
+          z.union([
+            z.string(),
+            z.object({
+              label: z.string(),
+              href: z.string().nullable().default(null),
+            }),
+          ])
+        )
+        .default([]),
     }),
 });
 

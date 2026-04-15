@@ -57,7 +57,7 @@ import { publicAssetPath } from '../utils/assets';
           <div class='p-gift-wrapping__price-area'>
             <span class='p-gift-wrapping__badge-shipping'>送 料 無 料</span>
             <p class='p-gift-wrapping__price'>
-              <span class='p-gift-wrapping__price-yen'>¥</span><span
+              <span class='p-gift-wrapping__price-yen'>￥</span><span
                 class='p-gift-wrapping__price-num'>2,500</span
               ><span class='p-gift-wrapping__price-tax'>(税込)</span>
             </p>
@@ -129,11 +129,16 @@ import { publicAssetPath } from '../utils/assets';
             </p>
           </div>
           <div class='p-gift-wrapping__message-item'>
-            <p
-              class='p-gift-wrapping__message-caption p-gift-wrapping__message-caption--left'
-            >
-              直筆メッセージで<br />想いを伝える
-            </p>
+            <div class='p-gift-wrapping__message-text-group'>
+              <p
+                class='p-gift-wrapping__message-caption p-gift-wrapping__message-caption--left'
+              >
+                直筆メッセージで<br />想いを伝える
+              </p>
+              <p class='p-gift-wrapping__note'>
+                ※メッセージの代筆は承っておりません。
+              </p>
+            </div>
             <div class='p-gift-wrapping__message-image'>
               <div class='p-gift-wrapping__message-photo-frame'>
                 <Image
@@ -150,9 +155,6 @@ import { publicAssetPath } from '../utils/assets';
               />
             </div>
           </div>
-          <p class='p-gift-wrapping__note'>
-※メッセージの代筆は承っておりません。
-</p>
         </div>
       </div>
     </div>

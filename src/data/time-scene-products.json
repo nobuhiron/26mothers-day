@@ -1,37 +1,37 @@
 [
   {
     "id": "morning",
-    "name": "CHASTA(チャスタ)＆\n森半八十八夜(玉露・煎茶)",
-    "price": "5,500",
+    "name": "ギフトセットA\nCHASTA(チャスタ)＆\n森半八十八夜(玉露・煎茶)",
+    "price": "4,820",
     "description": "家事がひと段落した午前中。\n自分のためだけに丁寧にお茶を\n淹れる贅沢なひとときを。",
-    "href": "https://www.tea-and-coffee.shop/view/item/000000000410?category_page_id=ct76"
+    "href": "https://www.tea-and-coffee.shop/view/item/000000000858"
   },
   {
     "id": "hobby",
-    "name": "おけいこ用抹茶&\n日本茶パウダー(煎茶・ほうじ茶)",
-    "price": "5,500",
+    "name": "ギフトセットB\nおけいこ用抹茶&\n日本茶パウダー(煎茶・ほうじ茶)",
+    "price": "3,760",
     "description": "お菓子作りが趣味のおかあさんへ。\n好きを深める時間を。",
-    "href": "https://www.tea-and-coffee.shop/view/item/000000000184?category_page_id=ct49"
+    "href": "https://www.tea-and-coffee.shop/view/item/000000000859"
   },
   {
     "id": "afternoon",
-    "name": "抹茶くるる&\n森半 <五香(ごこう)> \n煎茶 [100g袋入り]",
-    "price": "5,500",
+    "name": "ギフトセットC\n抹茶くるる&\n森半 <五香(ごこう)> \n煎茶 [100g袋入り]",
+    "price": "2,735",
     "description": "心がほどけるリラックスタイム。\n美味しいお菓子とお茶で\n会話や心が弾む昼下がりを。",
-    "href": "https://www.tea-and-coffee.shop/view/item/000000000074"
+    "href": "https://www.tea-and-coffee.shop/view/item/000000000860"
   },
   {
     "id": "evening",
-    "name": "CHASTA(チャスタ)&鳳春",
-    "price": "5,500",
+    "name": "ギフトセットD\nCHASTA(チャスタ)&鳳春",
+    "price": "9001",
     "description": "背筋がのびる、凛とした時間。\n夕暮れの静けさの中で、\n抹茶の香りとともに心を整えるひとときを。",
-    "href": "https://www.tea-and-coffee.shop/view/item/000000000654?category_page_id=ct77"
+    "href": "https://www.tea-and-coffee.shop/view/item/000000000861"
   },
   {
     "id": "night",
-    "name": "黒豆ルイボスティー&\n抹茶くるる",
-    "price": "5,500",
+    "name": "ギフトセットE\n黒豆ルイボスティー&\n抹茶くるる",
+    "price": "1,871",
     "description": "ねぎらう、オフの時間。\nノンカフェインのお茶と抹茶のお菓子で、\nやさしくほどける夜のひとときを。",
-    "href": "https://www.tea-and-coffee.shop/view/item/000000000652?category_page_id=ct77"
+    "href": "https://www.tea-and-coffee.shop/view/item/000000000862"
   }
 ]

@@ -3,8 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "predev": "node scripts/copy-brand-about-vendor.mjs",
     "dev": "astro dev",
-    "build": "astro build",
+    "prebuild": "node scripts/copy-brand-about-vendor.mjs",
+    "build": "astro build && node scripts/patch-dist-assets.mjs",
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro"

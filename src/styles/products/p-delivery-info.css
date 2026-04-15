@@ -12,6 +12,7 @@
 .p-delivery-info__inner {
   display: grid;
   align-items: center;
+  justify-content: center;
   text-align: center;
   gap: var(--spacing-4xl);
   font-family: var(--font-jp--sanserif);

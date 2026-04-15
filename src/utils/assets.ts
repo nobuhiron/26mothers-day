@@ -1,6 +1,8 @@
-import { CDN_URL } from '../data/links';
-
-const cdnBase = CDN_URL ? CDN_URL.replace(/\/$/, '') : '';
+const cdnBase = (
+  import.meta.env.PUBLIC_CDN_URL ||
+  process.env.PUBLIC_CDN_URL ||
+  ''
+).replace(/\/$/, '');
 
 export const publicAssetPath = (path: string) => {
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
