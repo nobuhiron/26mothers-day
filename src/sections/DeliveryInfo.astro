@@ -36,9 +36,9 @@ const digitOnes = digitStr[1];
         {/* あと XX 日 */}
         <p class="p-delivery-info__countdown-line">
           <span class="p-delivery-info__count-text">あと</span>
-          <span class="p-delivery-info__digits" aria-label={`あと${daysLeft}日`}>
-            <span class="p-delivery-info__digit">{digitTens}</span>
-            <span class="p-delivery-info__digit">{digitOnes}</span>
+          <span class="p-delivery-info__digits" data-mday-countdown aria-label={`あと${daysLeft}日`}>
+            <span class="p-delivery-info__digit" data-mday-digit="tens">{digitTens}</span>
+            <span class="p-delivery-info__digit" data-mday-digit="ones">{digitOnes}</span>
           </span>
           <span class="p-delivery-info__count-text">日</span>
         </p>
@@ -59,3 +59,23 @@ const digitOnes = digitStr[1];
     </div>
   </div>
 </section>
+
+<script>
+  // 母の日（5/10）までの残日数をクライアント側で毎日再計算する
+  // ビルド時の値が dist に固定されてしまうのを防ぐため、表示時に上書きする
+  const root = document.querySelector<HTMLElement>('[data-mday-countdown]');
+  if (root) {
+    const today = new Date();
+    const target = new Date(today.getFullYear(), 4, 10); // 5/10
+    if (target.getTime() <= today.getTime()) {
+      target.setFullYear(today.getFullYear() + 1);
+    }
+    const days = Math.min(99, Math.max(0, Math.ceil((target.getTime() - today.getTime()) / 86400000)));
+    const padded = String(days).padStart(2, '0');
+    const tensEl = root.querySelector<HTMLElement>('[data-mday-digit="tens"]');
+    const onesEl = root.querySelector<HTMLElement>('[data-mday-digit="ones"]');
+    if (tensEl) tensEl.textContent = padded[0];
+    if (onesEl) onesEl.textContent = padded[1];
+    root.setAttribute('aria-label', `あと${days}日`);
+  }
+</script>
